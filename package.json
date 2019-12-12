@@ -1,0 +1,69 @@
+{
+  "name": "poc-rogue-sound-web",
+  "version": "0.0.1",
+  "description": "The best social DJ site where users can share music by tuning in to user-generated playlists created by music lovers from all over the world. Made with Spotify API.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/rogue-sound/poc-rogue-sound-web.git"
+  },
+  "keywords": [
+    "spotify",
+    "dj"
+  ],
+  "author": "Everfriends",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack -d --mode development",
+    "build-prod": "webpack -p --mode production",
+    "start": "webpack-dev-server --hot --mode development",
+    "storybook": "start-storybook"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "immer": "^5.0.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.18",
+    "react-router-dom": "^5.1.2",
+    "reselect": "^4.0.0",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "latest",
+    "@babel/preset-react": "^7.7.4",
+    "@hot-loader/react-dom": "latest",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-macros": "^2.7.1",
+    "babel-plugin-styled-components": "^1.10.6",
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-template": "^6.2.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "node-sass": "^4.13.0",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}

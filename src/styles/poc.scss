@@ -1,0 +1,27 @@
+.poc__container {
+  margin-top: 10px;
+
+  input {
+    padding: 5px;
+    margin-left: 5px;
+  }
+  
+  select {
+    padding: 5px;
+  }
+  
+  .poc_input {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  
+    label {
+      font-weight: bold;
+    }
+  
+    #token {
+      width: 356px;
+    }
+  }
+}
+

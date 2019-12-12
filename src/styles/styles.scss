@@ -1,0 +1,24 @@
+// APP STYLES
+
+/* ------------------------------------------- */
+/* A mix of SMACSS + ITCSS + BEM Architecture  */
+/* ------------------------------------------- */
+
+// SETTINGS variables and configurations.
+
+@import "settings/tokens";
+
+// THEMES, styles for theming our application
+
+// UTILS functions, mixins and other helpers.
+// VENDORS place to import and modify CSS vendors library
+
+//@import "vendors/bootstrap";
+// BASE styles on base elements (html, body, ul, p, etc.).
+
+@import "base/base";
+@import "base/reset";
+
+// LAYOUT structure styles, no custom layout, we'll use Bootrstrap Layout http://getbootstrap.com/docs/4.1/layout/overview/
+// COMPONENTS styles for specific components and module will be inside each React component
+// TEMP, temporary styles when you don't know where to include it, and you will reorganize it later

@@ -1,0 +1,105 @@
+////////////////
+// TYPOGRAPHY //
+////////////////
+
+// Font families
+$font-primary: 'Open Sans';
+$font-secondary: 'Rubik';
+// Font weights
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+// Google Fonts imports
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800|Rubik:300,300i,400,400i,500,700,900');
+
+///////////
+// COLOR //
+///////////
+
+// Primary color
+$color-primary-brighter-2: #b8dcec;
+$color-primary-brighter-1: #7ebedc;
+$color-primary: #319acb;
+$color-primary-darker-1: #387c9b;
+$color-primary-darker-2: #25576e;
+$color-primary-darker-3: #7c8285;
+// Secondary color
+$color-secondary-brighter-2: #f4afbe;
+$color-secondary-brighter-1: #f38099;
+$color-secondary: #ee4266;
+$color-secondary-darker-1: #be3652;
+$color-secondary-darker-2: #7a1f32;
+// System feedback
+$color-system-feedback-success: #18b549;
+$color-system-feedback-error: #e37272;
+$color-system-feedback-warning: #e9c417;
+$color-system-feedback-info: #179ce9;
+$color-system-feedback-disabled: #bbbbbb;
+// Charts series
+$color-chart-serie-1: #ee22d3;
+$color-chart-serie-2: #22caee;
+$color-chart-serie-3: #eee620;
+$color-chart-serie-4: #ee7622;
+// Text Black
+$color-text-black-base: #343434;
+$color-text-black-brighter-1: #5c5c5c;
+$color-text-black-brighter-2: #838383;
+// Text White
+$color-text-white-base: #ffffff;
+$color-text-white-darker-1: #c6c6c6;
+$color-text-white-darker-2: #b2b2b2;
+// Background, panels, modals... for Light Mode
+$color-background-light-1: #ffffff;
+$color-background-light-2: #f3f3f3;
+$color-background-light-3: #d5d5d5;
+$color-background-light-4: #bbbbbb;
+$color-background-light-5: #c6c6c6;
+// Background, panels, modals... for Dark Mode
+$color-background-dark-1: #565f64;
+$color-background-dark-2: #444e54;
+$color-background-dark-3: #3F484D;
+$color-background-dark-4: #373f44;
+$color-background-dark-5: #31383c;
+$color-background-dark-6: #1a1e20;
+
+///////////////
+// ELEVATION //
+///////////////
+
+// Note: Use it for box-shadow CSS property
+
+$elevation-1: 0 0 2px 0 rgba(0, 0, 0, 0.16), 0 2px 2px 0 rgba(0, 0, 0, 0.16),
+    0 1px 3px 0 rgba(0, 0, 0, 0.16);
+$elevation-2: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 3px 4px 0 rgba(0, 0, 0, 0.16),
+    0 1px 5px 0 rgba(0, 0, 0, 0.16);
+$elevation-3: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 3px 4px 0 rgba(0, 0, 0, 0.18),
+    0 1px 8px 0 rgba(0, 0, 0, 0.2);
+$elevation-4: 0 2px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 5px 0 rgba(0, 0, 0, 0.16),
+    0 1px 10px 0 rgba(0, 0, 0, 0.18);
+$elevation-5: 0 5px 10px 0 rgba(0, 0, 0, 0.14), 0 2px 6px 0 rgba(0, 0, 0, 0.16),
+    0 2px 8px 0 rgba(0, 0, 0, 0.18);
+$elevation-6: 0 6px 10px 0 rgba(0, 0, 0, 0.16), 0 1px 12px 0 rgba(0, 0, 0, 0.18),
+    0 3px 5px 0 rgba(0, 0, 0, 0.2);
+
+/////////////
+// SPACING //
+/////////////
+
+$spacing-xxs: 8px;
+$spacing-xs: 16px;
+$spacing-s: 24px;
+$spacing-m: 32px;
+$spacing-l: 40px;
+$spacing-xl: 48px;
+$spacing-xxl: 56px;
+
+//////////
+// MISC //
+//////////
+
+$box-border-radius: 4px;
+$panel-margin: 10px;

@@ -1,0 +1,5 @@
+http://getbem.com/naming/
+https://github.com/iamkun/dayjs --> like momment, maybe better?
+https://storybook.js.org/docs/guides/guide-react/
+https://webpack.js.org/configuration/
+https://createapp.dev/
