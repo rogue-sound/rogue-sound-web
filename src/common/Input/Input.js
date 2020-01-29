@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+/** Styled components */
 import { InputContainer, InputElement, InputLabel } from './Input.styled';
 
 const Input = ({

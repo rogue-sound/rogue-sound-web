@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+/** Styled components */
 import { PrimaryButton } from './Button.styled';
 
 const Button = ({ text, onClick }) => <PrimaryButton onClick={() => onClick()}>{text}</PrimaryButton>;

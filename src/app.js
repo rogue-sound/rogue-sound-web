@@ -1,14 +1,13 @@
-/* Libraries */
 import React, { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter } from 'react-router-dom';
 /** Components */
-import { Routes } from './routes/routes';
-/* Themes */
+import { Routes } from './routes/Routes';
+/** Themes */
 import darkTheme from './themes/dark-theme';
 import lightTheme from './themes/light-theme';
-
+/** Styles */
 import './styles/poc.scss';
 
 const themes = {
