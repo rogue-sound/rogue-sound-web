@@ -1,5 +1,5 @@
 import http from './http';
-import { spotify } from '../utils/config';
+import { spotify } from '@config';
 
 const endpointUrlMe = `${spotify.apiUrl}/me`;
 const endpointUrlPlayer = `${endpointUrlMe}/player`;

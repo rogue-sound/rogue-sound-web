@@ -62,9 +62,11 @@ const config = {
       'react-dom': '@hot-loader/react-dom',
       '@pages': path.resolve(__dirname, 'src/pages/'),
       '@components': path.resolve(__dirname, 'src/components/'),
+      '@common': path.resolve(__dirname, 'src/common/'),
       '@assets': path.resolve(__dirname, 'src/assets/'),
       '@utils': path.resolve(__dirname, 'src/utils/'),
       '@services': path.resolve(__dirname, 'src/services/'),
+      '@config': path.resolve(__dirname, 'src/config/'),
     },
   },
   devServer: {
