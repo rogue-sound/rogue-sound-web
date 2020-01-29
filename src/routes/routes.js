@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 /** Config */
-import Login from '@containers/Login';
-import Layout from '@containers/Layout';
+import Login from '@pages/Login';
+import Layout from '@pages/Layout';
 import { routes } from './config';
 /** Components */
 // import { PrivateRoute } from './PrivateRoute/PrivateRoute';

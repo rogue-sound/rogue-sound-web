@@ -1,4 +1,4 @@
-import Home from '@containers/Home';
+import Home from '@pages/Home';
 
 export const routes = [
   {
