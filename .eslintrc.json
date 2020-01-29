@@ -6,7 +6,8 @@
     "react/jsx-props-no-spreading": "off",
     "import/no-unresolved": "off",
     "react/jsx-one-expression-per-line": "off",
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "max-len": ["error", { "code": 150 }]
   },
   "parser": "babel-eslint",
   "env": {
