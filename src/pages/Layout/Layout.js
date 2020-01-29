@@ -1,7 +1,6 @@
-import * as React from 'react';
-/** Libraries */
+import React from 'react';
 import PropTypes from 'prop-types';
-/** Styled Component */
+/** Styled components */
 import { Component } from './layout.styled';
 
 const Layout = ({ children }) => (
