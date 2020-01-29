@@ -10,7 +10,9 @@
     "no-console": "off",
     "linebreak-style": 0,
     "prettier/prettier": "error",
-    "max-len": ["error", { "code": 150 }]
+    "max-len": ["error", { "code": 150 }],
+    "global-require": 0,
+    "no-useless-escape": 0
   },
   "parser": "babel-eslint",
   "env": {
