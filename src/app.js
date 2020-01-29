@@ -24,7 +24,6 @@ const App = () => {
   return (
     <ThemeProvider theme={themes[theme]}>
       <BrowserRouter basename="/"> {routes} </BrowserRouter>
-      <div> APP </div>
     </ThemeProvider>
   );
 };
