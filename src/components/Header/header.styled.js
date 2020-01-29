@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
   color: white;
-  background-color: yellow;
+  background-color: #282828;
   z-index: 2;
   display: flex;
   flex-direction: row;
