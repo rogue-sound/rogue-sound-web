@@ -1,1 +1,1 @@
-export const getSpotifyId = (song) => (song.replace(/.*:/, ''));
+export const getSpotifyId = song => song.replace(/.*:/, '');

@@ -1,5 +1,5 @@
 /* Libraries */
-import React, { useState } from 'react';
+import React from 'react';
 import { hot } from 'react-hot-loader/root';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
@@ -19,7 +19,8 @@ const themes = {
 const routes = Routes();
 
 const App = () => {
-  const [theme, setTheme] = useState('dark');
+  // const [theme, setTheme] = useState('dark');
+  const theme = 'dark';
 
   return (
     <ThemeProvider theme={themes[theme]}>

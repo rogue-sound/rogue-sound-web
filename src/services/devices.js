@@ -1,5 +1,5 @@
 import http from './http';
-import { spotify } from '../config';
+import { spotify } from '../utils/config';
 
 const endpointUrlMe = `${spotify.apiUrl}/me`;
 const endpointUrlPlayer = `${endpointUrlMe}/player`;
@@ -8,11 +8,12 @@ const endpointUrlPlay = `${endpointUrlPlayer}/play`;
 const endpointUrlRepeat = `${endpointUrlPlayer}/repeat`;
 const endpointUrlGetTrack = `${spotify.apiUrl}/tracks`;
 
-export const getMe = () => http.get(endpointUrlMe).then((res) => res.data);
+export const getMe = () => http.get(endpointUrlMe).then(res => res.data);
 
-export const getDevices = () => http.get(endpointUrlDevices).then((res) => res.data.devices);
+export const getDevices = () =>
+  http.get(endpointUrlDevices).then(res => res.data.devices);
 
-export const changeDevice = (deviceId) => {
+export const changeDevice = deviceId => {
   const payload = {
     device_ids: [deviceId],
     play: false,
@@ -20,10 +21,10 @@ export const changeDevice = (deviceId) => {
   return http.put(endpointUrlPlayer, payload);
 };
 
-export const playSong = (song) => http.put(endpointUrlPlay, song).then((res) => console.log(res));
+export const playSong = song => http.put(endpointUrlPlay, song).then(() => {});
 
-export const getTrack = (id) => http.get(`${endpointUrlGetTrack}/${id}`).then((res) => res.data);
+export const getTrack = id =>
+  http.get(`${endpointUrlGetTrack}/${id}`).then(res => res.data);
 
-export const disableRepeat = () => http
-  .put(`${endpointUrlRepeat}?state=off`)
-  .then(console.log('Disabled auto repeat for the user'));
+export const disableRepeat = () =>
+  http.put(`${endpointUrlRepeat}?state=off`).then(() => {});

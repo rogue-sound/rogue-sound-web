@@ -14,11 +14,13 @@ const PrivateRoute = ({ path, exact, Page }) => (
   <Route
     path={path}
     exact={exact}
-    render={(props) => (fakeAuth().isAuthenticated ? (
-      <Page {...props} />
-    ) : (
-      <Redirect to="/login" />
-    ))}
+    render={props =>
+      fakeAuth().isAuthenticated ? (
+        <Page {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
   />
 );
 
@@ -32,24 +34,22 @@ PrivateRoute.propTypes = {
   ]),
 };
 
-export const Routes = () => {
-  console.log(routes);
-  return (
-    <Switch>
-      <Route key="login-route" path="/login" exact={false} component={Login} />
-      <Layout>
-        {routes
-          && Array.isArray(routes)
-          && routes.map((route) => (
-            <Route
-              key={route.id}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
-            />
-          ))}
-      </Layout>
-      {/* {
+export const Routes = () => (
+  <Switch>
+    <Route key="login-route" path="/login" exact={false} component={Login} />
+    <Layout>
+      {routes &&
+        Array.isArray(routes) &&
+        routes.map(route => (
+          <Route
+            key={route.id}
+            path={route.path}
+            exact={route.exact}
+            component={route.component}
+          />
+        ))}
+    </Layout>
+    {/* {
            <PrivateRoute
           // route={route}
           key={index}
@@ -58,6 +58,5 @@ export const Routes = () => {
           Page={route.component}
         />;
         } */}
-    </Switch>
-  );
-};
+  </Switch>
+);

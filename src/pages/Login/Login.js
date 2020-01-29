@@ -4,7 +4,7 @@ import * as React from 'react';
 /** Styled Component */
 import { Component } from './login.styled';
 
-const Login = () => (<Component> LOGIN </Component>);
+const Login = () => <Component> LOGIN </Component>;
 
 Login.propTypes = {};
 

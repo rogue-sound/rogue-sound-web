@@ -1,8 +1,8 @@
-const getItem = (key) => localStorage.getItem(key);
+const getItem = key => localStorage.getItem(key);
 
 const setItem = (key, data) => localStorage.setItem(key, data);
 
-const removeItem = (key) => localStorage.removeItem(key);
+const removeItem = key => localStorage.removeItem(key);
 
 const clear = () => localStorage.clear();
 
