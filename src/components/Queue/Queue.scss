@@ -1,0 +1,43 @@
+.queue-container {
+  .queue-list {
+    display: flex;
+    flex-direction: column;
+
+    .queue-item {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+
+      img {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        height: 70px;
+        width: 70px;
+        max-width: 100%;
+        margin: 10px;
+      }
+
+      &__details {
+        display: flex;
+        flex-direction: column;
+        padding-top: 12px;
+
+        h4 {
+          font-size: 14px;
+          font-weight: 600;
+          margin: 0px 0px 5px 0px;
+        }
+
+        h5 {
+          font-size: 12px;
+          font-weight: 400;
+          margin: 0px 0px 12px 0px;
+        }
+
+        span {
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
