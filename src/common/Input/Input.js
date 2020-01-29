@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 /** Styled components */
 import { InputContainer, InputElement, InputLabel } from './Input.styled';
 
-const Input = ({
-  name, label, className, ...props
-}) => (
+const Input = ({ name, label, className, ...props }) => (
   <InputContainer className={className}>
     {label && <InputLabel htmlFor={name}>{label}</InputLabel>}
     <InputElement {...props} id={name} name={name} />

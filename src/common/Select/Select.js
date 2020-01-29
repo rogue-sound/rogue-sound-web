@@ -4,12 +4,17 @@ import PropTypes from 'prop-types';
 import { SelectContainer, SelectElement } from './Select.styled';
 
 const Select = ({
-  name, label, options, textProperty = 'name', valueProperty = 'id', ...props
+  name,
+  label,
+  options,
+  textProperty = 'name',
+  valueProperty = 'id',
+  ...props
 }) => (
   <SelectContainer>
     <label htmlFor={name}>{label}</label>
     <SelectElement id={name} name={name} {...props}>
-      {options.map((option) => (
+      {options.map(option => (
         <option key={option[valueProperty]} value={option[valueProperty]}>
           {option[textProperty]}
         </option>
