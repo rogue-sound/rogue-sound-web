@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const QueueItem = ({ albumName, albumImg, title, artist, user }) => {
   return (
     <div className="queue-item">
@@ -8,8 +10,10 @@ const QueueItem = ({ albumName, albumImg, title, artist, user }) => {
       <div className="queue-item__details">
         <h4>{title}</h4>
         <h5>{artist}</h5>
-        {/* FA-ALIGN-JUSTIFY */}
-        <span>{user}</span>
+        <span>
+          <FontAwesomeIcon icon="headphones" />
+          {user}
+        </span>
       </div>
     </div>
   );

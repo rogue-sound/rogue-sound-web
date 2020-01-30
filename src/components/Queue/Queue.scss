@@ -1,10 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 .queue-container {
+  border-left: solid 1px #e6eedd;
+  
+  .queue-top {
+    padding: 10px;
+    display: flex;
+
+    svg {
+      font-size: 22px;
+      margin-right: 10px;
+    }
+
+    span {
+      font-weight: 600;
+    }
+  }
+
   .queue-list {
     display: flex;
     flex-direction: column;
-    border: solid 1px #e6eedd;
+    border-top: solid 1px #e6eedd;
 
     .queue-item {
       display: flex;
@@ -44,6 +60,10 @@
           font-size: 12px;
           font-weight: 400;
           font-family: 'Raleway', sans-serif;
+
+          svg {
+            margin-right: 5px;
+          }
         }
       }
 
