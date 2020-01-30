@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
 .queue-container {
   .queue-list {
     display: flex;
     flex-direction: column;
+    border: solid 1px #e6eedd;
 
     .queue-item {
       display: flex;
       flex-direction: row;
       height: 100%;
+      border-bottom: solid 1px #e6eedd;
 
       img {
+        // Fix dimensions
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         height: 70px;
         width: 70px;
@@ -24,19 +29,26 @@
         h4 {
           font-size: 14px;
           font-weight: 600;
-          margin: 0px 0px 5px 0px;
+          margin: 0px 0px 2px 0px;
+          font-family: 'Raleway', sans-serif;
         }
 
         h5 {
           font-size: 12px;
           font-weight: 400;
-          margin: 0px 0px 12px 0px;
+          margin: 0px 0px 15px 0px;
+          font-family: 'Raleway', sans-serif;
         }
 
         span {
           font-size: 12px;
           font-weight: 400;
+          font-family: 'Raleway', sans-serif;
         }
+      }
+
+      &:last-child {
+        border-bottom: 0;
       }
     }
   }
