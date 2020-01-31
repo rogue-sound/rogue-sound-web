@@ -2,6 +2,7 @@
 
 .queue-container {
   border-left: solid 1px #e6eedd;
+  height: 100%;
   
   .queue-top {
     padding: 10px;
@@ -29,7 +30,6 @@
       border-bottom: solid 1px #e6eedd;
 
       img {
-        // Fix dimensions
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         height: 70px;
         width: 70px;

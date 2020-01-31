@@ -5,6 +5,14 @@ import {
   faBlind,
   faCoffee,
   faHeadphones,
+  faVolumeUp,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faAlignJustify, faCompactDisc, faBlind, faCoffee, faHeadphones);
+library.add(
+  faAlignJustify,
+  faCompactDisc,
+  faBlind,
+  faCoffee,
+  faHeadphones,
+  faVolumeUp
+);

@@ -7,6 +7,7 @@ import mockedItems from './mockedQueue.json';
 // import { SidebarWrapper } from './sidebar.styled';
 import './Queue.scss';
 
+// TODO: Replace key with provided ID
 const Queue = () => (
   <div className="queue-container">
     <div className="queue-top">
@@ -15,7 +16,7 @@ const Queue = () => (
     </div>
     <div className="queue-list">
       {mockedItems.map(item => (
-        <QueueItem {...item} />
+        <QueueItem key={`queued-song-${item.title}`} {...item} />
       ))}
     </div>
   </div>
