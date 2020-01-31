@@ -35,6 +35,8 @@
         width: 70px;
         max-width: 100%;
         margin: 10px;
+        object-fit: cover;
+        object-position: center;
       }
 
       &__details {
