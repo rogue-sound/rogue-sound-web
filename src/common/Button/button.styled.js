@@ -5,8 +5,7 @@ const PrimaryButton = styled.button`
   color: ${props => props.theme.colors.textColor};
   padding: 8px;
   border-radius: 5px;
-  margin-top: 5px;
-  font-family: 'Open Sans';
+  font-family: ${props => props.theme.fonts.primaryFont};
   cursor: pointer;
   :focus {
     outline: 0;
@@ -14,7 +13,7 @@ const PrimaryButton = styled.button`
 `;
 
 const LoginButton = styled(PrimaryButton)`
-  background-color: #1db954;
+  background-color: #01ab6d;
   color: #ffffff;
   font-size: 12px;
   line-height: 18px;
@@ -28,9 +27,10 @@ const LoginButton = styled(PrimaryButton)`
   white-space: nowrap;
   padding: 8px 24px;
   display: inline-block;
-  transition: transform 0.1s ease;
+  transition: transform 0.1s ease-in;
+  transform: perspective(1px) scale(1) translateZ(0);
   :hover {
-    transform: scale(1.04);
+    transform: perspective(1px) scale(1.01) translateZ(0);
   }
 `;
 

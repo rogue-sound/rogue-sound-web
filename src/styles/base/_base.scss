@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+  font-family: $font-primary;
+}
 
 h1,
 h2,
@@ -12,7 +16,7 @@ h6,
 .h5,
 .h6 {
   margin-bottom: 0.5rem;
-  font-family: $font-secondary;
+  font-family: $font-primary;
   font-weight: 500;
   line-height: 1.2;
 }

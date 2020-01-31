@@ -12,7 +12,10 @@
     "prettier/prettier": "error",
     "max-len": ["error", { "code": 150 }],
     "global-require": 0,
-    "no-useless-escape": 0
+    "no-useless-escape": 0,
+    "no-unused-expressions": "off",
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0
   },
   "parser": "babel-eslint",
   "env": {

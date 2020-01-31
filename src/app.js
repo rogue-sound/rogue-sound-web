@@ -7,8 +7,6 @@ import { Routes } from './routes/Routes';
 /** Themes */
 import darkTheme from './themes/dark-theme';
 import lightTheme from './themes/light-theme';
-/** Styles */
-import './styles/poc.scss';
 
 const themes = {
   dark: darkTheme,

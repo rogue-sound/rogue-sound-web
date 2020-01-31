@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
   color: white;
-  background-color: #282828;
+  background-color: #1d1d35;
+  padding: 10px;
   z-index: 2;
   display: flex;
   flex-direction: row;
@@ -11,4 +12,10 @@ const HeaderWrapper = styled.div`
   height: 64px;
 `;
 
-export { HeaderWrapper };
+const HeaderLogo = styled.h2`
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+`;
+
+export { HeaderWrapper, HeaderLogo };

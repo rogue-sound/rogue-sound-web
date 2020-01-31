@@ -3,4 +3,9 @@ export const colors = {
   bgMainColor: '#ffffff',
   primaryColor: '#319ACB',
 };
-export default { colors };
+
+export const fonts = {
+  primaryFont: "'Raleway', sans-serif",
+};
+
+export default { colors, fonts };
