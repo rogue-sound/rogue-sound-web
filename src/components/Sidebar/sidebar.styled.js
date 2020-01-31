@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const SidebarWrapper = styled.div`
-  color: white;
-  background-color: blue;
-  width: 400px;
+  color: #1d1d35;
+  background-color: white;
+  width: 33%;
+  min-width: 300px;
 `;
 
 export { SidebarWrapper };

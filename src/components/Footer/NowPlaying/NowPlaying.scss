@@ -1,0 +1,44 @@
+.footer {
+  display: flex;
+  background-color: #1d1d35;
+
+  img {
+    // TODO: Temporal, change when real logo
+    width: 78px;
+    height: auto;
+    margin: 0px 15px;
+  }
+
+  .now-playing {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    svg {
+      font-size:18px;
+      margin-right: 10px;
+    }
+
+    &__details {
+      display: block;
+      text-align: right;
+      margin: 0px 15px;
+
+      h4, h5 {
+        color: white;
+        font-family: 'Raleway', sans-serif;
+        margin: 0;
+      }
+  
+      h4 {
+        font-weight: 700;
+        font-size: 14px;
+      }
+    
+      h5 {
+        margin-top: 4px;
+        font-size: 12px;
+      }
+    }
+  }
+}

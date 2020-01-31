@@ -7,6 +7,8 @@ import { Routes } from './routes/Routes';
 /** Themes */
 import darkTheme from './themes/dark-theme';
 import lightTheme from './themes/light-theme';
+/** Utils */
+import './utils/FontAwesomeLibrary';
 
 const themes = {
   dark: darkTheme,
