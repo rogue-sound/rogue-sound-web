@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { resetMe } from '@context/me';
+import { clearMe } from '@context/me';
 
 const initialState = {
-  token: '',
+  token: localStorage.getItem('token') || '',
 };
 
 const authSlice = createSlice({
@@ -12,8 +12,11 @@ const authSlice = createSlice({
     setToken: (state, action) => ({
       token: action.payload,
     }),
-    clearToken: () => initialState,
-    logout: () => initialState,
+    clearToken: () => {
+      localStorage.removeItem('token');
+      return { token: '' };
+    },
+    logout: () => ({ token: '' }),
   },
 });
 
@@ -27,5 +30,9 @@ export const setTokenAction = token => async dispatch => {
 
 export const logoutAction = () => async dispatch => {
   dispatch(logout());
-  dispatch(resetMe());
+  dispatch(clearMe());
+};
+
+export const clearTokenAction = () => async dispatch => {
+  dispatch(clearToken());
 };

@@ -8,12 +8,14 @@ import { login } from '@services/auth';
 import { setTokenAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 /** Components */
-import Button from '../../common/Button/Button';
+import Button from '@common/Button/Button';
+import UserAvatar from '@components/UserAvatar';
 /** Styled components */
 import { HeaderWrapper, HeaderLogo } from './header.styled';
 
 const Header = () => {
   const {
+    me,
     auth: { token },
   } = useSelector(state => state);
   const dispatch = useDispatch();
@@ -52,7 +54,10 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <HeaderLogo>Rogue Sound</HeaderLogo>
-      <Button text="Login to Spotify" type="login" onClick={() => login()} />
+      {!token && (
+        <Button text="Login to Spotify" type="login" onClick={() => login()} />
+      )}
+      {token && me && <UserAvatar {...me} />}
     </HeaderWrapper>
   );
 };

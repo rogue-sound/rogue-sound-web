@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getMe } from '@services/spotify';
-import { clearToken } from '@context/auth';
+import { clearTokenAction } from '@context/auth';
 
 const initialState = {
-  username: '',
+  displayName: '',
   avatarUrl: '',
   country: '',
 };
@@ -16,11 +16,11 @@ const meSlice = createSlice({
       ...action.payload,
     }),
     getMeError: () => initialState,
-    resetMe: () => initialState,
+    clearMe: () => initialState,
   },
 });
 
-export const { getMeSuccess, getMeError, resetMe } = meSlice.actions;
+export const { getMeSuccess, getMeError, clearMe } = meSlice.actions;
 
 export default meSlice.reducer;
 
@@ -28,7 +28,7 @@ export const fetchMeAction = () => async dispatch => {
   try {
     const me = await getMe();
     const meState = {
-      username: me.display_name,
+      displayName: me.display_name,
       avatarUrl: me.images[0].url,
       country: me.country,
     };
@@ -38,7 +38,7 @@ export const fetchMeAction = () => async dispatch => {
       response: { status },
     } = err;
     // Token expired
-    status === 401 && dispatch(clearToken());
+    status === 401 && dispatch(clearTokenAction());
     dispatch(getMeError(err.toString()));
   }
 };
