@@ -1,3 +1,17 @@
+.current-song-submitter {
+  display: flex;
+  align-items: center;
+  color: #1d1d35;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 10px;
+
+  svg {
+    font-size: 16px;
+    margin-right: 5px;
+  }
+}
+
 .play-module {
   height: 100%;
   margin: auto;
@@ -5,7 +19,7 @@
   justify-content: center;
   align-items: center;
 
-  .join-icon {
+  &__join-icon {
     cursor: pointer;
     font-size: 100px;
     height: 256px;

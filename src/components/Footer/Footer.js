@@ -16,8 +16,6 @@ const placeholderLogo =
 
 const Footer = () => {
   const { current } = useSelector(state => state.playing);
-  // console.log(playing);
-  console.log('Rerendering footer');
 
   return (
     <FooterWrapper className="footer">

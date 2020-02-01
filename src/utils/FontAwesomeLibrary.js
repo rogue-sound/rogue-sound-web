@@ -7,6 +7,7 @@ import {
   faHeadphones,
   faVolumeUp,
   faPlay,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -16,5 +17,6 @@ library.add(
   faCoffee,
   faHeadphones,
   faVolumeUp,
-  faPlay
+  faPlay,
+  faSearch
 );

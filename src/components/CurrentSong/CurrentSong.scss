@@ -1,0 +1,32 @@
+.currently-playing {
+  text-align: center;
+
+  img {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    height: 256px;
+    width: 256px;
+    max-width: 100%;
+    margin: 10px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  h3, h4 {
+    color: #1d1d35;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  h4 { 
+    font-size: 12px;
+    margin-top: 8px;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
@@ -7,17 +7,29 @@ import { setCurrent, stop } from '@context/playing';
 import { playSong } from '@services/spotify';
 // import { getCurrent, clearQueue } from '@services/api';
 // setQueue, disableRepeat
+import CurrentSong from '@components/CurrentSong';
 
 import './Play.scss';
 
+// const mockedCurrent = {
+//   songId: 'spotify:track:6Lg217oTYzLCTHoZRRAOtj',
+//   timerPosition: 0,
+//   duration: 10135,
+//   albumName: 'Ocarina of time',
+//   albumImg: 'https://i.scdn.co/image/ab67616d0000b273e98e53662a11cb453c14ab9c',
+//   title: "Zelda's Lullaby",
+//   artist: 'Zelda Cover Band',
+//   user: 'ApoloeXp',
+// };
+
 const mockedCurrent = {
-  songId: 'spotify:track:6Lg217oTYzLCTHoZRRAOtj',
+  songId: 'spotify:track:4RzcujeUhpatTXGnRwQ6qA',
   timerPosition: 0,
-  duration: 10135,
-  albumName: 'Ocarina of time',
-  albumImg: 'https://i.scdn.co/image/ab67616d0000b273e98e53662a11cb453c14ab9c',
-  title: "Zelda's Lullaby",
-  artist: 'Zelda Cover Band',
+  duration: 483525,
+  albumName: 'Resurection Legacy',
+  albumImg: 'https://i.scdn.co/image/ab67616d00001e02a0f6f1d8de55df7830cb054e',
+  title: 'Resurection (Space Club Mix)',
+  artist: 'PPK',
   user: 'ApoloeXp',
 };
 
@@ -25,6 +37,8 @@ const Play = () => {
   const [loading, setLoading] = useState(false);
   const [remaining, setRemaining] = useState(null);
   const [joinTimeout, setJoinTimeout] = useState(null);
+
+  const reduxCurrent = useSelector(state => state.playing.current);
 
   const dispatch = useDispatch();
 
@@ -74,15 +88,28 @@ const Play = () => {
 
   // TODO: Add admin buttons?
   return (
-    <div className="play-module">
-      {/* TODO: Improve */}
-      {remaining ? (
-        <div>HELLO</div>
-      ) : (
-        <FontAwesomeIcon icon="play" className="join-icon" onClick={joinRoom} />
+    <>
+      {remaining && (
+        <div className="current-song-submitter">
+          <FontAwesomeIcon icon="headphones" />
+          {reduxCurrent.user} is now playing...
+        </div>
       )}
-      {loading && 'Loading'}
-    </div>
+      <div className="play-module">
+        {/* TODO: Improve */}
+        {remaining ? (
+          <CurrentSong {...reduxCurrent} />
+        ) : (
+          <FontAwesomeIcon
+            icon="play"
+            className="play-module__join-icon"
+            onClick={joinRoom}
+          />
+        )}
+        {/* TODO: Add visual loading */}
+        {loading && 'Loading'}
+      </div>
+    </>
   );
 };
 

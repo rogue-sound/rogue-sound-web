@@ -18,10 +18,20 @@ const playingSlice = createSlice({
       ...state,
       queue: action.payload,
     }),
+    // TODO: This will be used when addSong is implemented
+    addSongToQueue: (state, action) => ({
+      ...state,
+      queue: [...state.queue, action.payload],
+    }),
     stop: () => initialState,
   },
 });
 
-export const { setCurrent, setQueue, stop } = playingSlice.actions;
+export const {
+  setCurrent,
+  setQueue,
+  addSongToQueue,
+  stop,
+} = playingSlice.actions;
 
 export default playingSlice.reducer;
