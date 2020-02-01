@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
-import { setCurrent, setQueue, stop } from '@context/playing';
-import { playSong, disableRepeat } from '@services/spotify';
-import { getCurrent, clearQueue } from '@services/api';
+import { setCurrent, stop } from '@context/playing';
+import { playSong } from '@services/spotify';
+// import { getCurrent, clearQueue } from '@services/api';
+// setQueue, disableRepeat
 
 import './Play.scss';
 
@@ -73,7 +74,7 @@ const Play = () => {
 
   // TODO: Add admin buttons?
   return (
-    <div>
+    <div className="play-module">
       {/* TODO: Improve */}
       {remaining ? (
         <div>HELLO</div>

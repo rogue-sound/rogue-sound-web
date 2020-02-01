@@ -1,6 +1,14 @@
-.join-icon {
-  cursor: pointer;
-  font-size: 100px;
-  height: 256px;
-  color: #222;
+.play-module {
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .join-icon {
+    cursor: pointer;
+    font-size: 100px;
+    height: 256px;
+    color: #222;
+  }
 }
