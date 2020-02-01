@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
-import { setLoading, setCurrent, setQueue, stop } from '@context/playing';
+import { setCurrent, setQueue, stop } from '@context/playing';
 import { playSong, disableRepeat } from '@services/spotify';
 import { getCurrent, clearQueue } from '@services/api';
 
@@ -21,6 +21,7 @@ const mockedCurrent = {
 };
 
 const Play = () => {
+  const [loading, setLoading] = useState(false);
   const [remaining, setRemaining] = useState(null);
   const [joinTimeout, setJoinTimeout] = useState(null);
 
@@ -56,9 +57,10 @@ const Play = () => {
     }
   };
 
-  const joinRoom = () => {
-    dispatch(setLoading());
-    handleJoin();
+  const joinRoom = async () => {
+    setLoading(true);
+    await handleJoin();
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -72,11 +74,13 @@ const Play = () => {
   // TODO: Add admin buttons?
   return (
     <div>
+      {/* TODO: Improve */}
       {remaining ? (
         <div>HELLO</div>
       ) : (
         <FontAwesomeIcon icon="play" className="join-icon" onClick={joinRoom} />
       )}
+      {loading && 'Loading'}
     </div>
   );
 };
