@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
 import { setCurrent, stop } from '@context/playing';
-import { playSong } from '@services/spotify';
-// import { getCurrent, clearQueue } from '@services/api';
-// setQueue, disableRepeat
+import { playSong, disableRepeat } from '@services/spotify';
+import { getCurrent } from '@services/api';
+// setQueue, clearQueue, disableRepeat
 import CurrentSong from '@components/CurrentSong';
 
 import './Play.scss';
@@ -75,6 +75,7 @@ const Play = () => {
   const joinRoom = async () => {
     setLoading(true);
     await handleJoin();
+    disableRepeat();
     setLoading(false);
   };
 
