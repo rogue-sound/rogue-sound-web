@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { textDuration } from '@utils';
 
 const SongResult = props => {
-  const handleClick = (songId, duration) => {
+  const handleClick = song => {
     const { onClickCallback } = props;
-    onClickCallback && onClickCallback({ songId, duration });
+    onClickCallback && onClickCallback(song);
   };
 
   const {
@@ -21,9 +23,18 @@ const SongResult = props => {
   return (
     <div
       className="song-result-item"
-      onClick={() => handleClick(uri, duration_ms)}
+      onClick={() =>
+        handleClick({
+          songId: uri,
+          duration: duration_ms,
+          albumName,
+          albumImg,
+          title: name,
+          artist: artistsMap,
+        })
+      }
     >
-      <img src={albumImg} />
+      <img src={albumImg} alt={albumName} />
       <div className="song-result-item__description">
         <h5>{artistsMap}</h5>
         <h4>{name}</h4>

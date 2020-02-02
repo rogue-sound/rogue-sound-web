@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
@@ -13,6 +14,9 @@ const SearchSongs = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
 
+  // TODO: Change with custom names
+  const user = useSelector(state => state.me.displayName);
+
   const searchSongs = async query => {
     const result = await search(query);
     setSearchResults(result);
@@ -26,6 +30,10 @@ const SearchSongs = () => {
 
   const handleSongSelect = async selectedSong => {
     try {
+      selectedSong = {
+        ...selectedSong,
+        user,
+      };
       await addSong(selectedSong);
       console.log('Song added to the list');
       // !remaining && setTimeout(() => handleJoin(), 1000);
