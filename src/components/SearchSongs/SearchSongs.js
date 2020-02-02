@@ -49,22 +49,23 @@ const SearchSongs = () => {
         <FontAwesomeIcon icon="search" />
         <Input
           value={song}
-          name="song-search"
+          // name="song-search"
           placeholder="Search for songs"
           onChange={handleChangeSong}
+          // type="search"
         />
       </div>
-      {searchResults && !!searchResults.length && (
-        <div className="song-search-results">
-          {searchResults.map(songResult => (
+      <div className={`song-search-results ${!song && 'hidden'}`}>
+        {searchResults &&
+          !!searchResults.length &&
+          searchResults.map(songResult => (
             <SongResult
               song={songResult}
               key={songResult.id}
               onClickCallback={handleSongSelect}
             />
           ))}
-        </div>
-      )}
+      </div>
     </>
   );
 };
