@@ -8,9 +8,13 @@ const buttonMapper = {
   login: LoginButton,
 };
 
-const Button = ({ text, type = 'primary', onClick }) => {
+const Button = ({ text, type = 'primary', onClick, ...props }) => {
   const ButtonComponent = buttonMapper[type];
-  return <ButtonComponent onClick={() => onClick()}>{text}</ButtonComponent>;
+  return (
+    <ButtonComponent {...props} onClick={() => onClick()}>
+      {text}
+    </ButtonComponent>
+  );
 };
 
 Button.propTypes = {
