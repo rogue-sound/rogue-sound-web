@@ -13,7 +13,7 @@ import './Play.scss';
 
 // const mockedCurrent = {
 //   songId: 'spotify:track:6Lg217oTYzLCTHoZRRAOtj',
-//   timerPosition: 0,
+//   position: 0,
 //   duration: 10135,
 //   albumName: 'Ocarina of time',
 //   albumImg: 'https://i.scdn.co/image/ab67616d0000b273e98e53662a11cb453c14ab9c',
@@ -22,16 +22,16 @@ import './Play.scss';
 //   user: 'ApoloeXp',
 // };
 
-const mockedCurrent = {
-  songId: 'spotify:track:4RzcujeUhpatTXGnRwQ6qA',
-  timerPosition: 0,
-  duration: 483525,
-  albumName: 'Resurection Legacy',
-  albumImg: 'https://i.scdn.co/image/ab67616d00001e02a0f6f1d8de55df7830cb054e',
-  title: 'Resurection (Space Club Mix)',
-  artist: 'PPK',
-  user: 'ApoloeXp',
-};
+// const mockedCurrent = {
+//   songId: 'spotify:track:4RzcujeUhpatTXGnRwQ6qA',
+//   position: 0,
+//   duration: 483525,
+//   albumName: 'Resurection Legacy',
+//   albumImg: 'https://i.scdn.co/image/ab67616d00001e02a0f6f1d8de55df7830cb054e',
+//   title: 'Resurection (Space Club Mix)',
+//   artist: 'PPK',
+//   user: 'ApoloeXp',
+// };
 
 const Play = () => {
   const [loading, setLoading] = useState(false);
@@ -45,17 +45,17 @@ const Play = () => {
   const handleJoin = async () => {
     try {
       // TODO: Disabled for now
-      // const current = await getCurrent();
-      const current = mockedCurrent;
+      const [current] = await getCurrent();
+      // const current = mockedCurrent;
       const song = {
         uris: [current.songId],
-        position_ms: current.timerPosition,
+        position_ms: current.position,
       };
       // TODO: Add queue handling
       try {
         await playSong(song);
         dispatch(setCurrent(current));
-        const remainingTime = current.duration - current.timerPosition;
+        const remainingTime = current.duration - current.position;
         setRemaining(remainingTime);
       } catch (err) {
         const {
