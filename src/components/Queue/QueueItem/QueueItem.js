@@ -3,9 +3,18 @@ import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const QueueItem = ({ albumName, albumImg, title, artist, user }) => {
+const QueueItem = ({
+  albumName,
+  albumImg,
+  title,
+  artist,
+  user,
+  songId,
+  current,
+}) => {
+  const divClass = songId === current ? 'queue-item active' : 'queue-item';
   return (
-    <div className="queue-item">
+    <div className={divClass}>
       <img src={albumImg} alt={albumName} />
       <div className="queue-item__details">
         <h4>{title}</h4>
@@ -26,6 +35,8 @@ QueueItem.propTypes = {
   title: PropTypes.string,
   artist: PropTypes.string,
   user: PropTypes.string,
+  songId: PropTypes.string,
+  current: PropTypes.string,
 };
 
 export default QueueItem;

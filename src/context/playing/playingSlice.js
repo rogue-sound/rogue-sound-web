@@ -23,7 +23,10 @@ const playingSlice = createSlice({
       ...state,
       queue: [action.payload, ...state.queue],
     }),
-    stop: () => initialState,
+    stop: state => ({
+      ...state,
+      current: initialState.current,
+    }),
   },
 });
 

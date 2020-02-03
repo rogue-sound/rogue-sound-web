@@ -11,28 +11,6 @@ import CurrentSong from '@components/CurrentSong';
 
 import './Play.scss';
 
-// const mockedCurrent = {
-//   songId: 'spotify:track:6Lg217oTYzLCTHoZRRAOtj',
-//   position: 0,
-//   duration: 10135,
-//   albumName: 'Ocarina of time',
-//   albumImg: 'https://i.scdn.co/image/ab67616d0000b273e98e53662a11cb453c14ab9c',
-//   title: "Zelda's Lullaby",
-//   artist: 'Zelda Cover Band',
-//   user: 'ApoloeXp',
-// };
-
-// const mockedCurrent = {
-//   songId: 'spotify:track:4RzcujeUhpatTXGnRwQ6qA',
-//   position: 0,
-//   duration: 483525,
-//   albumName: 'Resurection Legacy',
-//   albumImg: 'https://i.scdn.co/image/ab67616d00001e02a0f6f1d8de55df7830cb054e',
-//   title: 'Resurection (Space Club Mix)',
-//   artist: 'PPK',
-//   user: 'ApoloeXp',
-// };
-
 const Play = () => {
   const [loading, setLoading] = useState(false);
   const [remaining, setRemaining] = useState(null);

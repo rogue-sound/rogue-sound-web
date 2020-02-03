@@ -37,7 +37,7 @@ const SearchSongs = () => {
         user,
       };
       const result = await addSong(selectedSong);
-      console.log('Song added to the list', result);
+      console.log('Song added to the list');
       dispatch(setQueue(result.songs));
       // !remaining && setTimeout(() => handleJoin(), 1000);
     } catch {

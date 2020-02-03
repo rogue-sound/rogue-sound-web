@@ -9,7 +9,7 @@ import './Queue.scss';
 
 // TODO: Replace key with provided ID
 const Queue = () => {
-  const { queue } = useSelector(state => state.playing);
+  const { queue, current } = useSelector(state => state.playing);
   return (
     <div className="queue-container">
       <div className="queue-top">
@@ -18,7 +18,7 @@ const Queue = () => {
       </div>
       <div className="queue-list">
         {queue.map(item => (
-          <QueueItem key={`queued-song-${item.title}`} {...item} />
+          <QueueItem key={`queued-song-${item.title}`} {...item} current={current.songId} />
         ))}
       </div>
     </div>
