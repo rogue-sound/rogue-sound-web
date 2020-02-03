@@ -23,6 +23,10 @@
     display: flex;
     flex-direction: column;
     border-top: solid 1px #e6eedd;
+    // TODO: Revisar
+    max-height: 799px;
+    // max-height: 100%;
+    overflow-y: scroll;
 
     .queue-item {
       display: flex;

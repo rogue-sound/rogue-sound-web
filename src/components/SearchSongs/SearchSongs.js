@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
 import { search } from '@services/spotify';
@@ -16,6 +17,7 @@ const SearchSongs = () => {
 
   // TODO: Change with custom names
   const user = useSelector(state => state.me.displayName);
+  const dispatch = useDispatch();
 
   const searchSongs = async query => {
     const result = await search(query);
@@ -34,8 +36,9 @@ const SearchSongs = () => {
         ...selectedSong,
         user,
       };
-      await addSong(selectedSong);
-      console.log('Song added to the list');
+      const result = await addSong(selectedSong);
+      console.log('Song added to the list', result);
+      dispatch(setQueue(result.songs));
       // !remaining && setTimeout(() => handleJoin(), 1000);
     } catch {
       console.log('There was a problem adding the song to the list');

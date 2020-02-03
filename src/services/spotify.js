@@ -42,7 +42,6 @@ export const search = text => {
     type: 'track',
     limit: 5,
   };
-  console.log(params);
   return http
     .get(endpointUrlSearch, { params })
     .then(res => res.data.tracks.items);

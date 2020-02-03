@@ -17,7 +17,6 @@ export const login = () => {
       loginUrl,
       scopes
     );
-    console.log(authUrl);
     window.location = authUrl;
   }
 };

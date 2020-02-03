@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
-import { setCurrent, stop } from '@context/playing';
+import { setCurrent, setQueue, stop } from '@context/playing';
 import { playSong, disableRepeat } from '@services/spotify';
 import { getCurrent } from '@services/api';
 // setQueue, clearQueue, disableRepeat
@@ -45,7 +45,7 @@ const Play = () => {
   const handleJoin = async () => {
     try {
       // TODO: Disabled for now
-      const [current] = await getCurrent();
+      const { current, songs } = await getCurrent();
       // const current = mockedCurrent;
       const song = {
         uris: [current.songId],
@@ -55,6 +55,7 @@ const Play = () => {
       try {
         await playSong(song);
         dispatch(setCurrent(current));
+        dispatch(setQueue(songs));
         const remainingTime = current.duration - current.position;
         setRemaining(remainingTime);
       } catch (err) {
@@ -83,14 +84,14 @@ const Play = () => {
     if (remaining) {
       joinTimeout && clearTimeout(joinTimeout);
       // Smart polling
-      setJoinTimeout(setTimeout(() => handleJoin(), remaining + 1000));
+      setJoinTimeout(setTimeout(() => handleJoin(), remaining));
     }
   }, [remaining]);
 
   // TODO: Add admin buttons?
   return (
     <>
-      {remaining && (
+      {!!remaining && (
         <div className="current-song-submitter">
           <FontAwesomeIcon icon="headphones" />
           {reduxCurrent.user} is now playing...

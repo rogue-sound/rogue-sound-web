@@ -21,7 +21,7 @@ const playingSlice = createSlice({
     // TODO: This will be used when addSong is implemented
     addSongToQueue: (state, action) => ({
       ...state,
-      queue: [...state.queue, action.payload],
+      queue: [action.payload, ...state.queue],
     }),
     stop: () => initialState,
   },
