@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const HeaderWrapper = styled.div`
   color: white;
   background-color: #1d1d35;
-  padding: 10px;
+  padding: 10px 20px;
   z-index: 2;
   display: flex;
   flex-direction: row;

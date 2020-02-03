@@ -29,7 +29,7 @@ export const setTokenAction = token => async dispatch => {
 };
 
 export const logoutAction = () => async dispatch => {
-  dispatch(logout());
+  dispatch(clearToken());
   dispatch(clearMe());
 };
 
