@@ -1,0 +1,35 @@
+.playlist-song__container{
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+}
+
+.playlist-song__container--cover{
+    margin-left:10px;
+    height: 70px;
+    width: 70px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.playlist-song__container--info{
+    margin-left:5px;
+    display:flex;
+    flex-direction: column;
+}
+
+.playlist-song__title{
+    color: $color_mirage;
+    font-family: 'Raleway Bold';
+    font-size: 14px;
+}
+.playlist-song__author{
+    color: $color_mirage;
+    font-family: 'Raleway';
+    font-size: 12px;
+}
+.playlist-song__user{
+    color: $color_mirage;
+    font-family: 'Raleway';
+    font-size: 12px;
+    margin-left: 5px;
+}
