@@ -3,7 +3,7 @@
 ////////////////
 
 // Font families
-$font-primary: 'Open Sans';
+$font-primary: 'Raleway', sans-serif;
 $font-secondary: 'Rubik';
 // Font weights
 $font-weight-extra-light: 200;
@@ -15,6 +15,7 @@ $font-weight-extra-bold: 800;
 $font-weight-black: 900;
 // Google Fonts imports
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800|Rubik:300,300i,400,400i,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,700,800,900&display=swap');
 
 ///////////
 // COLOR //
@@ -61,7 +62,7 @@ $color-background-light-5: #c6c6c6;
 // Background, panels, modals... for Dark Mode
 $color-background-dark-1: #565f64;
 $color-background-dark-2: #444e54;
-$color-background-dark-3: #3F484D;
+$color-background-dark-3: #3f484d;
 $color-background-dark-4: #373f44;
 $color-background-dark-5: #31383c;
 $color-background-dark-6: #1a1e20;
@@ -73,17 +74,17 @@ $color-background-dark-6: #1a1e20;
 // Note: Use it for box-shadow CSS property
 
 $elevation-1: 0 0 2px 0 rgba(0, 0, 0, 0.16), 0 2px 2px 0 rgba(0, 0, 0, 0.16),
-    0 1px 3px 0 rgba(0, 0, 0, 0.16);
+  0 1px 3px 0 rgba(0, 0, 0, 0.16);
 $elevation-2: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 3px 4px 0 rgba(0, 0, 0, 0.16),
-    0 1px 5px 0 rgba(0, 0, 0, 0.16);
+  0 1px 5px 0 rgba(0, 0, 0, 0.16);
 $elevation-3: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 3px 4px 0 rgba(0, 0, 0, 0.18),
-    0 1px 8px 0 rgba(0, 0, 0, 0.2);
+  0 1px 8px 0 rgba(0, 0, 0, 0.2);
 $elevation-4: 0 2px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 5px 0 rgba(0, 0, 0, 0.16),
-    0 1px 10px 0 rgba(0, 0, 0, 0.18);
+  0 1px 10px 0 rgba(0, 0, 0, 0.18);
 $elevation-5: 0 5px 10px 0 rgba(0, 0, 0, 0.14), 0 2px 6px 0 rgba(0, 0, 0, 0.16),
-    0 2px 8px 0 rgba(0, 0, 0, 0.18);
+  0 2px 8px 0 rgba(0, 0, 0, 0.18);
 $elevation-6: 0 6px 10px 0 rgba(0, 0, 0, 0.16), 0 1px 12px 0 rgba(0, 0, 0, 0.18),
-    0 3px 5px 0 rgba(0, 0, 0, 0.2);
+  0 3px 5px 0 rgba(0, 0, 0, 0.2);
 
 /////////////
 // SPACING //

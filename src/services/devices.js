@@ -8,8 +8,6 @@ const endpointUrlPlay = `${endpointUrlPlayer}/play`;
 const endpointUrlRepeat = `${endpointUrlPlayer}/repeat`;
 const endpointUrlGetTrack = `${spotify.apiUrl}/tracks`;
 
-export const getMe = () => http.get(endpointUrlMe).then(res => res.data);
-
 export const getDevices = () =>
   http.get(endpointUrlDevices).then(res => res.data.devices);
 

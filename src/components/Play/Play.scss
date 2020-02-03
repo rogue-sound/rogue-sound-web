@@ -1,0 +1,29 @@
+.current-song-submitter {
+  display: flex;
+  align-items: center;
+  color: #1d1d35;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 10px;
+
+  svg {
+    font-size: 16px;
+    margin-right: 5px;
+  }
+}
+
+.play-module {
+  // TODO: Revisar height issue
+  height: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__join-icon {
+    cursor: pointer;
+    font-size: 100px;
+    height: 256px;
+    color: #222;
+  }
+}

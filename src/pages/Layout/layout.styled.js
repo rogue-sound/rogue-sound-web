@@ -12,7 +12,6 @@ const ContainerWrapper = styled.div`
   justify-content: space-between;
   min-height: calc(100vh - 128px);
   height: 100%;
-  background-color: green;
 `;
 
 export { Component, ContainerWrapper };

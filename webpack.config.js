@@ -2,6 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv');
+
+const env = dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 const config = {
   entry: ['babel-polyfill', 'react-hot-loader/patch', './src/index.js'],
@@ -66,6 +73,8 @@ const config = {
       '@assets': path.resolve(__dirname, 'src/assets/'),
       '@utils': path.resolve(__dirname, 'src/utils/'),
       '@services': path.resolve(__dirname, 'src/services/'),
+      '@context': path.resolve(__dirname, 'src/context/'),
+      '@store': path.resolve(__dirname, 'src/store/'),
       '@config': path.resolve(__dirname, 'src/config/'),
     },
   },
@@ -81,6 +90,7 @@ const config = {
       inject: false,
       appMountId: 'app',
     }),
+    new webpack.DefinePlugin(envKeys),
   ],
   optimization: {
     runtimeChunk: 'single',
