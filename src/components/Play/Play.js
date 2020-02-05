@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
 import { setCurrent, setQueue, stop } from '@context/playing';
-import { playSong, disableRepeat } from '@services/spotify';
+import { playSong } from '@services/spotify';
 import { getCurrent } from '@services/api';
 // setQueue, clearQueue, disableRepeat
 import CurrentSong from '@components/CurrentSong';
@@ -12,51 +12,38 @@ import CurrentSong from '@components/CurrentSong';
 import './Play.scss';
 
 const Play = () => {
-  const [loading, setLoading] = useState(false);
   const [remaining, setRemaining] = useState(null);
   const [joinTimeout, setJoinTimeout] = useState(null);
+  const [pollingState, setPollingState] = useState(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
 
   const dispatch = useDispatch();
 
-  const getQueue = async () => {
-    try {
-      const { songs } = await getCurrent();
-      songs && Array.isArray(songs) && dispatch(setQueue(songs));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    getQueue();
-  }, [getQueue]);
-
   const handleJoin = async () => {
     try {
-      // TODO: Disabled for now
       const { current, songs } = await getCurrent();
-      // const current = mockedCurrent;
-      const song = {
-        uris: [current.songId],
-        position_ms: current.position,
-      };
-      // TODO: Add queue handling
-      try {
-        await playSong(song);
-        current && dispatch(setCurrent(current));
-        songs && dispatch(setQueue(songs));
-        const remainingTime = current.duration - current.position;
-        setRemaining(remainingTime);
-      } catch (err) {
-        const {
-          response: { status },
-        } = err;
-        // Token expired
-        status === 401 && dispatch(clearToken());
-        dispatch(stop());
+      if (!remaining && current) {
+        const song = {
+          uris: [current.songId],
+          position_ms: current.position,
+        };
+        // TODO: Add queue handling
+        try {
+          await playSong(song);
+          dispatch(setCurrent(current));
+          const remainingTime = current.duration - current.position;
+          setRemaining(remainingTime);
+        } catch (err) {
+          const {
+            response: { status },
+          } = err;
+          // Token expired
+          status === 401 && dispatch(clearToken());
+          dispatch(stop());
+        }
       }
+      songs && dispatch(setQueue(songs));
     } catch {
       dispatch(stop());
       setRemaining(null);
@@ -64,12 +51,16 @@ const Play = () => {
     }
   };
 
-  const joinRoom = async () => {
-    setLoading(true);
-    await handleJoin();
-    disableRepeat();
-    setLoading(false);
-  };
+  useEffect(() => {
+    handleJoin();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      handleJoin();
+      setPollingState(!pollingState);
+    }, 5000);
+  }, [pollingState]);
 
   useEffect(() => {
     if (remaining) {
@@ -93,14 +84,10 @@ const Play = () => {
         {remaining ? (
           <CurrentSong {...reduxCurrent} />
         ) : (
-          <FontAwesomeIcon
-            icon="play"
-            className="play-module__join-icon"
-            onClick={joinRoom}
-          />
+          <p className="no-current-song">
+            Session not started, please queue a song
+          </p>
         )}
-        {/* TODO: Add visual loading */}
-        {loading && 'Loading'}
       </div>
     </>
   );
