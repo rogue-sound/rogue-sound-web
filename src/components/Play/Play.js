@@ -59,7 +59,7 @@ const Play = () => {
     setTimeout(() => {
       handleJoin();
       setPollingState(!pollingState);
-    }, 5000);
+    }, 8000);
   }, [pollingState]);
 
   useEffect(() => {
