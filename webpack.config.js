@@ -89,6 +89,8 @@ const config = {
       template: require('html-webpack-template'),
       inject: false,
       appMountId: 'app',
+      favicon: 'src/assets/ico/music.ico',
+      title: 'Rogue Sound'
     }),
     new webpack.DefinePlugin(envKeys),
   ],
