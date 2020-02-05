@@ -1,4 +1,9 @@
 {
+  "app.components.Header.DevicesLabel": "Devices",
+  "app.components.Header.LanguageEnglishLabel": "English",
+  "app.components.Header.LanguageSpanishLabel": "Spaninsh",
+  "app.components.Header.LanguagesLabel": "Languages",
+  "app.components.Header.LoginButton": "Login to Spotify",
   "app.components.Queue.Queue": "Queue",
   "app.components.SearchSongs.SearchForSongs": "Search for songs"
 }

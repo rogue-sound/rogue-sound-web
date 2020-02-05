@@ -10,7 +10,7 @@ import { Component, ContainerWrapper } from './layout.styled';
 
 const Layout = ({ children, intl }) => (
   <Component>
-    <Header />
+    <Header intl={intl} />
     <ContainerWrapper>
       {children}
       <Sidebar intl={intl} />

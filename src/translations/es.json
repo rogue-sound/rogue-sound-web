@@ -1,4 +1,9 @@
 {
+  "app.components.Header.DevicesLabel": "Dispositivos",
+  "app.components.Header.LanguageEnglishLabel": "Inglés",
+  "app.components.Header.LanguageSpanishLabel": "Español",
+  "app.components.Header.LanguagesLabel": "Idiomas",
+  "app.components.Header.LoginButton": "Iniciar sesión en Spotify",
   "app.components.Queue.Queue": "Cola",
   "app.components.SearchSongs.SearchForSongs": "Búsqueda de canciones"
 }
