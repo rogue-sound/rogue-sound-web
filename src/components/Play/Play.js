@@ -56,10 +56,11 @@ const Play = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       handleJoin();
       setPollingState(!pollingState);
     }, 8000);
+    return () => clearTimeout(timeout);
   }, [pollingState]);
 
   useEffect(() => {

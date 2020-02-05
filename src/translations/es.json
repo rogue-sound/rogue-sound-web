@@ -1,3 +1,4 @@
 {
+  "app.components.Queue.Queue": "Cola",
   "app.components.SearchSongs.SearchForSongs": "Búsqueda de canciones"
 }

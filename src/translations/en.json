@@ -1,3 +1,4 @@
 {
+  "app.components.Queue.Queue": "Queue",
   "app.components.SearchSongs.SearchForSongs": "Search for songs"
 }

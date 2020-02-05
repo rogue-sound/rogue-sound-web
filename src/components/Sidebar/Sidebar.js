@@ -1,15 +1,17 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 /** Styled components */
 import Queue from '@components/Queue';
 import { SidebarWrapper } from './sidebar.styled';
 
-const Sidebar = () => (
+const Sidebar = ({ intl }) => (
   <SidebarWrapper>
-    <Queue />
+    <Queue intl={intl} />
   </SidebarWrapper>
 );
 
-Sidebar.propTypes = {};
+Sidebar.propTypes = {
+  intl: PropTypes.shape({}).isRequired,
+};
 
 export default Sidebar;
