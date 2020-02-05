@@ -24,8 +24,7 @@
     flex-direction: column;
     border-top: solid 1px #e6eedd;
     // TODO: Revisar
-    max-height: 799px;
-    // max-height: 100%;
+    max-height: calc(100vh - 170px);
     overflow-y: scroll;
 
     .queue-item {
