@@ -26,7 +26,7 @@ const Select = ({
 Select.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.arrayOf(PropTypes.object),
   textProperty: PropTypes.string,
   valueProperty: PropTypes.string,
 };

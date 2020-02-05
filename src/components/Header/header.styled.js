@@ -18,4 +18,13 @@ const HeaderLogo = styled.h2`
   margin: 0;
 `;
 
-export { HeaderWrapper, HeaderLogo };
+const HeaderActionsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const HeaderDevices = styled.div`
+  margin-right: 30px;
+`;
+
+export { HeaderWrapper, HeaderLogo, HeaderDevices, HeaderActionsWrapper };
