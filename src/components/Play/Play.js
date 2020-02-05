@@ -20,6 +20,19 @@ const Play = () => {
 
   const dispatch = useDispatch();
 
+  const getQueue = async () => {
+    try {
+      const { songs } = await getCurrent();
+      songs && Array.isArray(songs) && dispatch(setQueue(songs));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getQueue();
+  }, [getQueue]);
+
   const handleJoin = async () => {
     try {
       // TODO: Disabled for now
@@ -32,8 +45,8 @@ const Play = () => {
       // TODO: Add queue handling
       try {
         await playSong(song);
-        dispatch(setCurrent(current));
-        dispatch(setQueue(songs));
+        current && dispatch(setCurrent(current));
+        songs && dispatch(setQueue(songs));
         const remainingTime = current.duration - current.position;
         setRemaining(remainingTime);
       } catch (err) {

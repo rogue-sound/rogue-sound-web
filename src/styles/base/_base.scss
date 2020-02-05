@@ -1,6 +1,20 @@
 body {
   margin: 0;
   font-family: $font-primary;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    // height: 8px;
+    background-color: #e6eedd;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #1d1d35;
+    border-radius: 10px;
+    cursor: pointer !important;
+  }
 }
 
 h1,
