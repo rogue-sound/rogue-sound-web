@@ -20,10 +20,10 @@ const Play = () => {
 
   const dispatch = useDispatch();
 
-  const handleJoin = async () => {
+  const handleJoin = async (smart = false) => {
     try {
       const { current, songs } = await getCurrent();
-      if (!remaining && current) {
+      if (smart || (!remaining && current)) {
         const song = {
           uris: [current.songId],
           position_ms: current.position,
@@ -66,7 +66,7 @@ const Play = () => {
     if (remaining) {
       joinTimeout && clearTimeout(joinTimeout);
       // Smart polling
-      setJoinTimeout(setTimeout(() => handleJoin(), remaining));
+      setJoinTimeout(setTimeout(() => handleJoin(true), remaining));
     }
   }, [remaining]);
 
