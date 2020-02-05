@@ -6,8 +6,8 @@ import { FooterWrapper } from './Footer.styled';
 import NowPlaying from './NowPlaying';
 
 // TODO: Temporal, change when real logo
-const placeholderLogo =
-  'https://www.nicepng.com/png/full/21-217559_sine-wave-sound-acoustic-wave-frequency-wave-sound.png';
+// const placeholderLogo =
+  // 'https://www.nicepng.com/png/full/21-217559_sine-wave-sound-acoustic-wave-frequency-wave-sound.png';
 
 // const nowPlayingMock = {
 //   title: 'Las de la intuición',
@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <FooterWrapper className="footer">
-      <img src={placeholderLogo} alt="Rogue sound logo" />
+      {/* <img src={placeholderLogo} alt="Rogue sound logo" /> */}
       {current.title && <NowPlaying {...current} />}
     </FooterWrapper>
   );
