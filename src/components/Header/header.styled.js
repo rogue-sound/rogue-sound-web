@@ -27,4 +27,14 @@ const HeaderDevices = styled.div`
   margin-right: 30px;
 `;
 
-export { HeaderWrapper, HeaderLogo, HeaderDevices, HeaderActionsWrapper };
+const HeaderLanguage = styled.div`
+  margin-right: 30px;
+`;
+
+export {
+  HeaderWrapper,
+  HeaderLogo,
+  HeaderDevices,
+  HeaderLanguage,
+  HeaderActionsWrapper,
+};

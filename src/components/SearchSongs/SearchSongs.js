@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
@@ -10,7 +11,7 @@ import SongResult from './SongResult';
 
 import './SearchSongs.scss';
 
-const SearchSongs = () => {
+const SearchSongs = ({ intl }) => {
   const [song, setSong] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
@@ -61,7 +62,9 @@ const SearchSongs = () => {
         <Input
           value={song}
           // name="song-search"
-          placeholder="Search for songs"
+          placeholder={intl.formatMessage({
+            id: 'app.components.SearchSongs.SearchForSongs',
+          })}
           onChange={handleChangeSong}
           // type="search"
         />
@@ -79,6 +82,10 @@ const SearchSongs = () => {
       </div>
     </>
   );
+};
+
+SearchSongs.propTypes = {
+  intl: PropTypes.shape({}).isRequired,
 };
 
 export default SearchSongs;

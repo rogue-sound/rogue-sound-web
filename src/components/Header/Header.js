@@ -9,6 +9,7 @@ import { disableRepeat } from '@services/spotify';
 import { setTokenAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
+import { toggleLanguage } from '@context/languageSettings';
 /** Components */
 import Button from '@common/Button/Button';
 import Select from '@common/Select';
@@ -19,6 +20,7 @@ import {
   HeaderLogo,
   HeaderActionsWrapper,
   HeaderDevices,
+  HeaderLanguage,
 } from './header.styled';
 
 const Header = () => {
@@ -26,13 +28,17 @@ const Header = () => {
     me,
     auth: { token },
     spotify: { devices, activeDevice },
+    languageSettings: { language },
   } = useSelector(state => state);
+
   const dispatch = useDispatch();
 
   const changeDeviceHandler = ({ currentTarget: { value } }) => {
-    // console.log(devices.find(device => device.id === value));
-    console.log(value);
     dispatch(changeDeviceAction(value));
+  };
+
+  const changeLanguage = ({ currentTarget: { value } }) => {
+    dispatch(toggleLanguage(value));
   };
 
   useEffect(() => {
@@ -85,6 +91,17 @@ const Header = () => {
             />
           </HeaderDevices>
         )}
+        <HeaderLanguage>
+          <Select
+            value={language}
+            label="Languages"
+            options={[
+              { id: 'en', name: 'English' },
+              { id: 'es', name: 'Spanish' },
+            ]}
+            onChange={changeLanguage}
+          />
+        </HeaderLanguage>
         {!token && (
           <Button
             text="Login to Spotify"
