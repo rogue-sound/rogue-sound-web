@@ -24,13 +24,14 @@
 
 .song-search-results {
   width: 100%;
-  height: 250px;
+  height: 215px;
   background-color: #e6eedd;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   transition: all 0.5s ease-out;
+  overflow-x: hidden;
 
   &.hidden {
     visibility: none;
@@ -49,20 +50,20 @@
     width: 18%;
     max-width: 214px;
     max-height: 155px;
-    margin: 15px;
+    margin: 0px 15px 15px 15px;
     cursor: pointer;
     transition: all 0.25s ease-out;
 
     &:hover {
-      max-height: 220px;
+      max-height: 200px;
       box-shadow: 0 0 5px 0.2rem rgba(0, 0, 0, .25);
 
       img {
-        max-height: 165px;
+        max-height: 140px;
       }
 
       .song-result-item__duration {
-        top: 150px;
+        top: 125px;
       }
     }
   
@@ -119,18 +120,20 @@
       overflow: hidden;
       width: 100%;
       color: #1D1D35;
-      margin-bottom: 20px;
+      // padding-bottom: 20px;
+      // position: relative;
     }
 
     &__album {
       position: absolute;
-      right: 5px;
+      right: 0px;
       bottom: 2px;
       font-size: 7px;
       text-transform: uppercase;
       overflow: hidden;
-      max-width: 185px;
+      max-width: 100%;
       text-overflow: ellipsis;
+      padding: 0px 10px;
     }
   }
 }
