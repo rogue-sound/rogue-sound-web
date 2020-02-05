@@ -19,8 +19,9 @@ const spotifySlice = createSlice({
       ...state,
       activeDevice: action.payload,
     }),
-    resetCurrentDevice: (state, action) => ({
+    resetDevices: (state, action) => ({
       ...state,
+      devices: [],
       activeDevice: '',
     }),
   },
@@ -29,7 +30,7 @@ const spotifySlice = createSlice({
 export const {
   setDevices,
   setCurrentDevice,
-  resetCurrentDevice,
+  resetDevices,
 } = spotifySlice.actions;
 
 export default spotifySlice.reducer;
