@@ -85,7 +85,9 @@ const SearchSongs = ({ intl }) => {
 };
 
 SearchSongs.propTypes = {
-  intl: PropTypes.shape({}).isRequired,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }).isRequired,
 };
 
 export default SearchSongs;
