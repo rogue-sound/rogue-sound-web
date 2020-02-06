@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 const PopoverTrigger = ({ children, open, setPosition }) => {
   const reference = useRef(null);
 
-  const updatePostion = useCallback(() => {
+  const updatePosition = useCallback(() => {
     reference &&
       reference.current &&
       setPosition(reference.current.getBoundingClientRect());
   }, [setPosition]);
 
   useEffect(() => {
-    updatePostion();
-  }, [updatePostion, children]);
+    updatePosition();
+  }, [updatePosition, children]);
 
   useEffect(() => {
-    window.addEventListener('resize', updatePostion);
-    return () => window.removeEventListener('resize', updatePostion);
-  }, [updatePostion]);
+    window.addEventListener('resize', updatePosition);
+    return () => window.removeEventListener('resize', updatePosition);
+  }, [updatePosition]);
 
   return React.cloneElement(children, {
     onClick: open,
