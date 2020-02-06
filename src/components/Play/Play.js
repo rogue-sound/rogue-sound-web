@@ -62,7 +62,7 @@ const Play = ({ intl }) => {
     const timeout = setTimeout(() => {
       handleJoin();
       setPollingState(!pollingState);
-    }, 8000);
+    }, 4000);
     return () => clearTimeout(timeout);
   }, [pollingState]);
 
