@@ -15,7 +15,7 @@ export default defineMessages({
   },
   LanguageSpanishLabel: {
     id: 'app.components.Header.LanguageSpanishLabel',
-    defaultMessage: 'Spaninsh',
+    defaultMessage: 'Spanish',
   },
   DevicesLabel: {
     id: 'app.components.Header.DevicesLabel',
