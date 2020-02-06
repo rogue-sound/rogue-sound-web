@@ -28,9 +28,10 @@ export const fetchMeAction = () => async dispatch => {
   try {
     const me = await getMe();
     const meState = {
-      displayName: me.display_name,
-      avatarUrl: me.images[0].url,
-      country: me.country,
+      displayName: (me && me.display_name) || '',
+      avatarUrl:
+        (me && me.images && me.images.length > 0 && me.images[0].url) || '',
+      country: (me && me.country) || '',
     };
     dispatch(getMeSuccess(meState));
   } catch (err) {

@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 /** Actions */
 import { logoutAction } from '@context/auth';
+/** Images */
+import DefaultAvatar from '@assets/img/default-avatar.jpg';
 /** Styled components */
 import {
   UserAvatarWrapper,
@@ -17,14 +19,14 @@ const UserAvatar = ({ displayName, avatarUrl, country, clearToken }) => {
   return (
     <UserAvatarWrapper className="nav-user" onClick={logout}>
       {displayName && (
-        <UserName className="nav-user__name">{displayName}</UserName>
-      )}
-      {avatarUrl && (
-        <UserAvatarImage
-          className="nav-user__avatar"
-          alt="user_avatar"
-          src={avatarUrl}
-        />
+        <>
+          <UserName className="nav-user__name">{displayName}</UserName>
+          <UserAvatarImage
+            className="nav-user__avatar"
+            alt="user_avatar"
+            src={avatarUrl || DefaultAvatar}
+          />
+        </>
       )}
     </UserAvatarWrapper>
   );

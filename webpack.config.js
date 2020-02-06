@@ -47,7 +47,7 @@ const config = {
         include: /\.module\.css$/,
       },
       {
-        test: /\.svg$/,
+        test: /\.(svg|jpg)$/,
         use: 'file-loader',
       },
       {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 /** Config */
-import Login from '@pages/Login';
 import Layout from '@pages/Layout';
 import { routes } from './config';
 /** Components */
@@ -10,7 +9,6 @@ import { routes } from './config';
 
 export const Routes = () => (
   <Switch>
-    <Route key="login-route" path="/login" exact={false} component={Login} />
     <Layout>
       {routes &&
         Array.isArray(routes) &&
