@@ -15,17 +15,23 @@ const Home = ({ intl }) => {
       {token ? (
         <>
           <SearchSongs intl={intl} />
-          <Play />
+          <Play intl={intl} />
         </>
       ) : (
-        <p className="home-not-logged-in">You are not logged in</p>
+        <p className="home-not-logged-in">
+          {intl.formatMessage({
+            id: 'app.pages.Home.NotLoggedInText',
+          })}
+        </p>
       )}
     </Component>
   );
 };
 
 Home.propTypes = {
-  intl: PropTypes.shape({}).isRequired,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }).isRequired,
 };
 
 export default injectIntl(Home);
