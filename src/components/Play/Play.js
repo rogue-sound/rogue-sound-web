@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -13,6 +13,8 @@ import './Play.scss';
 
 const Play = () => {
   const [remaining, setRemaining] = useState(null);
+  const remainingRef = useRef(remaining);
+  remainingRef.current = remaining;
   const [joinTimeout, setJoinTimeout] = useState(null);
   const [pollingState, setPollingState] = useState(false);
 
@@ -23,7 +25,7 @@ const Play = () => {
   const handleJoin = async (smart = false) => {
     try {
       const { current, songs } = await getCurrent();
-      if (smart || (!remaining && current)) {
+      if (smart || (!remainingRef.current && current)) {
         const song = {
           uris: [current.songId],
           position_ms: current.position,
