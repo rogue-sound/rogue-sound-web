@@ -88,7 +88,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: require('html-webpack-template'),
       inject: false,
-      appMountId: 'app',
+      appMountIds: ['root', 'portal-root'],
       favicon: 'src/assets/ico/music.ico',
       title: 'Rogue Sound'
     }),

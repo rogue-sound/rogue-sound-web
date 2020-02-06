@@ -13,6 +13,7 @@ import { toggleLanguage } from '@context/languageSettings';
 /** Components */
 import Button from '@common/Button/Button';
 import Select from '@common/Select';
+import { Popover, PopoverTrigger } from '@common/Popover';
 import UserAvatar from '@components/UserAvatar';
 /** Styled components */
 import {
@@ -124,7 +125,16 @@ const Header = ({ intl }) => {
             onClick={() => login()}
           />
         )}
-        {token && me && <UserAvatar {...me} />}
+        {token && me && (
+          <Popover place="bottom" showArrow>
+            <PopoverTrigger>
+              <div>
+                <UserAvatar {...me} />
+              </div>
+            </PopoverTrigger>
+            <div>Logout</div>
+          </Popover>
+        )}
       </HeaderActionsWrapper>
     </HeaderWrapper>
   );
