@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 const InputContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
 const InputElement = styled.input`
+  width: 100%;
   padding: 0.375rem 0.75rem;
   color: #495057;
   background-color: #fff;

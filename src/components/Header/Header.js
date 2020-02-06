@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 /** Services */
 import http from '@services/http';
 import { login } from '@services/auth';
@@ -23,7 +23,7 @@ import {
   HeaderLanguage,
 } from './header.styled';
 
-const Header = () => {
+const Header = ({ intl }) => {
   const {
     me,
     auth: { token },
@@ -70,7 +70,6 @@ const Header = () => {
     }
     if (token) {
       http.setToken(token);
-      localStorage.setItem('token', token);
       dispatch(fetchDevicesAction());
       disableRepeatFn();
       dispatch(fetchMeAction());
@@ -85,7 +84,9 @@ const Header = () => {
           <HeaderDevices>
             <Select
               value={activeDevice}
-              label="Devices"
+              label={intl.formatMessage({
+                id: 'app.components.Header.DevicesLabel',
+              })}
               options={devices}
               onChange={changeDeviceHandler}
             />
@@ -94,17 +95,31 @@ const Header = () => {
         <HeaderLanguage>
           <Select
             value={language}
-            label="Languages"
+            label={intl.formatMessage({
+              id: 'app.components.Header.LanguagesLabel',
+            })}
             options={[
-              { id: 'en', name: 'English' },
-              { id: 'es', name: 'Spanish' },
+              {
+                id: 'en',
+                name: intl.formatMessage({
+                  id: 'app.components.Header.LanguageEnglishLabel',
+                }),
+              },
+              {
+                id: 'es',
+                name: intl.formatMessage({
+                  id: 'app.components.Header.LanguageSpanishLabel',
+                }),
+              },
             ]}
             onChange={changeLanguage}
           />
         </HeaderLanguage>
         {!token && (
           <Button
-            text="Login to Spotify"
+            text={intl.formatMessage({
+              id: 'app.components.Header.LoginButton',
+            })}
             type="login"
             onClick={() => login()}
           />
@@ -115,6 +130,10 @@ const Header = () => {
   );
 };
 
-Header.propTypes = {};
+Header.propTypes = {
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }).isRequired,
+};
 
 export default Header;

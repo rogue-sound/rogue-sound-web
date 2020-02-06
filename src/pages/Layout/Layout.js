@@ -10,7 +10,7 @@ import { Component, ContainerWrapper } from './layout.styled';
 
 const Layout = ({ children, intl }) => (
   <Component>
-    <Header />
+    <Header intl={intl} />
     <ContainerWrapper>
       {children}
       <Sidebar intl={intl} />
@@ -24,7 +24,9 @@ Layout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  intl: PropTypes.shape({}).isRequired,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }).isRequired,
 };
 
 export default injectIntl(Layout);

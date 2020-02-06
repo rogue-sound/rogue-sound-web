@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
@@ -11,7 +12,7 @@ import CurrentSong from '@components/CurrentSong';
 
 import './Play.scss';
 
-const Play = () => {
+const Play = ({ intl }) => {
   const [remaining, setRemaining] = useState(null);
   const remainingRef = useRef(remaining);
   remainingRef.current = remaining;
@@ -79,7 +80,9 @@ const Play = () => {
       {!!remaining && (
         <div className="current-song-submitter">
           <FontAwesomeIcon icon="headphones" />
-          {reduxCurrent.user} is now playing...
+          {`${reduxCurrent.user} ${intl.formatMessage({
+            id: 'app.components.Play.NowPlayingSubmitterText',
+          })}...`}
         </div>
       )}
       <div className="play-module">
@@ -88,12 +91,20 @@ const Play = () => {
           <CurrentSong {...reduxCurrent} />
         ) : (
           <p className="no-current-song">
-            Session not started, please queue a song
+            {intl.formatMessage({
+              id: 'app.components.Play.SessionNotStartedText',
+            })}
           </p>
         )}
       </div>
     </>
   );
+};
+
+Play.propTypes = {
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }).isRequired,
 };
 
 export default Play;
