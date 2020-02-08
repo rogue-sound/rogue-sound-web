@@ -1,25 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 /** Styled Components */
-import { PrimaryButton, LoginButton } from './Button.styled';
+import { PrimaryButton, LoginButton, LogoutButton } from './Button.styled';
 
 const buttonMapper = {
   primary: PrimaryButton,
   login: LoginButton,
+  logout: LogoutButton,
 };
 
-const Button = ({ text, type = 'primary', onClick, ...props }) => {
+const Button = ({ type = 'primary', children, onClick, ...props }) => {
   const ButtonComponent = buttonMapper[type];
   return (
     <ButtonComponent {...props} onClick={() => onClick()}>
-      {text}
+      {children}
     </ButtonComponent>
   );
 };
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
   type: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
   onClick: PropTypes.func,
 };
 

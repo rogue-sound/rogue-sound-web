@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'app.components.Header.LoginButton',
     defaultMessage: 'Login to Spotify',
   },
+  LogoutButton: {
+    id: 'app.components.Header.LogoutButton',
+    defaultMessage: 'Logout',
+  },
   LanguagesLabel: {
     id: 'app.components.Header.LanguagesLabel',
     defaultMessage: 'Languages',

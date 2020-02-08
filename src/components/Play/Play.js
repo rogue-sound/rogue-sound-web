@@ -55,7 +55,7 @@ const Play = ({ intl }) => {
   };
 
   useEffect(() => {
-    handleJoin();
+    // handleJoin();
   }, []);
 
   useEffect(() => {

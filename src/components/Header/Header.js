@@ -6,7 +6,7 @@ import http from '@services/http';
 import { login } from '@services/auth';
 import { disableRepeat } from '@services/spotify';
 /** Actions */
-import { setTokenAction } from '@context/auth';
+import { setTokenAction, logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
 import { toggleLanguage } from '@context/languageSettings';
@@ -117,22 +117,24 @@ const Header = ({ intl }) => {
           />
         </HeaderLanguage>
         {!token && (
-          <Button
-            text={intl.formatMessage({
+          <Button type="login" onClick={() => login()}>
+            {intl.formatMessage({
               id: 'app.components.Header.LoginButton',
             })}
-            type="login"
-            onClick={() => login()}
-          />
+          </Button>
         )}
         {token && me && (
-          <Popover place="bottom" showArrow>
+          <Popover place="bottom">
             <PopoverTrigger>
               <div>
                 <UserAvatar {...me} />
               </div>
             </PopoverTrigger>
-            <div>Logout</div>
+            <Button type="logout" onClick={() => dispatch(logoutAction())}>
+              {intl.formatMessage({
+                id: 'app.components.Header.LogoutButton',
+              })}
+            </Button>
           </Popover>
         )}
       </HeaderActionsWrapper>

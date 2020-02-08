@@ -4,6 +4,7 @@
   "app.components.Header.LanguageSpanishLabel": "Español",
   "app.components.Header.LanguagesLabel": "Idiomas",
   "app.components.Header.LoginButton": "Iniciar sesión en Spotify",
+  "app.components.Header.LogoutButton": "Cerrar sesión",
   "app.components.Play.NowPlayingSubmitterText": "está reproduciendo ahora",
   "app.components.Play.SessionNotStartedText": "No se está reproduciendo ninguna canción ahora mismo, por favor añade una",
   "app.components.Queue.Queue": "Cola",

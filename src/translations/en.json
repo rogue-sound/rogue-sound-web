@@ -4,8 +4,9 @@
   "app.components.Header.LanguageSpanishLabel": "Spanish",
   "app.components.Header.LanguagesLabel": "Languages",
   "app.components.Header.LoginButton": "Login to Spotify",
+  "app.components.Header.LogoutButton": "Logout",
   "app.components.Play.NowPlayingSubmitterText": "is now playing",
-  "app.components.Play.SessionNotStartedText": "There are no songs playing right now, please add one",
+  "app.components.Play.SessionNotStartedText": "Session not started, please queue a song",
   "app.components.Queue.Queue": "Queue",
   "app.components.SearchSongs.SearchForSongs": "Search for songs",
   "app.pages.Home.NotLoggedInText": "You are not logged in"
