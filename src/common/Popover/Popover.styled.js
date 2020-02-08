@@ -6,14 +6,11 @@ const PopoverWrapper = styled.div`
   display: flex;
   flex-direction: column;
   opacity: 1;
-  transition-property: top, left, opacity, transform;
-  transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.35);
+  transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0px 10px 14px -4px rgba(176, 170, 176, 0.62);
   transform: translate(-50%, 0);
   margin-top: 12px;
-  color: #333;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
   &:focus {
     outline: 0;
   }
@@ -22,6 +19,8 @@ const PopoverWrapper = styled.div`
 const PopoverBody = styled.div`
   padding: 8px 16px;
   max-width: none !important;
+  color: #333;
+  background-color: #fff;
   &:focus {
     outline: 0;
   }
