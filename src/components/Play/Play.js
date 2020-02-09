@@ -76,7 +76,6 @@ const Play = ({ intl }) => {
   useEffect(() => {
     if (remaining) {
       joinTimeout && clearTimeout(joinTimeout);
-      // Smart polling
       setJoinTimeout(setTimeout(() => handleJoin(true), remaining));
     }
     return () => clearTimeout(joinTimeout);

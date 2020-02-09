@@ -6,6 +6,7 @@ import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
 import { search } from '@services/spotify';
+import { translate } from '@utils';
 
 import SongResult from './SongResult';
 
@@ -23,12 +24,17 @@ const SearchSongs = ({ intl }) => {
   const searchSongs = async query => {
     const result = await search(query);
     setSearchResults(result);
+    setSearchTimeout(null);
   };
 
   const handleChangeSong = event => {
     const songValue = event.currentTarget.value;
     setSong(songValue);
-    if (!songValue.length) setSearchResults([]);
+    if (!songValue.length) {
+      clearTimeout(searchTimeout);
+      setSearchTimeout(null);
+      setSearchResults([]);
+    }
   };
 
   const handleSongSelect = async selectedSong => {
@@ -51,9 +57,39 @@ const SearchSongs = ({ intl }) => {
   useEffect(() => {
     if (song && song.length) {
       searchTimeout && clearTimeout(searchTimeout);
-      setSearchTimeout(setTimeout(() => searchSongs(song), 750));
+      setSearchTimeout(
+        setTimeout(() => {
+          searchSongs(song);
+        }, 750)
+      );
     }
   }, [song]);
+
+  const resultsJSX = () => {
+    if (searchTimeout) {
+      return (
+        <p className="song-search__searching">
+          {translate(intl, 'app.components.SearchSongs.Searching')}
+        </p>
+      );
+    }
+    if (searchResults && searchResults.length) {
+      return searchResults.map(songResult => (
+        <SongResult
+          song={songResult}
+          key={songResult.id}
+          onClickCallback={handleSongSelect}
+        />
+      ));
+    }
+    if (song)
+      return (
+        <p className="song-search__no-results">
+          {translate(intl, 'app.components.SearchSongs.NoResults')}
+        </p>
+      );
+    return null;
+  };
 
   return (
     <>
@@ -70,15 +106,7 @@ const SearchSongs = ({ intl }) => {
         />
       </div>
       <div className={`song-search-results ${!song && 'hidden'}`}>
-        {searchResults &&
-          !!searchResults.length &&
-          searchResults.map(songResult => (
-            <SongResult
-              song={songResult}
-              key={songResult.id}
-              onClickCallback={handleSongSelect}
-            />
-          ))}
+        {resultsJSX()}
       </div>
     </>
   );

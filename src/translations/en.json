@@ -9,5 +9,7 @@
   "app.components.Play.NoAvailableDevicesText": "There are no available spotify devices connected to this account",
   "app.components.Queue.Queue": "Queue",
   "app.components.SearchSongs.SearchForSongs": "Search for songs",
+  "app.components.SearchSongs.Searching": "Searching...",
+  "app.components.SearchSongs.NoResults": "No results found",
   "app.pages.Home.NotLoggedInText": "You are not logged in"
 }

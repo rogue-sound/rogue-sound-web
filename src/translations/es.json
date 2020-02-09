@@ -9,5 +9,7 @@
   "app.components.Play.NoAvailableDevicesText": "No hay dispositivos de Spotify disponibles para esta cuenta",
   "app.components.Queue.Queue": "Cola",
   "app.components.SearchSongs.SearchForSongs": "Búsqueda de canciones",
+  "app.components.SearchSongs.Searching": "Buscando...",
+  "app.components.SearchSongs.NoResults": "No se han encontrado resultados",
   "app.pages.Home.NotLoggedInText": "No has iniciado sesión"
 }
