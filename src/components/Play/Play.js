@@ -10,6 +10,8 @@ import { getCurrent } from '@services/api';
 // setQueue, clearQueue, disableRepeat
 import CurrentSong from '@components/CurrentSong';
 
+import { translate } from '@utils';
+
 import './Play.scss';
 
 const Play = ({ intl }) => {
@@ -19,7 +21,10 @@ const Play = ({ intl }) => {
   const [joinTimeout, setJoinTimeout] = useState(null);
   const [pollingState, setPollingState] = useState(false);
 
-  const reduxCurrent = useSelector(state => state.playing.current);
+  const {
+    playing: { current: reduxCurrent },
+    spotify: { devices },
+  } = useSelector(state => state);
 
   const dispatch = useDispatch();
 
@@ -58,6 +63,7 @@ const Play = ({ intl }) => {
     handleJoin();
   }, []);
 
+  // Dumb polling
   useEffect(() => {
     const timeout = setTimeout(() => {
       handleJoin();
@@ -66,13 +72,33 @@ const Play = ({ intl }) => {
     return () => clearTimeout(timeout);
   }, [pollingState]);
 
+  // Smart polling
   useEffect(() => {
     if (remaining) {
       joinTimeout && clearTimeout(joinTimeout);
       // Smart polling
       setJoinTimeout(setTimeout(() => handleJoin(true), remaining));
     }
+    return () => clearTimeout(joinTimeout);
   }, [remaining]);
+
+  const playJSX = () => {
+    if (devices.length) {
+      if (remaining) {
+        return <CurrentSong {...reduxCurrent} />;
+      }
+      return (
+        <p className="no-current-song">
+          {translate(intl, 'app.components.Play.SessionNotStartedText')}
+        </p>
+      );
+    }
+    return (
+      <p className="no-available-devices">
+        {translate(intl, 'app.components.Play.NoAvailableDevicesText')}
+      </p>
+    );
+  };
 
   // TODO: Add admin buttons?
   return (
@@ -80,23 +106,13 @@ const Play = ({ intl }) => {
       {!!remaining && (
         <div className="current-song-submitter">
           <FontAwesomeIcon icon="headphones" />
-          {`${reduxCurrent.user} ${intl.formatMessage({
-            id: 'app.components.Play.NowPlayingSubmitterText',
-          })}...`}
+          {`${reduxCurrent.user} ${translate(
+            intl,
+            'app.components.Play.NowPlayingSubmitterText'
+          )}...`}
         </div>
       )}
-      <div className="play-module">
-        {/* TODO: Improve */}
-        {remaining ? (
-          <CurrentSong {...reduxCurrent} />
-        ) : (
-          <p className="no-current-song">
-            {intl.formatMessage({
-              id: 'app.components.Play.SessionNotStartedText',
-            })}
-          </p>
-        )}
-      </div>
+      <div className="play-module">{playJSX()}</div>
     </>
   );
 };
