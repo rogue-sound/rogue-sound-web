@@ -81,7 +81,7 @@ const Play = ({ intl }) => {
     return () => clearTimeout(joinTimeout);
   }, [remaining]);
 
-  const playJSX = () => {
+  const renderPlay = () => {
     if (devices.length) {
       if (remaining) {
         return <CurrentSong {...reduxCurrent} />;
@@ -111,7 +111,7 @@ const Play = ({ intl }) => {
           )}...`}
         </div>
       )}
-      <div className="play-module">{playJSX()}</div>
+      <div className="play-module">{renderPlay()}</div>
     </>
   );
 };

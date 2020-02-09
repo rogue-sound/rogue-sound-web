@@ -65,7 +65,7 @@ const SearchSongs = ({ intl }) => {
     }
   }, [song]);
 
-  const resultsJSX = () => {
+  const renderSearch = () => {
     if (searchTimeout) {
       return (
         <p className="song-search__searching">
@@ -106,7 +106,7 @@ const SearchSongs = ({ intl }) => {
         />
       </div>
       <div className={`song-search-results ${!song && 'hidden'}`}>
-        {resultsJSX()}
+        {renderSearch()}
       </div>
     </>
   );
