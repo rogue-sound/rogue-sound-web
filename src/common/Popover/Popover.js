@@ -22,6 +22,7 @@ const PopoverController = ({
     left: 0,
   });
   const refContainer = useRef(null);
+  const refPopoverWrapper = useRef(null);
 
   const open = () => {
     setIsOpen(!isOpen);
@@ -53,10 +54,16 @@ const PopoverController = ({
 
   const setPosition = useCallback(
     triggerPosition => {
+      const popoverWrapperPosition =
+        refPopoverWrapper &&
+        refPopoverWrapper.current &&
+        refPopoverWrapper.current.getBoundingClientRect();
       const popoverPosition = getPopoverPosition(
         triggerPosition,
         place,
-        offCenter
+        offCenter,
+        popoverWrapperPosition,
+        window.innerWidth
       );
       setStyle(s => ({ ...s, ...popoverPosition }));
     },
@@ -75,6 +82,7 @@ const PopoverController = ({
       portalContainer &&
       ReactDOM.createPortal(
         <PopoverWrapper
+          ref={refPopoverWrapper}
           style={style}
           role="button"
           tabIndex="0"

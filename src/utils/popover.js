@@ -1,10 +1,23 @@
 export const getPopoverPosition = (
   triggerPosition,
   popoverPlace,
-  isPopoverOffCenter
+  isPopoverOffCenter,
+  popoverPosition,
+  windowWidth
 ) => {
   const { top, left, height, width } = triggerPosition;
+  const { left: popoverLeft, width: popoverWidth } = popoverPosition || {};
   if (!isPopoverOffCenter) {
+    let newLeft = left + width / 2;
+    console.log('left =', left);
+    console.log('newLeft =', newLeft);
+    console.log('popoverLeft =', popoverLeft);
+    console.log('popoverWidth =', popoverWidth);
+    console.log('windowWidth =', windowWidth);
+    console.log(popoverLeft + popoverWidth > windowWidth);
+    if (popoverLeft + popoverWidth > windowWidth) {
+      newLeft = windowWidth - popoverWidth / 2;
+    }
     switch (popoverPlace) {
       case 'top':
       case 'top-left':
@@ -52,7 +65,7 @@ export const getPopoverPosition = (
       default:
         // cases: bottom, bottom-right, bottom-left
         return {
-          left: left + width / 2,
+          left: newLeft,
           top: top + height,
         };
     }

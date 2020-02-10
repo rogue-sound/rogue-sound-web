@@ -42,6 +42,14 @@ const Header = ({ intl }) => {
     dispatch(toggleLanguage(value));
   };
 
+  const loginHandler = () => {
+    login();
+  };
+
+  const logoutHandler = () => {
+    dispatch(logoutAction());
+  };
+
   useEffect(() => {
     if (token) {
       http.setToken(token);
@@ -117,7 +125,7 @@ const Header = ({ intl }) => {
           />
         </HeaderLanguage>
         {!token && (
-          <Button type="login" onClick={() => login()}>
+          <Button type="login" onClick={loginHandler}>
             {intl.formatMessage({
               id: 'app.components.Header.LoginButton',
             })}
@@ -130,7 +138,7 @@ const Header = ({ intl }) => {
                 <UserAvatar {...me} />
               </div>
             </PopoverTrigger>
-            <Button type="logout" onClick={() => dispatch(logoutAction())}>
+            <Button type="logout" onClick={logoutHandler}>
               {intl.formatMessage({
                 id: 'app.components.Header.LogoutButton',
               })}
