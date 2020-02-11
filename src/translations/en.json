@@ -6,7 +6,10 @@
   "app.components.Header.LoginButton": "Login to Spotify",
   "app.components.Play.NowPlayingSubmitterText": "is now playing",
   "app.components.Play.SessionNotStartedText": "There are no songs playing right now, please add one",
+  "app.components.Play.NoAvailableDevicesText": "There are no available spotify devices connected to this account",
   "app.components.Queue.Queue": "Queue",
   "app.components.SearchSongs.SearchForSongs": "Search for songs",
+  "app.components.SearchSongs.Searching": "Searching...",
+  "app.components.SearchSongs.NoResults": "No results found",
   "app.pages.Home.NotLoggedInText": "You are not logged in"
 }

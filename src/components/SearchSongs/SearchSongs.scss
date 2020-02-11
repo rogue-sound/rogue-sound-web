@@ -20,6 +20,13 @@
       box-shadow: none;
     }
   }
+
+  &__searching, &__no-results {
+    color: #1d1d35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .song-search-results {
