@@ -7,7 +7,6 @@ import QueueItem from './QueueItem';
 // import { SidebarWrapper } from './sidebar.styled';
 import './Queue.scss';
 
-// TODO: Replace key with provided ID
 const Queue = ({ intl }) => {
   const { queue, current } = useSelector(state => state.playing);
   return (
@@ -22,11 +21,7 @@ const Queue = ({ intl }) => {
       </div>
       <div className="queue-list">
         {queue.map(item => (
-          <QueueItem
-            key={`queued-song-${item.title}`}
-            {...item}
-            current={current.songId}
-          />
+          <QueueItem key={item.publicId} {...item} current={current.songId} />
         ))}
       </div>
     </div>
