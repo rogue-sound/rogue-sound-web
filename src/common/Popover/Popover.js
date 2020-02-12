@@ -1,21 +1,15 @@
-import React, {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useState, useLayoutEffect, useCallback, useRef } from 'react';
 /** Libraries */
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 /** Utils */
 import { getPopoverPosition } from '@utils/popover';
+import { PopoverConstants } from '@utils/constants';
 /** Styled components */
 import {
   PopoverContainer,
   PopoverWrapper,
   PopoverBody,
-  PopoverArrow,
 } from './Popover.styled';
 
 const PopoverController = ({
@@ -23,7 +17,6 @@ const PopoverController = ({
   handleIsOpen,
   offCenter,
   place,
-  showArrow,
   portalContainer = document.getElementById('portal-root'),
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,19 +29,26 @@ const PopoverController = ({
   const refContainer = useRef(null);
   const refPopoverWrapper = useRef(null);
 
+  const close = () => {
+    setFadeType('out');
+    // This setTimeout is necessary due to transition
+    setTimeout(() => {
+      setIsOpen(false);
+      handleIsOpen && handleIsOpen(false);
+    }, PopoverConstants.TRANSITION_DURATION_IN_MILLISECONDS);
+  };
+
   const open = () => {
-    setFadeType('in');
-    setIsOpen(!isOpen);
-    handleIsOpen && handleIsOpen(!isOpen);
+    if (!isOpen) {
+      setFadeType('in');
+      setIsOpen(true);
+      handleIsOpen && handleIsOpen(true);
+    } else {
+      close();
+    }
   };
 
   useLayoutEffect(() => {
-    const close = () => {
-      setFadeType('out');
-      setIsOpen(false);
-      handleIsOpen && handleIsOpen(false);
-    };
-
     const checkIfClickComeFromOutsideAndClose = e => {
       if (
         refContainer &&
@@ -100,6 +100,9 @@ const PopoverController = ({
           role="button"
           tabIndex="0"
           fadeType={fadeType}
+          transitionDuration={
+            PopoverConstants.TRANSITION_DURATION_IN_MILLISECONDS
+          }
           onClick={e => {
             e.stopPropagation();
           }}
@@ -107,9 +110,11 @@ const PopoverController = ({
             e.stopPropagation();
           }}
         >
-          <PopoverWrapper>
-            <PopoverBody>{child}</PopoverBody>
-          </PopoverWrapper>
+          {isOpen && (
+            <PopoverWrapper>
+              <PopoverBody>{child}</PopoverBody>
+            </PopoverWrapper>
+          )}
         </PopoverContainer>,
         portalContainer
       )
@@ -123,7 +128,6 @@ PopoverController.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  showArrow: PropTypes.bool,
   handleIsOpen: PropTypes.func,
   offCenter: PropTypes.bool,
   place: PropTypes.string,

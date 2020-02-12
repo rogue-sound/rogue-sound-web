@@ -9,12 +9,6 @@ export const getPopoverPosition = (
   const { left: popoverLeft, width: popoverWidth } = popoverPosition || {};
   if (!isPopoverOffCenter) {
     let newLeft = left + width / 2;
-    console.log('left =', left);
-    console.log('newLeft =', newLeft);
-    console.log('popoverLeft =', popoverLeft);
-    console.log('popoverWidth =', popoverWidth);
-    console.log('windowWidth =', windowWidth);
-    console.log(popoverLeft + popoverWidth > windowWidth);
     if (popoverLeft + popoverWidth > windowWidth) {
       newLeft = windowWidth - popoverWidth / 2;
     }

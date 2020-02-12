@@ -19,11 +19,15 @@ const PopoverContainer = styled.div`
     }
   }};
   transition: ${props => {
+    const { transitionDuration } = props;
+    const transitionDurationInSec = transitionDuration
+      ? transitionDuration / 1000
+      : 0.2;
     switch (props.fadeType) {
       case 'in':
-        return `opacity ease-in 0.20s;`;
+        return `opacity ease-in ${transitionDurationInSec}s;`;
       case 'out':
-        return `opacity ease-in 0.20s;`;
+        return `opacity ease-in ${transitionDurationInSec}s;`;
       default:
         return '';
     }
