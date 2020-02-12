@@ -1,11 +1,22 @@
-import React, { useState, useLayoutEffect, useCallback, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useRef,
+} from 'react';
 /** Libraries */
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 /** Utils */
 import { getPopoverPosition } from '@utils/popover';
 /** Styled components */
-import { PopoverWrapper, PopoverBody, PopoverArrow } from './Popover.styled';
+import {
+  PopoverContainer,
+  PopoverWrapper,
+  PopoverBody,
+  PopoverArrow,
+} from './Popover.styled';
 
 const PopoverController = ({
   children,
@@ -15,22 +26,25 @@ const PopoverController = ({
   showArrow,
   portalContainer = document.getElementById('portal-root'),
 }) => {
-  const [isOpen, setIsOpen] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [style, setStyle] = useState({
     position: 'absolute',
     top: 0,
     left: 0,
   });
+  const [fadeType, setFadeType] = useState(null);
   const refContainer = useRef(null);
   const refPopoverWrapper = useRef(null);
 
   const open = () => {
+    setFadeType('in');
     setIsOpen(!isOpen);
     handleIsOpen && handleIsOpen(!isOpen);
   };
 
   useLayoutEffect(() => {
     const close = () => {
+      setFadeType('out');
       setIsOpen(false);
       handleIsOpen && handleIsOpen(false);
     };
@@ -78,14 +92,14 @@ const PopoverController = ({
       });
     }
     return (
-      isOpen &&
       portalContainer &&
       ReactDOM.createPortal(
-        <PopoverWrapper
+        <PopoverContainer
           ref={refPopoverWrapper}
           style={style}
           role="button"
           tabIndex="0"
+          fadeType={fadeType}
           onClick={e => {
             e.stopPropagation();
           }}
@@ -93,13 +107,10 @@ const PopoverController = ({
             e.stopPropagation();
           }}
         >
-          {showArrow && (
-            <PopoverArrow width="14" height="7">
-              <polygon points="0,7 7,0, 14,7" />
-            </PopoverArrow>
-          )}
-          <PopoverBody>{child}</PopoverBody>
-        </PopoverWrapper>,
+          <PopoverWrapper>
+            <PopoverBody>{child}</PopoverBody>
+          </PopoverWrapper>
+        </PopoverContainer>,
         portalContainer
       )
     );

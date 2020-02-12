@@ -1,18 +1,65 @@
 import styled from 'styled-components';
 
-const PopoverWrapper = styled.div`
-  min-width: 0 !important;
+const PopoverContainer = styled.div`
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  opacity: 1;
-  transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0px 10px 14px -4px rgba(176, 170, 176, 0.62);
   transform: translate(-50%, 0);
-  margin-top: 12px;
-  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: 6px;
+  outline: none;
   &:focus {
-    outline: 0;
+    outline: none;
+  }
+  opacity: ${props => {
+    switch (props.fadeType) {
+      case 'in':
+        return '1';
+      default:
+        return '0';
+    }
+  }};
+  transition: ${props => {
+    switch (props.fadeType) {
+      case 'in':
+        return `opacity ease-in 0.20s;`;
+      case 'out':
+        return `opacity ease-in 0.20s;`;
+      default:
+        return '';
+    }
+  }};
+`;
+
+/**
+ * To have a 1px border:
+ * :before -> top: -16px, margin-left: -9px
+ * :after -> margin-left:
+ */
+const PopoverWrapper = styled.div`
+  position: relative;
+  background-color: #e6eedd;
+  border: 2px solid #d1d5da;
+  border-radius: 3px;
+  box-shadow: 0 1px 15px rgba(27, 31, 35, 0.15) !important;
+  box-sizing: border-box;
+  &:before,
+  &:after {
+    position: absolute;
+    left: 50%;
+    display: inline-block;
+    content: '';
+  }
+  &:before {
+    top: -19px;
+    margin-left: -10px;
+    border: 9px solid transparent;
+    border-bottom-color: #d1d5da;
+  }
+  &:after {
+    top: -14px;
+    margin-left: -8px;
+    border: 7px solid transparent;
+    border-bottom-color: #e6eedd;
   }
 `;
 
@@ -20,7 +67,6 @@ const PopoverBody = styled.div`
   padding: 8px 16px;
   max-width: none !important;
   color: #333;
-  background-color: #fff;
   &:focus {
     outline: 0;
   }
@@ -40,4 +86,4 @@ const PopoverArrow = styled.svg`
   }
 `;
 
-export { PopoverWrapper, PopoverBody, PopoverArrow };
+export { PopoverContainer, PopoverWrapper, PopoverBody, PopoverArrow };
