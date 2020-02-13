@@ -15,7 +15,7 @@ const Queue = ({ intl }) => {
         <FontAwesomeIcon icon="align-justify" />
         <span>
           {intl.formatMessage({
-            id: 'app.Layout.Sidebar.Queue.QueueText',
+            id: 'app.layout.Sidebar.Queue.QueueText',
           })}
         </span>
       </div>

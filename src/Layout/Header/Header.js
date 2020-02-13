@@ -14,7 +14,7 @@ import { toggleLanguage } from '@context/languageSettings';
 import Button from '@common/Button/Button';
 import Select from '@common/Select';
 import { Popover, PopoverTrigger } from '@common/Popover';
-import UserAvatar from '@components/UserAvatar';
+import UserAvatar from '@layout/Header/UserAvatar';
 /** Styled components */
 import {
   HeaderWrapper,
@@ -94,7 +94,7 @@ const Header = ({ intl }) => {
             <Select
               value={activeDevice}
               label={intl.formatMessage({
-                id: 'app.components.Header.DevicesLabel',
+                id: 'app.layout.Header.DevicesLabel',
               })}
               options={devices}
               onChange={changeDeviceHandler}
@@ -105,19 +105,19 @@ const Header = ({ intl }) => {
           <Select
             value={language}
             label={intl.formatMessage({
-              id: 'app.components.Header.LanguagesLabel',
+              id: 'app.layout.Header.LanguagesLabel',
             })}
             options={[
               {
                 id: 'en',
                 name: intl.formatMessage({
-                  id: 'app.components.Header.LanguageEnglishLabel',
+                  id: 'app.layout.Header.LanguageEnglishLabel',
                 }),
               },
               {
                 id: 'es',
                 name: intl.formatMessage({
-                  id: 'app.components.Header.LanguageSpanishLabel',
+                  id: 'app.layout.Header.LanguageSpanishLabel',
                 }),
               },
             ]}
@@ -127,7 +127,7 @@ const Header = ({ intl }) => {
         {!token && (
           <Button type="login" onClick={loginHandler}>
             {intl.formatMessage({
-              id: 'app.components.Header.LoginButton',
+              id: 'app.layout.Header.LoginButton',
             })}
           </Button>
         )}
@@ -140,7 +140,7 @@ const Header = ({ intl }) => {
             </PopoverTrigger>
             <Button type="logout" onClick={logoutHandler}>
               {intl.formatMessage({
-                id: 'app.components.Header.LogoutButton',
+                id: 'app.layout.Header.LogoutButton',
               })}
             </Button>
           </Popover>

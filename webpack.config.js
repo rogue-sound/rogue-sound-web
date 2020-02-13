@@ -68,6 +68,7 @@ const config = {
     alias: {
       'react-dom': '@hot-loader/react-dom',
       '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@layout': path.resolve(__dirname, 'src/layout/'),
       '@components': path.resolve(__dirname, 'src/components/'),
       '@common': path.resolve(__dirname, 'src/common/'),
       '@assets': path.resolve(__dirname, 'src/assets/'),
@@ -90,7 +91,7 @@ const config = {
       inject: false,
       appMountIds: ['root', 'portal-root'],
       favicon: 'src/assets/ico/music.ico',
-      title: 'Rogue Sound'
+      title: 'Rogue Sound',
     }),
     new webpack.DefinePlugin(envKeys),
   ],
