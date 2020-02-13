@@ -59,7 +59,6 @@ const SearchSongs = ({ intl }) => {
   };
 
   const handleOffset = newOffset => {
-    console.log('newOffset', newOffset);
     setOffset(newOffset);
     searchSongs(song, newOffset);
   };
