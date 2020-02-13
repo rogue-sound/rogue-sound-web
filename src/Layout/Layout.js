@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 /** Components */
-import Header from '@components/Header';
-import Sidebar from '@components/Sidebar';
-import Footer from '@components/Footer';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import Footer from './Footer';
 /** Styled components */
 import { Component, ContainerWrapper } from './layout.styled';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 /** Config */
-import Layout from '@pages/Layout';
+import Layout from '../Layout';
 import { routes } from './config';
 /** Components */
 // import { PrivateRoute } from './PrivateRoute/PrivateRoute';
