@@ -6,6 +6,7 @@ import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
 import { search } from '@services/spotify';
+import { SongSearchConstants } from '@utils/constants';
 import { translate } from '@utils';
 
 import SongResult from './SongResult';
@@ -121,18 +122,22 @@ const SearchSongs = ({ intl }) => {
         {!!offset && (
           <FontAwesomeIcon
             icon="angle-left"
-            onClick={() => handleOffset(offset - 5)}
+            onClick={() =>
+              handleOffset(offset - SongSearchConstants.SEARCH_LIMIT)
+            }
             className="pagination prev"
           />
         )}
         {renderSearch()}
-        {!searchTimeout && searchResults && searchResults.length === 5 && (
-          <FontAwesomeIcon
-            icon="angle-right"
-            onClick={() => handleOffset(offset + 5)}
-            className="pagination next"
-          />
-        )}
+        {!searchTimeout && !!searchResults.length === SongSearchConstants.SEARCH_LIMIT && (
+            <FontAwesomeIcon
+              icon="angle-right"
+              onClick={() =>
+                handleOffset(offset + SongSearchConstants.SEARCH_LIMIT)
+              }
+              className="pagination next"
+            />
+          )}
       </div>
     </>
   );

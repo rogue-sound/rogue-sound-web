@@ -1,4 +1,5 @@
 import { noop } from '@utils/utils';
+import { SongSearchConstants } from '@utils/constants';
 import http from './http';
 import { spotify } from '@config';
 
@@ -41,7 +42,7 @@ export const search = (query, offset) => {
     q: query,
     type: 'track',
     offset,
-    limit: 5,
+    limit: SongSearchConstants.SEARCH_LIMIT,
   };
   return http
     .get(endpointUrlSearch, { params })
