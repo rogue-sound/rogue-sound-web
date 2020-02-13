@@ -12,7 +12,8 @@ import {
   UserName,
 } from './UserAvatar.styled';
 
-const UserAvatar = ({ displayName, avatarUrl, country, clearToken }) => {
+const UserAvatar = ({ displayName, avatarUrl }) => {
+  // country, clearToken
   const dispatch = useDispatch();
   const logout = () => dispatch(logoutAction());
 
@@ -35,8 +36,8 @@ const UserAvatar = ({ displayName, avatarUrl, country, clearToken }) => {
 UserAvatar.propTypes = {
   displayName: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,
-  country: PropTypes.string,
-  clearToken: PropTypes.func,
+  // country: PropTypes.string,
+  // clearToken: PropTypes.func,
 };
 
 export default UserAvatar;
