@@ -19,7 +19,7 @@ const spotifySlice = createSlice({
       ...state,
       activeDevice: action.payload,
     }),
-    resetDevices: (state, action) => ({
+    resetDevices: state => ({
       ...state,
       devices: [],
       activeDevice: '',

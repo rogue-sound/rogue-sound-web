@@ -1,0 +1,15 @@
+{
+  "app.Layout.Header.DevicesLabel": "Devices",
+  "app.Layout.Header.LanguageEnglishLabel": "English",
+  "app.Layout.Header.LanguageSpanishLabel": "Spanish",
+  "app.Layout.Header.LanguagesLabel": "Languages",
+  "app.Layout.Header.LoginButton": "Login to Spotify",
+  "app.Layout.Sidebar.Queue.QueueText": "Queue",
+  "app.pages.Home.NotLoggedInText": "You are not logged in",
+  "app.pages.Home.Play.NoAvailableDevicesText": "There are no available spotify devices connected to this account",
+  "app.pages.Home.Play.NowPlayingSubmitterText": "is now playing",
+  "app.pages.Home.Play.SessionNotStartedText": "Session not started, please queue a song",
+  "app.pages.Home.SearchSongs.SearchForSongs": "Search for songs",
+  "app.pages.Home.SearchSongs.SearchForSongsNoResultsText": "No results found",
+  "app.pages.Home.SearchSongs.Searching": "Searching..."
+}
