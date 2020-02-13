@@ -6,14 +6,15 @@ import http from '@services/http';
 import { login } from '@services/auth';
 import { disableRepeat } from '@services/spotify';
 /** Actions */
-import { setTokenAction } from '@context/auth';
+import { setTokenAction, logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
 import { toggleLanguage } from '@context/languageSettings';
 /** Components */
 import Button from '@common/Button/Button';
 import Select from '@common/Select';
-import UserAvatar from './UserAvatar';
+import { Popover, PopoverTrigger } from '@common/Popover';
+import UserAvatar from '@layout/Header/UserAvatar';
 /** Styled components */
 import {
   HeaderWrapper,
@@ -39,6 +40,14 @@ const Header = ({ intl }) => {
 
   const changeLanguage = ({ currentTarget: { value } }) => {
     dispatch(toggleLanguage(value));
+  };
+
+  const loginHandler = () => {
+    login();
+  };
+
+  const logoutHandler = () => {
+    dispatch(logoutAction());
   };
 
   useEffect(() => {
@@ -85,7 +94,7 @@ const Header = ({ intl }) => {
             <Select
               value={activeDevice}
               label={intl.formatMessage({
-                id: 'app.Layout.Header.DevicesLabel',
+                id: 'app.layout.Header.DevicesLabel',
               })}
               options={devices}
               onChange={changeDeviceHandler}
@@ -96,19 +105,19 @@ const Header = ({ intl }) => {
           <Select
             value={language}
             label={intl.formatMessage({
-              id: 'app.Layout.Header.LanguagesLabel',
+              id: 'app.layout.Header.LanguagesLabel',
             })}
             options={[
               {
                 id: 'en',
                 name: intl.formatMessage({
-                  id: 'app.Layout.Header.LanguageEnglishLabel',
+                  id: 'app.layout.Header.LanguageEnglishLabel',
                 }),
               },
               {
                 id: 'es',
                 name: intl.formatMessage({
-                  id: 'app.Layout.Header.LanguageSpanishLabel',
+                  id: 'app.layout.Header.LanguageSpanishLabel',
                 }),
               },
             ]}
@@ -116,15 +125,26 @@ const Header = ({ intl }) => {
           />
         </HeaderLanguage>
         {!token && (
-          <Button
-            text={intl.formatMessage({
-              id: 'app.Layout.Header.LoginButton',
+          <Button type="login" onClick={loginHandler}>
+            {intl.formatMessage({
+              id: 'app.layout.Header.LoginButton',
             })}
-            type="login"
-            onClick={() => login()}
-          />
+          </Button>
         )}
-        {token && me && <UserAvatar {...me} />}
+        {token && me && (
+          <Popover place="bottom">
+            <PopoverTrigger>
+              <div>
+                <UserAvatar {...me} />
+              </div>
+            </PopoverTrigger>
+            <Button type="logout" onClick={logoutHandler}>
+              {intl.formatMessage({
+                id: 'app.layout.Header.LogoutButton',
+              })}
+            </Button>
+          </Popover>
+        )}
       </HeaderActionsWrapper>
     </HeaderWrapper>
   );
