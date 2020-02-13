@@ -129,7 +129,8 @@ const SearchSongs = ({ intl }) => {
           />
         )}
         {renderSearch()}
-        {!searchTimeout && !!searchResults.length === SongSearchConstants.SEARCH_LIMIT && (
+        {!searchTimeout &&
+          searchResults.length === SongSearchConstants.SEARCH_LIMIT && (
             <FontAwesomeIcon
               icon="angle-right"
               onClick={() =>
