@@ -10,8 +10,8 @@ import { Routes } from './routes/Routes';
 import darkTheme from './themes/dark-theme';
 import lightTheme from './themes/light-theme';
 /** Translations data */
-import esTranslations from './translations/es.json';
-import enTranslations from './translations/en.json';
+import esTranslations from './i18n/es.json';
+import enTranslations from './i18n/en.json';
 /** Utils */
 import './utils/FontAwesomeLibrary';
 

@@ -88,13 +88,13 @@ const Play = ({ intl }) => {
       }
       return (
         <p className="no-current-song">
-          {translate(intl, 'app.components.Play.SessionNotStartedText')}
+          {translate(intl, 'app.pages.Home.Play.SessionNotStartedText')}
         </p>
       );
     }
     return (
       <p className="no-available-devices">
-        {translate(intl, 'app.components.Play.NoAvailableDevicesText')}
+        {translate(intl, 'app.pages.Home.Play.NoAvailableDevicesText')}
       </p>
     );
   };
@@ -107,7 +107,7 @@ const Play = ({ intl }) => {
           <FontAwesomeIcon icon="headphones" />
           {`${reduxCurrent.user} ${translate(
             intl,
-            'app.components.Play.NowPlayingSubmitterText'
+            'app.pages.Home.Play.NowPlayingSubmitterText'
           )}...`}
         </div>
       )}

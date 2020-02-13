@@ -69,7 +69,7 @@ const SearchSongs = ({ intl }) => {
     if (searchTimeout) {
       return (
         <p className="song-search__searching">
-          {translate(intl, 'app.components.SearchSongs.Searching')}
+          {translate(intl, 'app.pages.Home.SearchSongs.Searching')}
         </p>
       );
     }
@@ -85,7 +85,10 @@ const SearchSongs = ({ intl }) => {
     if (song)
       return (
         <p className="song-search__no-results">
-          {translate(intl, 'app.components.SearchSongs.NoResults')}
+          {translate(
+            intl,
+            'app.pages.Home.SearchSongs.SearchForSongsNoResultsText'
+          )}
         </p>
       );
     return null;
@@ -99,7 +102,7 @@ const SearchSongs = ({ intl }) => {
           value={song}
           // name="song-search"
           placeholder={intl.formatMessage({
-            id: 'app.components.SearchSongs.SearchForSongs',
+            id: 'app.pages.Home.SearchSongs.SearchForSongs',
           })}
           onChange={handleChangeSong}
           // type="search"

@@ -14,15 +14,15 @@
   "author": "Everfriends",
   "license": "ISC",
   "scripts": {
-    "build-dev": "webpack -d --mode development",
-    "build-prod": "webpack -p --mode production",
+    "build:dev": "webpack -d --mode development",
+    "build:prod": "webpack -p --mode production",
     "clean": "rm dist/bundle.js",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "prettify": "prettier --write \"src/**/*.js\"",
     "start": "webpack-dev-server --hot --mode development",
     "storybook": "start-storybook",
-    "extract-messages": "cross-env NODE_ENV=development extract-messages -l=en,es -o src/translations -d en --flat true 'src/**/*.js'"
+    "build:i18n": "cross-env NODE_ENV=development extract-messages -l=en,es -o src/i18n -d en --flat true 'src/**/*.js'"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",

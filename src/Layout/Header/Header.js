@@ -85,7 +85,7 @@ const Header = ({ intl }) => {
             <Select
               value={activeDevice}
               label={intl.formatMessage({
-                id: 'app.components.Header.DevicesLabel',
+                id: 'app.Layout.Header.DevicesLabel',
               })}
               options={devices}
               onChange={changeDeviceHandler}
@@ -96,19 +96,19 @@ const Header = ({ intl }) => {
           <Select
             value={language}
             label={intl.formatMessage({
-              id: 'app.components.Header.LanguagesLabel',
+              id: 'app.Layout.Header.LanguagesLabel',
             })}
             options={[
               {
                 id: 'en',
                 name: intl.formatMessage({
-                  id: 'app.components.Header.LanguageEnglishLabel',
+                  id: 'app.Layout.Header.LanguageEnglishLabel',
                 }),
               },
               {
                 id: 'es',
                 name: intl.formatMessage({
-                  id: 'app.components.Header.LanguageSpanishLabel',
+                  id: 'app.Layout.Header.LanguageSpanishLabel',
                 }),
               },
             ]}
@@ -118,7 +118,7 @@ const Header = ({ intl }) => {
         {!token && (
           <Button
             text={intl.formatMessage({
-              id: 'app.components.Header.LoginButton',
+              id: 'app.Layout.Header.LoginButton',
             })}
             type="login"
             onClick={() => login()}

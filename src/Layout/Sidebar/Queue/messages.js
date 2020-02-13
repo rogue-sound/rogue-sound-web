@@ -1,8 +1,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  SearchForSongs: {
-    id: 'app.components.Queue.Queue',
+  QueueText: {
+    id: 'app.Layout.Sidebar.Queue.QueueText',
     defaultMessage: 'Queue',
   },
 });
