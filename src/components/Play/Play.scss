@@ -3,7 +3,7 @@
   align-items: center;
   color: #1d1d35;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   padding: 10px;
 
   svg {
@@ -21,6 +21,7 @@
 
   .no-current-song, .no-available-devices {
     color: #1d1d35;
+    font-weight: 500;
   }
 
   &__join-icon {

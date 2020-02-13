@@ -20,6 +20,7 @@ const UserAvatarImage = styled.img`
 
 const UserName = styled.span`
   margin-right: 10px;
+  font-weight: 500;
 `;
 
 export { UserAvatarWrapper, UserAvatarImage, UserName };
