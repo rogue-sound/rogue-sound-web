@@ -6,7 +6,6 @@ import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
 import { search } from '@services/spotify';
-import Button from '@common/Button';
 import { translate } from '@utils';
 
 import SongResult from './SongResult';
