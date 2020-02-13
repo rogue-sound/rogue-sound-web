@@ -9,7 +9,7 @@ const InputContainer = styled.div`
 
 const InputElement = styled.input`
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: ${props => (props.padding ? props.padding : '0.375rem 0.75rem')};
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;

@@ -6,6 +6,7 @@ import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
 import { search } from '@services/spotify';
+import Button from '@common/Button';
 import { translate } from '@utils';
 
 import SongResult from './SongResult';
@@ -13,6 +14,7 @@ import SongResult from './SongResult';
 import './SearchSongs.scss';
 
 const SearchSongs = ({ intl }) => {
+  const [offset, setOffset] = useState(0);
   const [song, setSong] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
@@ -21,14 +23,15 @@ const SearchSongs = ({ intl }) => {
   const user = useSelector(state => state.me.displayName);
   const dispatch = useDispatch();
 
-  const searchSongs = async query => {
-    const result = await search(query);
+  const searchSongs = async (query, newOffset = offset) => {
+    const result = await search(query, newOffset);
     setSearchResults(result);
     setSearchTimeout(null);
   };
 
   const handleChangeSong = event => {
     const songValue = event.currentTarget.value;
+    setOffset(0);
     setSong(songValue);
     if (!songValue.length) {
       clearTimeout(searchTimeout);
@@ -50,8 +53,15 @@ const SearchSongs = ({ intl }) => {
     } catch {
       console.log('There was a problem adding the song to the list');
     }
+    setOffset(0);
     setSearchResults([]);
     setSong('');
+  };
+
+  const handleOffset = newOffset => {
+    console.log('newOffset', newOffset);
+    setOffset(newOffset);
+    searchSongs(song, newOffset);
   };
 
   useEffect(() => {
@@ -105,11 +115,25 @@ const SearchSongs = ({ intl }) => {
             id: 'app.pages.Home.SearchSongs.SearchForSongs',
           })}
           onChange={handleChangeSong}
-          // type="search"
+          padding="0.375rem 0"
         />
       </div>
       <div className={`song-search-results ${!song && 'hidden'}`}>
+        {!!offset && (
+          <FontAwesomeIcon
+            icon="angle-left"
+            onClick={() => handleOffset(offset - 5)}
+            className="pagination prev"
+          />
+        )}
         {renderSearch()}
+        {!searchTimeout && searchResults && searchResults.length === 5 && (
+          <FontAwesomeIcon
+            icon="angle-right"
+            onClick={() => handleOffset(offset + 5)}
+            className="pagination next"
+          />
+        )}
       </div>
     </>
   );

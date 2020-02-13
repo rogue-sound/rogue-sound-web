@@ -39,6 +39,8 @@
   justify-content: center;
   transition: all 0.5s ease-out;
   overflow-x: hidden;
+  position: relative;
+  padding: 0px 20px;
 
   &.hidden {
     visibility: none;
@@ -141,6 +143,22 @@
       max-width: 100%;
       text-overflow: ellipsis;
       padding: 0px 10px;
+    }
+  }
+
+  .pagination {
+    cursor: pointer;
+    position: absolute;
+    top: 32%;
+    color: #1d1d35;
+    font-size: 20px;
+
+    &.prev {
+      left: 5px;
+    }
+
+    &.next {
+      right: 5px;
     }
   }
 }

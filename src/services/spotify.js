@@ -36,10 +36,11 @@ export const disableRepeat = () =>
     .catch(noop);
 
 // TODO: Might be improved for more filters
-export const search = text => {
+export const search = (query, offset) => {
   const params = {
-    q: text,
+    q: query,
     type: 'track',
+    offset,
     limit: 5,
   };
   return http

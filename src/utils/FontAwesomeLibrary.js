@@ -8,6 +8,8 @@ import {
   faVolumeUp,
   faPlay,
   faSearch,
+  faAngleRight,
+  faAngleLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -18,5 +20,7 @@ library.add(
   faHeadphones,
   faVolumeUp,
   faPlay,
-  faSearch
+  faSearch,
+  faAngleRight,
+  faAngleLeft
 );
