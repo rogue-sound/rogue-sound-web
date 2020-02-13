@@ -34,4 +34,12 @@ const LoginButton = styled(PrimaryButton)`
   }
 `;
 
-export { PrimaryButton, LoginButton };
+const LogoutButton = styled(LoginButton)`
+  background-color: #eeeeee;
+  color: #333333;
+  border: 2px solid #999999;
+  padding: 8px 16px;
+  letter-spacing: 1.2px;
+`;
+
+export { PrimaryButton, LoginButton, LogoutButton };

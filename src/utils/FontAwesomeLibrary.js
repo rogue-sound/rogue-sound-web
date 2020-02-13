@@ -10,6 +10,7 @@ import {
   faSearch,
   faAngleRight,
   faAngleLeft,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -22,5 +23,6 @@ library.add(
   faPlay,
   faSearch,
   faAngleRight,
-  faAngleLeft
+  faAngleLeft,
+  faSignOutAlt
 );

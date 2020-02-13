@@ -7,7 +7,7 @@ import App from './App';
 /** Styles */
 import './styles/styles.scss';
 
-const mountNode = document.getElementById('app');
+const mountNode = document.getElementById('root');
 render(
   <Provider store={store}>
     <App />
