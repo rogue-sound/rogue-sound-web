@@ -59,7 +59,6 @@ const SearchSongs = ({ intl }) => {
   };
 
   const handleOffset = newOffset => {
-    console.log('newOffset', newOffset);
     setOffset(newOffset);
     searchSongs(song, newOffset);
   };
@@ -129,7 +128,8 @@ const SearchSongs = ({ intl }) => {
           />
         )}
         {renderSearch()}
-        {!searchTimeout && !!searchResults.length === SongSearchConstants.SEARCH_LIMIT && (
+        {!searchTimeout &&
+          searchResults.length === SongSearchConstants.SEARCH_LIMIT && (
             <FontAwesomeIcon
               icon="angle-right"
               onClick={() =>
