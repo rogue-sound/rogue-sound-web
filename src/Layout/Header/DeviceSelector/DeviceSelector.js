@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 /** Components */
 import { Popover, PopoverTrigger } from '@common/Popover';
-/** Actions */
-import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
 /** SVG */
 import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
 /** Styled components */
@@ -13,8 +11,6 @@ const DeviceSelector = () => {
   const {
     spotify: { devices, activeDevice },
   } = useSelector(state => state);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(devices);

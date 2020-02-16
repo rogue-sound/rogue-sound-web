@@ -26,11 +26,9 @@ const HeaderActionsWrapper = styled.div`
   }
 `;
 
-const HeaderDevices = styled.div`
-`;
+const HeaderDevices = styled.div``;
 
-const HeaderLanguage = styled.div`
-`;
+const HeaderLanguage = styled.div``;
 
 export {
   HeaderWrapper,
