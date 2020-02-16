@@ -19,7 +19,7 @@ export const getDevices = () =>
 export const changeDevice = deviceId => {
   const payload = {
     device_ids: [deviceId],
-    play: true,
+    play: false,
   };
   return http.put(endpointUrlPlayer, payload);
 };
