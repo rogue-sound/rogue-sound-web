@@ -12,7 +12,7 @@ import {
   PopoverBody,
 } from './Popover.styled';
 
-const PopoverController = ({
+const Popover = ({
   children,
   handleIsOpen,
   offCenter,
@@ -85,7 +85,10 @@ const PopoverController = ({
   );
 
   const inputChildren = React.Children.map(children, child => {
-    if (child.type.displayName === 'Trigger') {
+    if (!child) {
+      return null;
+    }
+    if (child.type && child.type.displayName === 'Trigger') {
       return React.cloneElement(child, {
         open,
         setPosition,
@@ -123,7 +126,7 @@ const PopoverController = ({
   return <div ref={refContainer}>{inputChildren}</div>;
 };
 
-PopoverController.propTypes = {
+Popover.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -134,4 +137,4 @@ PopoverController.propTypes = {
   portalContainer: PropTypes.element,
 };
 
-export default PopoverController;
+export default Popover;

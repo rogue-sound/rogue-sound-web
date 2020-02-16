@@ -15,6 +15,7 @@ import Button from '@common/Button/Button';
 import Select from '@common/Select';
 import { Popover, PopoverTrigger } from '@common/Popover';
 import UserAvatar from '@layout/Header/UserAvatar';
+import DeviceSelector from './DeviceSelector';
 /** Styled components */
 import {
   HeaderWrapper,
@@ -89,6 +90,7 @@ const Header = ({ intl }) => {
     <HeaderWrapper>
       <HeaderLogo>Rogue Sound</HeaderLogo>
       <HeaderActionsWrapper>
+        {token && <DeviceSelector />}
         {!!devices.length && (
           <HeaderDevices>
             <Select

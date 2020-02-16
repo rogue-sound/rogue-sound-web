@@ -1,7 +1,60 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 /** Components */
-import Select from '@common/Select';
+import { Popover, PopoverTrigger } from '@common/Popover';
+/** Actions */
+import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
+/** SVG */
+import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
+/** Styled components */
+import { DevicesSelectorWrapper } from './DeviceSelector.styled';
 
-const Avatar = () => <Select />;
+const DeviceSelector = () => {
+  const {
+    spotify: { devices, activeDevice },
+  } = useSelector(state => state);
 
-export default Avatar;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(devices);
+  }, [devices]);
+
+  const changeDeviceHandler = deviceId => {
+    // dispatch(changeDeviceAction(deviceId));
+    console.log(deviceId);
+  };
+
+  return (
+    <Popover place="bottom">
+      <PopoverTrigger>
+        <div>
+          <DevicesSelectorWrapper
+            isActive={devices && devices.length && activeDevice}
+          >
+            <DevicesIcon />
+          </DevicesSelectorWrapper>
+        </div>
+      </PopoverTrigger>
+      <div>
+        {!devices.length && 'No devices found'}
+        {!!devices.length &&
+          devices.map(device => (
+            <div
+              key={device.id}
+              role="button"
+              tabIndex="0"
+              onClick={changeDeviceHandler(device.id)}
+              onKeyPress={e => {
+                e.stopPropagation();
+              }}
+            >
+              {device.name}
+            </div>
+          ))}
+      </div>
+    </Popover>
+  );
+};
+
+export default DeviceSelector;
