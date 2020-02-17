@@ -15,7 +15,7 @@ import {
 
 const DeviceSelector = () => {
   const {
-    spotify: { devices, activeDevice },
+    spotify: { devices },
     playing: { current },
   } = useSelector(state => state);
 
@@ -29,34 +29,41 @@ const DeviceSelector = () => {
     dispatch(fetchDevicesAction());
   };
 
+  const hasActiveDevice = () => {
+    return !!devices.find(device => device.is_active);
+  };
+
+  const renderDevices = () => {
+    if (!devices.length)
+      return <NoDevicesFoundText>No devices found</NoDevicesFoundText>;
+    return (
+      <DevicesSelectorItemsWrapper>
+        {devices.map(device => (
+          <DeviceSelectorItem
+            key={device.id}
+            name={device.name}
+            type={device.type}
+            active={device.is_active}
+            onSelect={() => changeDeviceHandler(device.id)}
+          />
+        ))}
+      </DevicesSelectorItemsWrapper>
+    );
+  };
+
   return (
-    <Popover place="bottom">
+    <Popover place="bottom" handleIsClosed={fetchDevicesHandler}>
       <PopoverTrigger>
         <div>
           <DevicesSelectorWrapper
-            isActive={devices && devices.length && activeDevice}
+            isActive={hasActiveDevice()}
             onClick={() => fetchDevicesHandler()}
           >
             <DevicesIcon />
           </DevicesSelectorWrapper>
         </div>
       </PopoverTrigger>
-      <div>
-        {!devices.length && (
-          <NoDevicesFoundText>No devices found</NoDevicesFoundText>
-        )}
-        {!!devices.length && (
-          <DevicesSelectorItemsWrapper>
-            {devices.map(device => (
-              <DeviceSelectorItem
-                key={device.id}
-                name={device.name}
-                onSelect={() => changeDeviceHandler(device.id)}
-              />
-            ))}
-          </DevicesSelectorItemsWrapper>
-        )}
-      </div>
+      <div>{renderDevices()}</div>
     </Popover>
   );
 };
