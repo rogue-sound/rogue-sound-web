@@ -15,6 +15,7 @@ import {
 const Popover = ({
   children,
   handleIsOpen,
+  handleIsClosed,
   offCenter,
   place,
   portalContainer = document.getElementById('portal-root'),
@@ -34,7 +35,7 @@ const Popover = ({
     // This setTimeout is necessary due to transition
     setTimeout(() => {
       setIsOpen(false);
-      handleIsOpen && handleIsOpen(false);
+      handleIsClosed && handleIsClosed();
     }, PopoverConstants.TRANSITION_DURATION_IN_MILLISECONDS);
   };
 
@@ -42,7 +43,7 @@ const Popover = ({
     if (!isOpen) {
       setFadeType('in');
       setIsOpen(true);
-      handleIsOpen && handleIsOpen(true);
+      handleIsOpen && handleIsOpen();
     } else {
       close();
     }
@@ -64,7 +65,7 @@ const Popover = ({
     return () => {
       window.removeEventListener('click', checkIfClickComeFromOutsideAndClose);
     };
-  }, [isOpen, handleIsOpen]);
+  }, [isOpen, handleIsOpen, handleIsClosed]);
 
   const setPosition = useCallback(
     triggerPosition => {
@@ -132,6 +133,7 @@ Popover.propTypes = {
     PropTypes.node,
   ]).isRequired,
   handleIsOpen: PropTypes.func,
+  handleIsClosed: PropTypes.func,
   offCenter: PropTypes.bool,
   place: PropTypes.string,
   portalContainer: PropTypes.element,
