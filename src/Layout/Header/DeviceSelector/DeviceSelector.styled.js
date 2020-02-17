@@ -16,4 +16,18 @@ const DevicesSelectorWrapper = styled.div`
   }
 `;
 
-export { DevicesSelectorWrapper };
+const DevicesSelectorItemsWrapper = styled.div`
+  margin: -8px -16px;
+`;
+
+const NoDevicesFoundText = styled.span`
+  font-size: 12px;
+  font-weight: 500;
+  cursor: default;
+`;
+
+export {
+  DevicesSelectorWrapper,
+  DevicesSelectorItemsWrapper,
+  NoDevicesFoundText,
+};

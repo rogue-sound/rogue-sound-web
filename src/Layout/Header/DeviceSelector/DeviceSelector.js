@@ -1,24 +1,35 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+/** Actions */
+import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
 /** Components */
 import { Popover, PopoverTrigger } from '@common/Popover';
-/** SVG */
 import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
+import DeviceSelectorItem from './DeviceSelectorItem';
 /** Styled components */
-import { DevicesSelectorWrapper } from './DeviceSelector.styled';
+import {
+  DevicesSelectorWrapper,
+  DevicesSelectorItemsWrapper,
+  NoDevicesFoundText,
+} from './DeviceSelector.styled';
 
 const DeviceSelector = () => {
   const {
     spotify: { devices, activeDevice },
   } = useSelector(state => state);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     console.log(devices);
   }, [devices]);
 
   const changeDeviceHandler = deviceId => {
-    // dispatch(changeDeviceAction(deviceId));
-    console.log(deviceId);
+    dispatch(changeDeviceAction(deviceId));
+  };
+
+  const fetchDevicesHandler = () => {
+    dispatch(fetchDevicesAction());
   };
 
   return (
@@ -27,30 +38,32 @@ const DeviceSelector = () => {
         <div>
           <DevicesSelectorWrapper
             isActive={devices && devices.length && activeDevice}
+            onClick={() => fetchDevicesHandler()}
           >
             <DevicesIcon />
           </DevicesSelectorWrapper>
         </div>
       </PopoverTrigger>
       <div>
-        {!devices.length && 'No devices found'}
-        {!!devices.length &&
-          devices.map(device => (
-            <div
-              key={device.id}
-              role="button"
-              tabIndex="0"
-              onClick={changeDeviceHandler(device.id)}
-              onKeyPress={e => {
-                e.stopPropagation();
-              }}
-            >
-              {device.name}
-            </div>
-          ))}
+        {!devices.length && (
+          <NoDevicesFoundText>No devices found</NoDevicesFoundText>
+        )}
+        {!!devices.length && (
+          <DevicesSelectorItemsWrapper>
+            {devices.map(device => (
+              <DeviceSelectorItem
+                key={device.id}
+                name={device.name}
+                onSelect={() => changeDeviceHandler(device.id)}
+              />
+            ))}
+          </DevicesSelectorItemsWrapper>
+        )}
       </div>
     </Popover>
   );
 };
+
+DeviceSelector.propTypes = {};
 
 export default DeviceSelector;

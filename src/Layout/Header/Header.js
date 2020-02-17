@@ -8,7 +8,7 @@ import { disableRepeat } from '@services/spotify';
 /** Actions */
 import { setTokenAction, logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
-import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
+import { fetchDevicesAction } from '@context/spotify';
 import { toggleLanguage } from '@context/languageSettings';
 /** Components */
 import Button from '@common/Button/Button';
@@ -21,7 +21,6 @@ import {
   HeaderWrapper,
   HeaderLogo,
   HeaderActionsWrapper,
-  HeaderDevices,
   HeaderLanguage,
 } from './header.styled';
 
@@ -29,15 +28,10 @@ const Header = ({ intl }) => {
   const {
     me,
     auth: { token },
-    spotify: { devices, activeDevice },
     languageSettings: { language },
   } = useSelector(state => state);
 
   const dispatch = useDispatch();
-
-  const changeDeviceHandler = ({ currentTarget: { value } }) => {
-    dispatch(changeDeviceAction(value));
-  };
 
   const changeLanguage = ({ currentTarget: { value } }) => {
     dispatch(toggleLanguage(value));
@@ -91,18 +85,6 @@ const Header = ({ intl }) => {
       <HeaderLogo>Rogue Sound</HeaderLogo>
       <HeaderActionsWrapper>
         {token && <DeviceSelector />}
-        {!!devices.length && (
-          <HeaderDevices>
-            <Select
-              value={activeDevice}
-              label={intl.formatMessage({
-                id: 'app.layout.Header.DevicesLabel',
-              })}
-              options={devices}
-              onChange={changeDeviceHandler}
-            />
-          </HeaderDevices>
-        )}
         <HeaderLanguage>
           <Select
             value={language}
