@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** Actions */
 import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
@@ -20,10 +20,6 @@ const DeviceSelector = () => {
   } = useSelector(state => state);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(devices);
-  }, [devices]);
 
   const changeDeviceHandler = deviceId => {
     dispatch(changeDeviceAction(deviceId, current));
