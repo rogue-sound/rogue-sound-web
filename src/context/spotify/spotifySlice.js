@@ -40,21 +40,14 @@ export const fetchDevicesAction = () => async dispatch => {
   if (devices) {
     dispatch(setDevices(devices));
     const activeDevice = devices.find(device => device.is_active);
-    if (!activeDevice) {
-      if (devices.length === 1) {
-        const firstDevice = devices[0].id;
-        await dispatch(changeDevice(firstDevice));
-        dispatch(setCurrentDevice(firstDevice));
-      }
-    } else {
-      dispatch(setCurrentDevice(activeDevice.id));
-    }
+    activeDevice && dispatch(setCurrentDevice(activeDevice.id));
   }
 };
 
-export const changeDeviceAction = deviceId => async dispatch => {
+export const changeDeviceAction = (deviceId, currentSong) => async dispatch => {
   try {
-    await changeDevice(deviceId);
+    const playAfterChange = !!currentSong.publicId;
+    await changeDevice(deviceId, playAfterChange);
     dispatch(setCurrentDevice(deviceId));
   } catch (error) {
     console.log(error);

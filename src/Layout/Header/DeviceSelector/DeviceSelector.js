@@ -16,6 +16,7 @@ import {
 const DeviceSelector = () => {
   const {
     spotify: { devices, activeDevice },
+    playing: { current },
   } = useSelector(state => state);
 
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const DeviceSelector = () => {
   }, [devices]);
 
   const changeDeviceHandler = deviceId => {
-    dispatch(changeDeviceAction(deviceId));
+    dispatch(changeDeviceAction(deviceId, current));
   };
 
   const fetchDevicesHandler = () => {

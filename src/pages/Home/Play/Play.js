@@ -23,7 +23,7 @@ const Play = ({ intl }) => {
 
   const {
     playing: { current: reduxCurrent },
-    spotify: { devices },
+    spotify: { devices, activeDevice },
   } = useSelector(state => state);
 
   const dispatch = useDispatch();
@@ -62,6 +62,12 @@ const Play = ({ intl }) => {
   useEffect(() => {
     handleJoin();
   }, []);
+
+  useEffect(() => {
+    if (activeDevice) {
+      handleJoin(true);
+    }
+  }, [activeDevice]);
 
   // Dumb polling
   useEffect(() => {
