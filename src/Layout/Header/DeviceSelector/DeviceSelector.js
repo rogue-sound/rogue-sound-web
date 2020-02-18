@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 /** Actions */
 import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
@@ -14,19 +14,30 @@ import {
 } from './DeviceSelector.styled';
 
 const DeviceSelector = () => {
+  const [forceClose, setForceClose] = useState(false);
+
   const {
-    spotify: { devices },
+    spotify: { devices, activeDevice },
     playing: { current },
   } = useSelector(state => state);
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    activeDevice && dispatch(fetchDevicesAction());
+  }, [activeDevice]);
+
   const changeDeviceHandler = deviceId => {
     dispatch(changeDeviceAction(deviceId, current));
+    setForceClose(true);
   };
 
-  const fetchDevicesHandler = () => {
+  const openSelectorHandler = () => {
     dispatch(fetchDevicesAction());
+  };
+
+  const closeSelectorHandler = () => {
+    setForceClose(false);
   };
 
   const hasActiveDevice = () => {
@@ -52,12 +63,16 @@ const DeviceSelector = () => {
   };
 
   return (
-    <Popover place="bottom" handleIsClosed={fetchDevicesHandler}>
+    <Popover
+      place="bottom"
+      handleIsClosed={closeSelectorHandler}
+      forceClose={forceClose}
+    >
       <PopoverTrigger>
         <div>
           <DevicesSelectorWrapper
             isActive={hasActiveDevice()}
-            onClick={() => fetchDevicesHandler()}
+            onClick={() => openSelectorHandler()}
           >
             <DevicesIcon />
           </DevicesSelectorWrapper>

@@ -5,14 +5,19 @@ const DeviceSelectorItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
 `;
 
-const DeviceSelectorItemIcon = styled.span`
+const DeviceSelectorItemIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
   svg {
     width: 25px;

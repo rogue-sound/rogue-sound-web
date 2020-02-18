@@ -1,4 +1,10 @@
-import React, { useState, useLayoutEffect, useCallback, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useRef,
+} from 'react';
 /** Libraries */
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -18,6 +24,7 @@ const Popover = ({
   handleIsClosed,
   offCenter,
   place,
+  forceClose = false,
   portalContainer = document.getElementById('portal-root'),
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,6 +55,10 @@ const Popover = ({
       close();
     }
   };
+
+  useEffect(() => {
+    forceClose && close();
+  }, [forceClose]);
 
   useLayoutEffect(() => {
     const checkIfClickComeFromOutsideAndClose = e => {
@@ -136,6 +147,7 @@ Popover.propTypes = {
   handleIsClosed: PropTypes.func,
   offCenter: PropTypes.bool,
   place: PropTypes.string,
+  forceClose: PropTypes.bool,
   portalContainer: PropTypes.element,
 };
 
