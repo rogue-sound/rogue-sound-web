@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 /** Actions */
 import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
 /** Components */
@@ -13,7 +14,7 @@ import {
   NoDevicesFoundText,
 } from './DeviceSelector.styled';
 
-const DeviceSelector = () => {
+const DeviceSelector = ({ intl }) => {
   const [forceClose, setForceClose] = useState(false);
 
   const {
@@ -46,7 +47,13 @@ const DeviceSelector = () => {
 
   const renderDevices = () => {
     if (!devices.length)
-      return <NoDevicesFoundText>No devices found</NoDevicesFoundText>;
+      return (
+        <NoDevicesFoundText>
+          {intl.formatMessage({
+            id: 'app.layout.Header.DeviceSelector.NotDevicesFoundText',
+          })}
+        </NoDevicesFoundText>
+      );
     return (
       <DevicesSelectorItemsWrapper>
         {devices.map(device => (
@@ -83,6 +90,10 @@ const DeviceSelector = () => {
   );
 };
 
-DeviceSelector.propTypes = {};
+DeviceSelector.propTypes = {
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func,
+  }).isRequired,
+};
 
 export default DeviceSelector;

@@ -84,7 +84,7 @@ const Header = ({ intl }) => {
     <HeaderWrapper>
       <HeaderLogo>Rogue Sound</HeaderLogo>
       <HeaderActionsWrapper>
-        {token && <DeviceSelector />}
+        {token && <DeviceSelector intl={intl} />}
         <HeaderLanguage>
           <Select
             value={language}
