@@ -41,10 +41,6 @@ const DeviceSelector = ({ intl }) => {
     setForceClose(false);
   };
 
-  const hasActiveDevice = () => {
-    return !!devices.find(device => device.is_active);
-  };
-
   const renderDevices = () => {
     if (!devices.length)
       return (
@@ -78,7 +74,7 @@ const DeviceSelector = ({ intl }) => {
       <PopoverTrigger>
         <div>
           <DevicesSelectorWrapper
-            isActive={hasActiveDevice()}
+            isActive={activeDevice}
             onClick={() => openSelectorHandler()}
           >
             <DevicesIcon />
