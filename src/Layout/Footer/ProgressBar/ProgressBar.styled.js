@@ -15,7 +15,6 @@ const ProgressBarPlaying = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: all 0.1s linear;
 `;
 
 const ProgressBarKnob = styled.span`
@@ -25,7 +24,6 @@ const ProgressBarKnob = styled.span`
   border: 1.5px solid white;
   border-radius: 50%;
   background-color: #01ab6d;
-  transition: all 0.1s linear;
 `;
 
 export { ProgressBarContainer, ProgressBarPlaying, ProgressBarKnob };

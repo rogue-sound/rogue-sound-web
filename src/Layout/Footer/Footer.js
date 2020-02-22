@@ -9,35 +9,34 @@ import NowPlaying from './NowPlaying';
 
 const Footer = () => {
   const [songPosition, setSongPosition] = useState(0);
-  const [songTimeout, setSongTimeout] = useState(0);
+  const [songInterval, setSongInterval] = useState(0);
+
   const { current } = useSelector(state => state.playing);
 
-  useEffect(() => {
-    if (songPosition) {
-      setSongTimeout(
-        setTimeout(() => {
-          console.log(songPosition);
-          setSongPosition(songPosition + 100);
-        }, 100)
-      );
-    }
-    return () => clearTimeout(songTimeout);
-  }, [songPosition]);
+  const { position: currentPosition } = useSelector(
+    state => state.playing.current
+  );
 
   useEffect(() => {
-    if (current.position !== undefined) {
-      setSongPosition(current.position);
+    if (currentPosition !== undefined) {
+      songInterval && clearInterval(songInterval);
+      setSongPosition(currentPosition);
+      setSongInterval(
+        setInterval(() => {
+          setSongPosition(prevSongPosition => prevSongPosition + 100);
+        }, 100)
+      );
     } else {
       setSongPosition(0);
-      clearTimeout(songTimeout);
+      clearInterval(songInterval);
     }
-  }, [current.position]);
+    return () => clearInterval(songInterval);
+  }, [currentPosition]);
 
   return (
     <FooterContainer>
       <ProgressBar duration={current.duration} currentTime={songPosition} />
       <FooterWrapper className="footer">
-        {/* <img src={placeholderLogo} alt="Rogue sound logo" /> */}
         {current.title && <NowPlaying {...current} />}
       </FooterWrapper>
     </FooterContainer>

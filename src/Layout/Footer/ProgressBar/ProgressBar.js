@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 /** Styled components */
-import {
-  ProgressBarContainer,
-  ProgressBarPlaying,
-  ProgressBarKnob,
-} from './ProgressBar.styled';
+import { ProgressBarContainer, ProgressBarPlaying } from './ProgressBar.styled';
 
 const ProgressBar = ({ duration, currentTime }) => {
   const currentPercentage = (currentTime / duration) * 100;
@@ -17,11 +13,11 @@ const ProgressBar = ({ duration, currentTime }) => {
           background: `linear-gradient(to right, #01ab6d ${currentPercentage}%, #d6d6d6 0)`,
         }}
       >
-        {!!currentTime && (
+        {/* {!!currentTime && (
           <ProgressBarKnob
             style={{ left: `calc(${currentPercentage}% - 9px)` }}
           />
-        )}
+        )} */}
       </ProgressBarPlaying>
     </ProgressBarContainer>
   );
