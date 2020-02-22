@@ -29,9 +29,7 @@ const routes = Routes();
 const App = () => {
   // const [theme, setTheme] = useState('dark');
   const theme = 'dark';
-  const {
-    languageSettings: { language },
-  } = useSelector(state => state);
+  const { language } = useSelector(state => state.languageSettings);
 
   return (
     <ThemeProvider theme={themes[theme]}>

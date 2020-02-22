@@ -25,11 +25,9 @@ import {
 } from './header.styled';
 
 const Header = ({ intl }) => {
-  const {
-    me,
-    auth: { token },
-    languageSettings: { language },
-  } = useSelector(state => state);
+  const me = useSelector(state => state.me);
+  const { token } = useSelector(state => state.auth);
+  const { language } = useSelector(state => state.languageSettings);
 
   const dispatch = useDispatch();
 

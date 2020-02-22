@@ -21,10 +21,8 @@ const Play = ({ intl }) => {
   const [joinTimeout, setJoinTimeout] = useState(null);
   const [pollingState, setPollingState] = useState(false);
 
-  const {
-    playing: { current: reduxCurrent },
-    spotify: { devices, activeDevice },
-  } = useSelector(state => state);
+  const reduxCurrent = useSelector(state => state.playing.current);
+  const { devices, activeDevice } = useSelector(state => state.spotify);
 
   const dispatch = useDispatch();
 

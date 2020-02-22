@@ -17,10 +17,8 @@ import {
 const DeviceSelector = ({ intl }) => {
   const [forceClose, setForceClose] = useState(false);
 
-  const {
-    spotify: { devices, activeDevice },
-    playing: { current },
-  } = useSelector(state => state);
+  const { devices, activeDevice } = useSelector(state => state.spotify);
+  const current = useSelector(state => state.playing.current);
 
   const dispatch = useDispatch();
 
