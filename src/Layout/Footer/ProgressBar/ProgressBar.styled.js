@@ -20,7 +20,6 @@ const ProgressBarPlaying = styled.div.attrs(props => ({
   background: linear-gradient(to right, #835fc1, #01ab6d);
   display: flex;
   align-items: center;
-  cursor: pointer;
 `;
 
 export { ProgressBarContainer, ProgressBarPlaying };
