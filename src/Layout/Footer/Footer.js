@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 // import PropTypes from 'prop-types';
 /** Components */
 import ProgressBar from './ProgressBar';
+import NowPlaying from './NowPlaying';
 /** Styled components */
 import { FooterContainer, FooterWrapper } from './Footer.styled';
-import NowPlaying from './NowPlaying';
 
 const Footer = () => {
   const [songPosition, setSongPosition] = useState(0);
   const [songInterval, setSongInterval] = useState(0);
 
-  const { current } = useSelector(state => state.playing);
+  const current = useSelector(state => state.playing.current);
 
   const { position: currentPosition } = useSelector(
     state => state.playing.current
@@ -19,8 +19,8 @@ const Footer = () => {
 
   useEffect(() => {
     if (currentPosition !== undefined) {
-      songInterval && clearInterval(songInterval);
       setSongPosition(currentPosition);
+      songInterval && clearInterval(songInterval);
       setSongInterval(
         setInterval(() => {
           setSongPosition(prevSongPosition => prevSongPosition + 100);

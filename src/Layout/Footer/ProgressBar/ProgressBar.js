@@ -8,17 +8,7 @@ const ProgressBar = ({ duration, currentTime }) => {
 
   return (
     <ProgressBarContainer>
-      <ProgressBarPlaying
-        style={{
-          background: `linear-gradient(to right, #01ab6d ${currentPercentage}%, #d6d6d6 0)`,
-        }}
-      >
-        {/* {!!currentTime && (
-          <ProgressBarKnob
-            style={{ left: `calc(${currentPercentage}% - 9px)` }}
-          />
-        )} */}
-      </ProgressBarPlaying>
+      <ProgressBarPlaying percentage={currentPercentage} />
     </ProgressBarContainer>
   );
 };
