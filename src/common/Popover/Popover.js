@@ -22,7 +22,6 @@ const Popover = ({
   children,
   handleIsOpen,
   handleIsClosed,
-  offCenter,
   place,
   forceClose = false,
   portalContainer = document.getElementById('portal-root'),
@@ -87,13 +86,12 @@ const Popover = ({
       const popoverPosition = getPopoverPosition(
         triggerPosition,
         place,
-        offCenter,
         popoverWrapperPosition,
         window.innerWidth
       );
       setStyle(s => ({ ...s, ...popoverPosition }));
     },
-    [setStyle, offCenter, place]
+    [setStyle, place, isOpen]
   );
 
   const inputChildren = React.Children.map(children, child => {
@@ -145,7 +143,6 @@ Popover.propTypes = {
   ]).isRequired,
   handleIsOpen: PropTypes.func,
   handleIsClosed: PropTypes.func,
-  offCenter: PropTypes.bool,
   place: PropTypes.string,
   forceClose: PropTypes.bool,
   portalContainer: PropTypes.element,
