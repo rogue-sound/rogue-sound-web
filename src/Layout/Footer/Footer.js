@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-// import PropTypes from 'prop-types';
+/** Utils */
+import { ProgressBarConstants } from '@utils/constants';
 /** Components */
 import ProgressBar from './ProgressBar';
 import NowPlaying from './NowPlaying';
@@ -23,8 +24,11 @@ const Footer = () => {
       songInterval && clearInterval(songInterval);
       setSongInterval(
         setInterval(() => {
-          setSongPosition(prevSongPosition => prevSongPosition + 100);
-        }, 100)
+          setSongPosition(
+            prevSongPosition =>
+              prevSongPosition + ProgressBarConstants.INTERVAL_DURATION
+          );
+        }, ProgressBarConstants.INTERVAL_DURATION)
       );
     } else {
       setSongPosition(0);
