@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 /** Actions */
 import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
 /** Components */
@@ -14,7 +15,8 @@ import {
   NoDevicesFoundText,
 } from './DeviceSelector.styled';
 
-const DeviceSelector = ({ intl }) => {
+const DeviceSelector = () => {
+  const intl = useIntl();
   const [forceClose, setForceClose] = useState(false);
 
   const { devices, activeDevice } = useSelector(state => state.spotify);

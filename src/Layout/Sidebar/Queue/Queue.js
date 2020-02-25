@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 /** Styled components */
 import QueueItem from './QueueItem';
 // import { SidebarWrapper } from './sidebar.styled';
 import './Queue.scss';
 
-const Queue = ({ intl }) => {
+const Queue = () => {
+  const intl = useIntl();
   const { queue, current } = useSelector(state => state.playing);
   return (
     <div className="queue-container">
@@ -28,10 +29,6 @@ const Queue = ({ intl }) => {
   );
 };
 
-Queue.propTypes = {
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }).isRequired,
-};
+Queue.propTypes = {};
 
 export default Queue;

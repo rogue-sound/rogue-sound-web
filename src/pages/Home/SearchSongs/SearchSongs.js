@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
@@ -13,7 +13,8 @@ import SongResult from './SongResult';
 
 import './SearchSongs.scss';
 
-const SearchSongs = ({ intl }) => {
+const SearchSongs = () => {
+  const intl = useIntl();
   const [offset, setOffset] = useState(0);
   const [song, setSong] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(null);
@@ -143,10 +144,6 @@ const SearchSongs = ({ intl }) => {
   );
 };
 
-SearchSongs.propTypes = {
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }).isRequired,
-};
+SearchSongs.propTypes = {};
 
 export default SearchSongs;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearToken } from '@context/auth';
@@ -14,7 +14,8 @@ import { translate } from '@utils';
 
 import './Play.scss';
 
-const Play = ({ intl }) => {
+const Play = () => {
+  const intl = useIntl();
   const [remaining, setRemaining] = useState(null);
   const remainingRef = useRef(remaining);
   remainingRef.current = remaining;
@@ -120,10 +121,6 @@ const Play = ({ intl }) => {
   );
 };
 
-Play.propTypes = {
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }).isRequired,
-};
+Play.propTypes = {};
 
 export default Play;
