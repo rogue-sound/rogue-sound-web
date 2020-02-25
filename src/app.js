@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
 /** Components */
-import { Routes } from './routes/Routes';
+import { Routes } from './routes/routes';
 /** Themes */
 import darkTheme from './themes/dark-theme';
 import lightTheme from './themes/light-theme';
