@@ -6,7 +6,7 @@ import { ProgressBarConstants } from '@utils/constants';
 import ProgressBar from './ProgressBar';
 import NowPlaying from './NowPlaying';
 /** Styled components */
-import { FooterContainer, FooterWrapper } from './Footer.styled';
+import { FooterContainer, FooterWrapper } from './footer.styled';
 
 const Footer = () => {
   const [songPosition, setSongPosition] = useState(0);

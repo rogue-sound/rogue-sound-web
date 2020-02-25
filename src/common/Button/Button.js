@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 /** Styled Components */
-import { PrimaryButton, LoginButton, LogoutButton } from './Button.styled';
+import { PrimaryButton, LoginButton, LogoutButton } from './button.styled';
 
 const buttonMapper = {
   primary: PrimaryButton,
