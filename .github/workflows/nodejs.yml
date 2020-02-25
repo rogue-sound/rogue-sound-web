@@ -9,10 +9,19 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    
+    - name: Copy file
+      uses: canastro/copy-action@0.0.2
+      with:
+        # Source file
+        source: build.env
+        # Target file
+        target: .env
+      
+    - name: Npm
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 8.x
     - run: npm install
     - run: npm run-script build:prod 
 
@@ -30,5 +39,5 @@ jobs:
 
       env:
         CI: true
-        CLIENT_ID: a3b2710ee3234a5bb1c9c6ec99b201ed 
-        REDIRECT_URI: https://roguesoundweb.z16.web.core.windows.net
+        #CLIENT_ID: a3b2710ee3234a5bb1c9c6ec99b201ed 
+        #REDIRECT_URI: https://roguesoundweb.z16.web.core.windows.net
