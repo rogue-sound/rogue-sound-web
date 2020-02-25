@@ -24,7 +24,8 @@
     flex-direction: column;
     border-top: solid 1px #e6eedd;
     // TODO: Revisar
-    max-height: calc(100vh - 170px);
+    // 180px = 64px Header + 42px Queue Header + 10px ProgressBar + 64px Footer
+    max-height: calc(100vh - 180px);
     overflow-y: scroll;
 
     .queue-item {
