@@ -1,4 +1,10 @@
-import React, { useState, useLayoutEffect, useCallback, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useRef,
+} from 'react';
 /** Libraries */
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -12,11 +18,12 @@ import {
   PopoverBody,
 } from './Popover.styled';
 
-const PopoverController = ({
+const Popover = ({
   children,
   handleIsOpen,
-  offCenter,
+  handleIsClosed,
   place,
+  forceClose = false,
   portalContainer = document.getElementById('portal-root'),
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +41,7 @@ const PopoverController = ({
     // This setTimeout is necessary due to transition
     setTimeout(() => {
       setIsOpen(false);
-      handleIsOpen && handleIsOpen(false);
+      handleIsClosed && handleIsClosed();
     }, PopoverConstants.TRANSITION_DURATION_IN_MILLISECONDS);
   };
 
@@ -42,11 +49,15 @@ const PopoverController = ({
     if (!isOpen) {
       setFadeType('in');
       setIsOpen(true);
-      handleIsOpen && handleIsOpen(true);
+      handleIsOpen && handleIsOpen();
     } else {
       close();
     }
   };
+
+  useEffect(() => {
+    forceClose && close();
+  }, [forceClose]);
 
   useLayoutEffect(() => {
     const checkIfClickComeFromOutsideAndClose = e => {
@@ -64,7 +75,7 @@ const PopoverController = ({
     return () => {
       window.removeEventListener('click', checkIfClickComeFromOutsideAndClose);
     };
-  }, [isOpen, handleIsOpen]);
+  }, [isOpen, handleIsOpen, handleIsClosed]);
 
   const setPosition = useCallback(
     triggerPosition => {
@@ -75,17 +86,19 @@ const PopoverController = ({
       const popoverPosition = getPopoverPosition(
         triggerPosition,
         place,
-        offCenter,
         popoverWrapperPosition,
         window.innerWidth
       );
       setStyle(s => ({ ...s, ...popoverPosition }));
     },
-    [setStyle, offCenter, place]
+    [setStyle, place, isOpen]
   );
 
   const inputChildren = React.Children.map(children, child => {
-    if (child.type.displayName === 'Trigger') {
+    if (!child) {
+      return null;
+    }
+    if (child.type && child.type.displayName === 'Trigger') {
       return React.cloneElement(child, {
         open,
         setPosition,
@@ -123,15 +136,16 @@ const PopoverController = ({
   return <div ref={refContainer}>{inputChildren}</div>;
 };
 
-PopoverController.propTypes = {
+Popover.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
   handleIsOpen: PropTypes.func,
-  offCenter: PropTypes.bool,
+  handleIsClosed: PropTypes.func,
   place: PropTypes.string,
+  forceClose: PropTypes.bool,
   portalContainer: PropTypes.element,
 };
 
-export default PopoverController;
+export default Popover;

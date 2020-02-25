@@ -21,20 +21,11 @@ const HeaderLogo = styled.h2`
 const HeaderActionsWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  & > *:not(:last-child) {
+    margin-right: 30px;
+  }
 `;
 
-const HeaderDevices = styled.div`
-  margin-right: 30px;
-`;
+const HeaderLanguage = styled.div``;
 
-const HeaderLanguage = styled.div`
-  margin-right: 30px;
-`;
-
-export {
-  HeaderWrapper,
-  HeaderLogo,
-  HeaderDevices,
-  HeaderLanguage,
-  HeaderActionsWrapper,
-};
+export { HeaderWrapper, HeaderLogo, HeaderLanguage, HeaderActionsWrapper };

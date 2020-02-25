@@ -1,4 +1,5 @@
 {
+  "app.layout.Header.DeviceSelector.NotDevicesFoundText": "No se ha encontrado ningún dispositivo",
   "app.layout.Header.DevicesLabel": "Dispositivos",
   "app.layout.Header.LanguageEnglishLabel": "Inglés",
   "app.layout.Header.LanguageSpanishLabel": "Español",
