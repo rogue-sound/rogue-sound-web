@@ -33,11 +33,9 @@ jobs:
         # The name of the storage account container these assets will be uploaded to
         container_name: $web
         # The connection string for the storage account
-        connection_string: secrets.WEB_STORAGE_CONNECTION
+        connection_string: ${{ secrets.WEB_STORAGE_CONNECTION }}
         # extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`
         #extra_args: # optional
 
       env:
         CI: true
-        #CLIENT_ID: a3b2710ee3234a5bb1c9c6ec99b201ed 
-        #REDIRECT_URI: https://roguesoundweb.z16.web.core.windows.net
