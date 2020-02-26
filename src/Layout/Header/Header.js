@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 /** Services */
 import http from '@services/http';
 import { login } from '@services/auth';
@@ -24,7 +24,8 @@ import {
   HeaderLanguage,
 } from './header.styled';
 
-const Header = ({ intl }) => {
+const Header = () => {
+  const intl = useIntl();
   const me = useSelector(state => state.me);
   const { token } = useSelector(state => state.auth);
   const { language } = useSelector(state => state.languageSettings);
@@ -132,10 +133,6 @@ const Header = ({ intl }) => {
   );
 };
 
-Header.propTypes = {
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func,
-  }).isRequired,
-};
+Header.propTypes = {};
 
 export default Header;
