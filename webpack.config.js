@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv');
 
 const env = dotenv.config().parsed;
@@ -20,8 +21,23 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
+        loader: require.resolve('babel-loader'),
         exclude: /node_modules/,
+        options: {
+          plugins: [
+            [
+              require.resolve('babel-plugin-named-asset-import'),
+              {
+                loaderMap: {
+                  svg: {
+                    ReactComponent:
+                      '@svgr/webpack?-svgo,+titleProp,+ref![path]',
+                  },
+                },
+              },
+            ],
+          ],
+        },
       },
       {
         test: /\.css$/,
@@ -68,6 +84,7 @@ const config = {
     alias: {
       'react-dom': '@hot-loader/react-dom',
       '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@layout': path.resolve(__dirname, 'src/Layout/'),
       '@components': path.resolve(__dirname, 'src/components/'),
       '@common': path.resolve(__dirname, 'src/common/'),
       '@assets': path.resolve(__dirname, 'src/assets/'),
@@ -88,11 +105,12 @@ const config = {
     new HtmlWebpackPlugin({
       template: require('html-webpack-template'),
       inject: false,
-      appMountId: 'app',
+      appMountIds: ['root', 'portal-root'],
       favicon: 'src/assets/ico/music.ico',
-      title: 'Rogue Sound'
+      title: 'Rogue Sound',
     }),
     new webpack.DefinePlugin(envKeys),
+    new CopyPlugin([{ from: 'src/404.html' }]),
   ],
   optimization: {
     runtimeChunk: 'single',

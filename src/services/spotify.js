@@ -1,4 +1,5 @@
 import { noop } from '@utils/utils';
+import { SongSearchConstants } from '@utils/constants';
 import http from './http';
 import { spotify } from '@config';
 
@@ -15,10 +16,10 @@ export const getMe = () => http.get(endpointUrlMe).then(res => res.data);
 export const getDevices = () =>
   http.get(endpointUrlDevices).then(res => res.data.devices);
 
-export const changeDevice = deviceId => {
+export const changeDevice = (deviceId, playAfterChange = true) => {
   const payload = {
     device_ids: [deviceId],
-    play: true,
+    play: playAfterChange,
   };
   return http.put(endpointUrlPlayer, payload);
 };
@@ -36,11 +37,12 @@ export const disableRepeat = () =>
     .catch(noop);
 
 // TODO: Might be improved for more filters
-export const search = text => {
+export const search = (query, offset) => {
   const params = {
-    q: text,
+    q: query,
     type: 'track',
-    limit: 5,
+    offset,
+    limit: SongSearchConstants.SEARCH_LIMIT,
   };
   return http
     .get(endpointUrlSearch, { params })

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+.queue-container {
+  border-left: solid 1px #e6eedd;
+  height: 100%;
+  
+  .queue-top {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    svg {
+      font-size: 22px;
+      margin-right: 10px;
+    }
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .queue-list {
+    display: flex;
+    flex-direction: column;
+    border-top: solid 1px #e6eedd;
+    // TODO: Revisar
+    // 180px = 64px Header + 42px Queue Header + 10px ProgressBar + 64px Footer
+    max-height: calc(100vh - 180px);
+    overflow-y: scroll;
+
+    .queue-item {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      border-bottom: solid 1px #e6eedd;
+      padding-right: 5px;
+
+      &.active {
+        background-color: #eee;
+      }
+
+      img {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        height: 70px;
+        width: 70px;
+        max-width: 100%;
+        margin: 10px;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      &__details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+
+        h4, h5, span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-family: 'Raleway', sans-serif;
+        }
+
+        h4 {
+          font-size: 14px;
+          font-weight: 700;
+          margin: 0px 0px 2px 0px;
+          
+        }
+
+        h5 {
+          font-size: 12px;
+          font-weight: 500;
+          margin: 0px 0px 15px 0px;
+        }
+
+        span {
+          font-size: 12px;
+          font-weight: 500;
+
+          svg {
+            margin-right: 5px;
+          }
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
