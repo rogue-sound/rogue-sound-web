@@ -40,7 +40,7 @@ jobs:
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.5.0
       with:
-        github_token: ${{ secrets.REPO_TOKEN }}
+        github_token: ${{ secrets.REPO_TOKEN2 }}
         # Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})
         repository: rogue-sound/rogue-sound.github.io # optional, default is 
         # Destination branch to push changes
