@@ -37,5 +37,15 @@ jobs:
         # extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`
         #extra_args: # optional
 
+    - name: GitHub Push
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        github_token: ${{ secrets.REPO_TOKEN }}
+        # Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})
+        repository: rogue-sound.github.io # optional, default is 
+        # Destination branch to push changes
+        branch: master # optional, default is master
+        directory: dist  
+
       env:
         CI: true
