@@ -42,7 +42,7 @@ jobs:
       with:
         github_token: ${{ secrets.REPO_TOKEN }}
         # Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})
-        repository: rogue-sound.github.io # optional, default is 
+        repository: rogue-sound/rogue-sound.github.io # optional, default is 
         # Destination branch to push changes
         branch: master # optional, default is master
         directory: dist  
