@@ -12,6 +12,7 @@ import {
   faAngleLeft,
   faSignOutAlt,
   faMobileAlt,
+  faCommentDots,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -26,5 +27,6 @@ library.add(
   faAngleRight,
   faAngleLeft,
   faSignOutAlt,
-  faMobileAlt
+  faMobileAlt,
+  faCommentDots
 );

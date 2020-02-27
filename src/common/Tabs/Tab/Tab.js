@@ -1,25 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Styled components */
-import { TabItem, TabItemActive } from '../tabs.styled';
+import { TabItem, TabItemActive, TabLabel } from '../tabs.styled';
 
-const Tab = ({ activeTab, label, onClickTabItem }) => {
-  const TabListItem = activeTab === label ? TabItemActive : TabItem;
+const Tab = ({ isActiveTab, label, icon, onClickTabItem }) => {
+  const TabWrapper = isActiveTab ? TabItemActive : TabItem;
 
   return (
-    <TabListItem
+    <TabWrapper
       type="button"
       tabIndex="0"
       onClick={() => onClickTabItem(label)}
     >
-      {label}
-    </TabListItem>
+      <FontAwesomeIcon icon={icon} />
+      {isActiveTab && <TabLabel>{label}</TabLabel>}
+    </TabWrapper>
   );
 };
 
 Tab.propTypes = {
-  activeTab: PropTypes.string.isRequired,
+  isActiveTab: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
   onClickTabItem: PropTypes.func.isRequired,
 };
 

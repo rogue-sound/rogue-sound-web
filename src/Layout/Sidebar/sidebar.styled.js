@@ -5,6 +5,8 @@ const SidebarWrapper = styled.div`
   background-color: white;
   width: 33%;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export { SidebarWrapper };
