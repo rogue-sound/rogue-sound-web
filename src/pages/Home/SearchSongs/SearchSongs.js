@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
-import { search } from '@services/spotify';
+import { search, topTracks } from '@services/spotify';
 import { SongSearchConstants } from '@utils/constants';
 import { translate } from '@utils';
 
@@ -15,6 +15,7 @@ import './SearchSongs.scss';
 
 const SearchSongs = () => {
   const intl = useIntl();
+  const [expanded, setExpanded] = useState(false);
   const [offset, setOffset] = useState(0);
   const [song, setSong] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(null);
@@ -26,8 +27,25 @@ const SearchSongs = () => {
 
   const searchSongs = async (query, newOffset = offset) => {
     const result = await search(query, newOffset);
+    setExpanded(true);
     setSearchResults(result);
     setSearchTimeout(null);
+  };
+
+  const favouriteSongs = async (newOffset = offset) => {
+    const result = await topTracks(newOffset);
+    setExpanded(true);
+    setSearchResults(result);
+    setSearchTimeout(null);
+  };
+
+  const clearSearch = () => {
+    setSong('');
+    setSearchResults([]);
+    clearTimeout(searchTimeout);
+    setSearchTimeout(null);
+    setExpanded(false);
+    setOffset(0);
   };
 
   const handleChangeSong = event => {
@@ -35,9 +53,7 @@ const SearchSongs = () => {
     setOffset(0);
     setSong(songValue);
     if (!songValue.length) {
-      clearTimeout(searchTimeout);
-      setSearchTimeout(null);
-      setSearchResults([]);
+      clearSearch();
     }
   };
 
@@ -54,14 +70,12 @@ const SearchSongs = () => {
     } catch {
       console.log('There was a problem adding the song to the list');
     }
-    setOffset(0);
-    setSearchResults([]);
-    setSong('');
+    clearSearch();
   };
 
   const handleOffset = newOffset => {
     setOffset(newOffset);
-    searchSongs(song, newOffset);
+    song ? searchSongs(song, newOffset) : favouriteSongs(newOffset);
   };
 
   useEffect(() => {
@@ -117,8 +131,21 @@ const SearchSongs = () => {
           onChange={handleChangeSong}
           padding="0.375rem 0"
         />
+        {expanded ? (
+          <FontAwesomeIcon
+            icon="times"
+            className="clear-search-results"
+            onClick={() => clearSearch()}
+          />
+        ) : (
+          <FontAwesomeIcon
+            icon="heart"
+            className="get-favourite-songs"
+            onClick={() => favouriteSongs()}
+          />
+        )}
       </div>
-      <div className={`song-search-results ${!song && 'hidden'}`}>
+      <div className={`song-search-results ${!expanded && 'hidden'}`}>
         {!!offset && (
           <FontAwesomeIcon
             icon="angle-left"

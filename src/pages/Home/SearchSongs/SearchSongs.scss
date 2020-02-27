@@ -11,6 +11,10 @@
     margin-right: 10px;
   }
 
+  .get-favourite-songs, .clear-search-results {
+    cursor: pointer;
+  }
+
   input {
     background-color: #e6eedd;
     border: 0;

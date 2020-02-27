@@ -5,6 +5,7 @@ import { spotify } from '@config';
 
 const endpointUrlMe = `${spotify.apiUrl}/me`;
 const endpointUrlPlayer = `${endpointUrlMe}/player`;
+const endpointUrlTopTracks = `${endpointUrlMe}/top/tracks`;
 const endpointUrlDevices = `${endpointUrlPlayer}/devices`;
 const endpointUrlPlay = `${endpointUrlPlayer}/play`;
 const endpointUrlRepeat = `${endpointUrlPlayer}/repeat`;
@@ -47,4 +48,13 @@ export const search = (query, offset) => {
   return http
     .get(endpointUrlSearch, { params })
     .then(res => res.data.tracks.items);
+};
+
+export const topTracks = (offset, time_range = 'medium_term') => {
+  const params = {
+    offset,
+    limit: SongSearchConstants.SEARCH_LIMIT,
+    time_range,
+  };
+  return http.get(endpointUrlTopTracks, { params }).then(res => res.data.items);
 };
