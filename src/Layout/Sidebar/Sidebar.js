@@ -9,21 +9,12 @@ import { SidebarWrapper } from './sidebar.styled';
 const Sidebar = () => (
   <SidebarWrapper>
     <Queue />
-    <Tabs>
-      <div label="Croc">
+    {/* <Tabs>
+      <Queue label="Queue" icon="align-justify" />
+      <div label="Chat" icon="comment-dots">
         After while, <em>Crocodile</em>!
       </div>
-      <Queue label="Queue" />
-      {/* <div label="Gator">
-        See ya later, <em>Alligator</em>!
-      </div>
-      <div label="Croc">
-        After 'while, <em>Crocodile</em>!
-      </div>
-      <div label="Sarcosuchus">
-        Nothing to see here, this tab is <em>extinct</em>!
-      </div> */}
-    </Tabs>
+    </Tabs> */}
   </SidebarWrapper>
 );
 

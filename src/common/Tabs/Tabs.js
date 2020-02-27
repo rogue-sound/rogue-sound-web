@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tab from './Tab';
 /** Styled components */
-import { TabList } from './tabs.styled';
+import { TabsWrapper, TabList, TabContent } from './tabs.styled';
 
 const Tabs = ({ children }) => {
   const [activeTab, setActiveTab] = useState(children[0].props.label);
@@ -12,26 +12,25 @@ const Tabs = ({ children }) => {
     setActiveTab(tab);
   };
   return (
-    <div className="tabs">
+    <TabsWrapper>
       <TabList>
         {children.map(child => {
-          const { label } = child.props;
+          const { label, icon } = child.props;
           return (
             <Tab
-              activeTab={activeTab}
+              isActiveTab={activeTab === label}
               key={label}
               label={label}
+              icon={icon}
               onClickTabItem={onClickTabItem}
             />
           );
         })}
       </TabList>
-      <div className="tab-content">
-        {children.map(child => {
-          return child.props.label === activeTab ? child.props.children : null;
-        })}
-      </div>
-    </div>
+      <TabContent>
+        {children.map(child => child.props.label === activeTab && child)}
+      </TabContent>
+    </TabsWrapper>
   );
 };
 
