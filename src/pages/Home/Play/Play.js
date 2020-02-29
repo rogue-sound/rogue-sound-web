@@ -36,7 +36,7 @@ const Play = () => {
         if (activeDevice) {
           await playSong(song, activeDevice);
           if (!disabledRepeat) {
-            disableRepeat();
+            disableRepeat(activeDevice);
             setDisabledRepeat(true);
           }
           dispatch(setCurrent(current));

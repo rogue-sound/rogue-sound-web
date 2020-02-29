@@ -32,7 +32,7 @@ export const getTrack = id =>
 
 export const disableRepeat = deviceId =>
   http
-    .put(`${endpointUrlRepeat}?state=off&deviceId=${deviceId}`)
+    .put(`${endpointUrlRepeat}?state=off&device_id=${deviceId}`)
     .then(console.log('Disabled auto repeat for the user'))
     .catch(noop);
 
