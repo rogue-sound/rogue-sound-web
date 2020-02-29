@@ -13,6 +13,25 @@
 
   .get-favourite-songs, .clear-search-results {
     cursor: pointer;
+    color: #1d1d35;
+    transition: all 0.1s ease-out;
+    &:hover {
+      font-size: 20px;
+    }
+  }
+
+  .get-favourite-songs {
+    &:hover {
+      margin-right: 8px;
+    }
+  }
+
+  .clear-search-results {
+    margin-right: 13px;
+
+    &:hover {
+      margin-right: 11px;
+    }
   }
 
   input {
@@ -42,7 +61,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   transition: all 0.5s ease-out;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   padding: 0px 20px;
 

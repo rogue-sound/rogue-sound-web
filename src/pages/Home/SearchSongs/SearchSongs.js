@@ -7,7 +7,6 @@ import Input from '@common/Input';
 import { addSong } from '@services/api';
 import { search, topTracks } from '@services/spotify';
 import { SongSearchConstants } from '@utils/constants';
-import { translate } from '@utils';
 
 import SongResult from './SongResult';
 
@@ -79,7 +78,8 @@ const SearchSongs = () => {
   };
 
   useEffect(() => {
-    if (song && song.length) {
+    !expanded && song && setExpanded(true);
+    if (song) {
       searchTimeout && clearTimeout(searchTimeout);
       setSearchTimeout(
         setTimeout(() => {
@@ -93,7 +93,9 @@ const SearchSongs = () => {
     if (searchTimeout) {
       return (
         <p className="song-search__searching">
-          {translate(intl, 'app.pages.Home.SearchSongs.Searching')}
+          {intl.formatMessage({
+            id: 'app.pages.Home.SearchSongs.Searching',
+          })}
         </p>
       );
     }
@@ -106,17 +108,56 @@ const SearchSongs = () => {
         />
       ));
     }
-    if (song)
+    if (expanded && !searchResults.length)
       return (
         <p className="song-search__no-results">
-          {translate(
-            intl,
-            'app.pages.Home.SearchSongs.SearchForSongsNoResultsText'
-          )}
+          {intl.formatMessage({
+            id: 'app.pages.Home.SearchSongs.SearchForSongsNoResultsText',
+          })}
         </p>
       );
     return null;
   };
+
+  const renderFavouriteButton = () =>
+    expanded ? (
+      <FontAwesomeIcon
+        icon="times"
+        className="clear-search-results"
+        onClick={() => clearSearch()}
+      />
+    ) : (
+      <FontAwesomeIcon
+        icon="heart"
+        title={intl.formatMessage({
+          id: 'app.pages.Home.SearchSongs.FavouriteSongsTooltip',
+        })}
+        className="get-favourite-songs"
+        onClick={() => favouriteSongs()}
+      />
+    );
+
+  const renderPagination = direction =>
+    direction === 'prev'
+      ? !!offset && (
+          <FontAwesomeIcon
+            icon="angle-left"
+            onClick={() =>
+              handleOffset(offset - SongSearchConstants.SEARCH_LIMIT)
+            }
+            className="pagination prev"
+          />
+        )
+      : !searchTimeout &&
+        searchResults.length === SongSearchConstants.SEARCH_LIMIT && (
+          <FontAwesomeIcon
+            icon="angle-right"
+            onClick={() =>
+              handleOffset(offset + SongSearchConstants.SEARCH_LIMIT)
+            }
+            className="pagination next"
+          />
+        );
 
   return (
     <>
@@ -131,41 +172,12 @@ const SearchSongs = () => {
           onChange={handleChangeSong}
           padding="0.375rem 0"
         />
-        {expanded ? (
-          <FontAwesomeIcon
-            icon="times"
-            className="clear-search-results"
-            onClick={() => clearSearch()}
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon="heart"
-            className="get-favourite-songs"
-            onClick={() => favouriteSongs()}
-          />
-        )}
+        {renderFavouriteButton()}
       </div>
       <div className={`song-search-results ${!expanded && 'hidden'}`}>
-        {!!offset && (
-          <FontAwesomeIcon
-            icon="angle-left"
-            onClick={() =>
-              handleOffset(offset - SongSearchConstants.SEARCH_LIMIT)
-            }
-            className="pagination prev"
-          />
-        )}
+        {renderPagination('prev')}
         {renderSearch()}
-        {!searchTimeout &&
-          searchResults.length === SongSearchConstants.SEARCH_LIMIT && (
-            <FontAwesomeIcon
-              icon="angle-right"
-              onClick={() =>
-                handleOffset(offset + SongSearchConstants.SEARCH_LIMIT)
-              }
-              className="pagination next"
-            />
-          )}
+        {renderPagination('next')}
       </div>
     </>
   );

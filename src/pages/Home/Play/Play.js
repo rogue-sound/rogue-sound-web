@@ -10,8 +10,6 @@ import { getCurrent } from '@services/api';
 // setQueue, clearQueue, disableRepeat
 import CurrentSong from './CurrentSong';
 
-import { translate } from '@utils';
-
 import './Play.scss';
 
 const Play = () => {
@@ -87,21 +85,35 @@ const Play = () => {
   }, [remaining]);
 
   const renderPlay = () => {
-    if (devices.length) {
-      if (remaining) {
-        return <CurrentSong {...reduxCurrent} />;
-      }
+    if (!devices.length)
+      return (
+        <p className="no-available-devices">
+          {intl.formatMessage({
+            id: 'app.pages.Home.Play.NoAvailableDevicesText',
+          })}
+        </p>
+      );
+
+    if (!activeDevice)
+      return (
+        <p className="no-available-devices">
+          {intl.formatMessage({
+            id: 'app.pages.Home.Play.NoActiveDeviceText',
+          })}
+        </p>
+      );
+
+    if (!remaining) {
       return (
         <p className="no-current-song">
-          {translate(intl, 'app.pages.Home.Play.SessionNotStartedText')}
+          {intl.formatMessage({
+            id: 'app.pages.Home.Play.SessionNotStartedText',
+          })}
         </p>
       );
     }
-    return (
-      <p className="no-available-devices">
-        {translate(intl, 'app.pages.Home.Play.NoAvailableDevicesText')}
-      </p>
-    );
+
+    return <CurrentSong {...reduxCurrent} />;
   };
 
   // TODO: Add admin buttons?
@@ -110,10 +122,9 @@ const Play = () => {
       {!!remaining && (
         <div className="current-song-submitter">
           <FontAwesomeIcon icon="headphones" />
-          {`${reduxCurrent.user} ${translate(
-            intl,
-            'app.pages.Home.Play.NowPlayingSubmitterText'
-          )}...`}
+          {`${reduxCurrent.user} ${intl.formatMessage({
+            id: 'app.pages.Home.Play.NowPlayingSubmitterText',
+          })}...`}
         </div>
       )}
       <div className="play-module">{renderPlay()}</div>
