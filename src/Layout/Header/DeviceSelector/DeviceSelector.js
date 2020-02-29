@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 /** Actions */
-import { fetchDevicesAction, setCurrentDevice } from '@context/spotify';
+import {
+  fetchDevicesAction,
+  setCurrentDevice,
+  setIsActive,
+} from '@context/spotify';
 /** Components */
 import { Popover, PopoverTrigger } from '@common/Popover';
 import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
@@ -20,21 +24,27 @@ const DeviceSelector = () => {
   const intl = useIntl();
   const [forceClose, setForceClose] = useState(false);
 
-  const { devices, activeDevice } = useSelector(state => state.spotify);
-  const current = useSelector(state => state.playing.current);
+  const { devices, activeDevice, isActive } = useSelector(
+    state => state.spotify
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function deviceSetUp() {
-      !current.songId && (await changeDevice(activeDevice, false));
-      disableRepeat(activeDevice);
+      if (!isActive) {
+        await changeDevice(activeDevice, false);
+        dispatch(setIsActive(true));
+      }
+      setTimeout(() => disableRepeat(activeDevice), 250);
     }
     activeDevice && deviceSetUp();
   }, [activeDevice]);
 
-  const changeDeviceHandler = deviceId => {
-    dispatch(setCurrentDevice(deviceId));
+  const changeDeviceHandler = device => {
+    dispatch(
+      setCurrentDevice({ activeDevice: device.id, isActive: device.is_active })
+    );
     setForceClose(true);
   };
 
@@ -63,7 +73,7 @@ const DeviceSelector = () => {
             name={device.name}
             type={device.type}
             active={device.is_active}
-            onSelect={() => changeDeviceHandler(device.id)}
+            onSelect={() => changeDeviceHandler(device)}
           />
         ))}
       </DevicesSelectorItemsWrapper>

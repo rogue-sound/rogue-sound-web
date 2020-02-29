@@ -50,6 +50,8 @@ const Play = () => {
   useEffect(() => {
     if (activeDevice) {
       handleJoin(true);
+    } else {
+      handleJoin();
     }
   }, [activeDevice]);
 
