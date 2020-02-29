@@ -48,10 +48,6 @@ const Play = () => {
   };
 
   useEffect(() => {
-    handleJoin();
-  }, []);
-
-  useEffect(() => {
     if (activeDevice) {
       handleJoin(true);
     }

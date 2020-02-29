@@ -63,14 +63,6 @@ const Header = () => {
     <HeaderWrapper>
       <HeaderLogo>Rogue Sound</HeaderLogo>
       <HeaderActionsWrapper>
-        <button
-          onClick={() =>
-            dispatch(setTokenAction('testing-token-renewal-sorry-spotify'))
-          }
-          type="button"
-        >
-          Fuck up my token (Testing)
-        </button>
         {token && <DeviceSelector intl={intl} />}
         <HeaderLanguage>
           <Select

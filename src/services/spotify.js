@@ -16,10 +16,10 @@ export const getMe = () => http.get(endpointUrlMe).then(res => res.data);
 export const getDevices = () =>
   http.get(endpointUrlDevices).then(res => res.data.devices);
 
-export const changeDevice = deviceId => {
+export const changeDevice = (deviceId, play) => {
   const payload = {
     device_ids: [deviceId],
-    // play: 'false',
+    play,
   };
   return http.put(endpointUrlPlayer, payload);
 };

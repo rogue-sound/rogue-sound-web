@@ -21,16 +21,15 @@ const DeviceSelector = () => {
   const [forceClose, setForceClose] = useState(false);
 
   const { devices, activeDevice } = useSelector(state => state.spotify);
+  const current = useSelector(state => state.playing.current);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function deviceSetUp() {
-      // TODO: WIP, fix this issue
-      // await changeDevice(activeDevice);
+      !current.songId && (await changeDevice(activeDevice, false));
       disableRepeat(activeDevice);
     }
-    activeDevice && console.log('Active device has changed');
     activeDevice && deviceSetUp();
   }, [activeDevice]);
 
