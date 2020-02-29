@@ -3,15 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 /** Actions */
-import {
-  fetchDevicesAction,
-  setCurrentDevice,
-  setIsActive,
-} from '@context/spotify';
+import { fetchDevicesAction, setCurrentDevice } from '@context/spotify';
 /** Components */
 import { Popover, PopoverTrigger } from '@common/Popover';
 import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
-import { changeDevice, disableRepeat } from '@services/spotify';
+import { changeDevice } from '@services/spotify';
 import DeviceSelectorItem from './DeviceSelectorItem';
 /** Styled components */
 import {
@@ -24,27 +20,17 @@ const DeviceSelector = () => {
   const intl = useIntl();
   const [forceClose, setForceClose] = useState(false);
 
-  const { devices, activeDevice, isActive } = useSelector(
-    state => state.spotify
-  );
+  const { devices, activeDevice } = useSelector(state => state.spotify);
+  const current = useSelector(state => state.playing.current);
+
+  useEffect(() => {
+    if (activeDevice && !current.songId) changeDevice(activeDevice, false);
+  }, [activeDevice]);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    async function deviceSetUp() {
-      if (!isActive) {
-        await changeDevice(activeDevice, false);
-        dispatch(setIsActive(true));
-      }
-      setTimeout(() => disableRepeat(activeDevice), 250);
-    }
-    activeDevice && deviceSetUp();
-  }, [activeDevice]);
-
-  const changeDeviceHandler = device => {
-    dispatch(
-      setCurrentDevice({ activeDevice: device.id, isActive: device.is_active })
-    );
+  const changeDeviceHandler = deviceId => {
+    dispatch(setCurrentDevice(deviceId));
     setForceClose(true);
   };
 
@@ -73,7 +59,7 @@ const DeviceSelector = () => {
             name={device.name}
             type={device.type}
             active={device.is_active}
-            onSelect={() => changeDeviceHandler(device)}
+            onSelect={() => changeDeviceHandler(device.id)}
           />
         ))}
       </DevicesSelectorItemsWrapper>

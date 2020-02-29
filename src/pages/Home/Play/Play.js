@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setCurrent, setQueue, stop } from '@context/playing';
-import { playSong } from '@services/spotify';
+import { playSong, disableRepeat } from '@services/spotify';
 import { getCurrent } from '@services/api';
 import CurrentSong from './CurrentSong';
 
@@ -18,6 +18,7 @@ const Play = () => {
   remainingRef.current = remaining;
   const [joinTimeout, setJoinTimeout] = useState(null);
   const [pollingState, setPollingState] = useState(false);
+  const [disabledRepeat, setDisabledRepeat] = useState(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
   const { devices, activeDevice } = useSelector(state => state.spotify);
@@ -34,6 +35,10 @@ const Play = () => {
         };
         if (activeDevice) {
           await playSong(song, activeDevice);
+          if (!disabledRepeat) {
+            disableRepeat();
+            setDisabledRepeat(true);
+          }
           dispatch(setCurrent(current));
           const remainingTime = current.duration - current.position;
           setRemaining(remainingTime);
