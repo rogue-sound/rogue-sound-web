@@ -7,7 +7,6 @@ import { clearToken } from '@context/auth';
 import { setCurrent, setQueue, stop } from '@context/playing';
 import { playSong } from '@services/spotify';
 import { getCurrent } from '@services/api';
-// setQueue, clearQueue, disableRepeat
 import CurrentSong from './CurrentSong';
 
 import { translate } from '@utils';

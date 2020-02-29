@@ -7,6 +7,7 @@ import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
 /** Components */
 import { Popover, PopoverTrigger } from '@common/Popover';
 import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
+import { disableRepeat } from '@services/spotify';
 import DeviceSelectorItem from './DeviceSelectorItem';
 /** Styled components */
 import {
@@ -25,7 +26,8 @@ const DeviceSelector = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    activeDevice && dispatch(fetchDevicesAction());
+    console.log('Active device has changed');
+    activeDevice && disableRepeat();
   }, [activeDevice]);
 
   const changeDeviceHandler = deviceId => {

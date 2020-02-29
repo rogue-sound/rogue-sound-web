@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { login } from '@services/auth';
 
 axios.interceptors.response.use(null, error => {
   const expectedError =
@@ -8,6 +9,10 @@ axios.interceptors.response.use(null, error => {
 
   if (!expectedError) {
     console.error(error);
+  }
+
+  if (expectedError && error.response.status === 401) {
+    login();
   }
 
   return Promise.reject(error);

@@ -15,6 +15,25 @@ export const translate = (intl, id) =>
     id,
   });
 
+export const retrieveSpotifyToken = () => {
+  const hash = window.location.hash
+    .substring(1)
+    .split('&')
+    .reduce((initial, item) => {
+      if (item) {
+        const parts = item.split('=');
+        initial[parts[0]] = decodeURIComponent(parts[1]);
+      }
+      return initial;
+    }, {});
+
+  const _token = hash.access_token;
+
+  window.location.hash = '';
+
+  return _token;
+};
+
 export const githubSPA = () => {
   const l = window.location;
   if (l.search) {
