@@ -20,7 +20,6 @@ const SearchSongs = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
 
-  // TODO: Change with custom names
   const user = useSelector(state => state.me.displayName);
   const dispatch = useDispatch();
 
@@ -58,14 +57,9 @@ const SearchSongs = () => {
 
   const handleSongSelect = async selectedSong => {
     try {
-      selectedSong = {
-        ...selectedSong,
-        user,
-      };
-      const result = await addSong(selectedSong);
+      const result = await addSong({ ...selectedSong, user });
       console.log('Song added to the list');
       dispatch(setQueue(result.songs));
-      // !remaining && setTimeout(() => handleJoin(), 1000);
     } catch {
       console.log('There was a problem adding the song to the list');
     }
@@ -99,15 +93,6 @@ const SearchSongs = () => {
         </p>
       );
     }
-    if (searchResults && searchResults.length) {
-      return searchResults.map(songResult => (
-        <SongResult
-          song={songResult}
-          key={songResult.id}
-          onClickCallback={handleSongSelect}
-        />
-      ));
-    }
     if (expanded && !searchResults.length)
       return (
         <p className="song-search__no-results">
@@ -116,7 +101,13 @@ const SearchSongs = () => {
           })}
         </p>
       );
-    return null;
+    return searchResults.map(songResult => (
+      <SongResult
+        song={songResult}
+        key={songResult.id}
+        onClickCallback={handleSongSelect}
+      />
+    ));
   };
 
   const renderFavouriteButton = () =>
