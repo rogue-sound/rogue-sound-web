@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 /** Actions */
-import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
+import { fetchDevicesAction, setCurrentDevice } from '@context/spotify';
 /** Components */
 import { Popover, PopoverTrigger } from '@common/Popover';
 import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
-import { disableRepeat } from '@services/spotify';
+import { changeDevice, disableRepeat } from '@services/spotify';
 import DeviceSelectorItem from './DeviceSelectorItem';
 /** Styled components */
 import {
@@ -21,17 +21,21 @@ const DeviceSelector = () => {
   const [forceClose, setForceClose] = useState(false);
 
   const { devices, activeDevice } = useSelector(state => state.spotify);
-  const current = useSelector(state => state.playing.current);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('Active device has changed');
-    activeDevice && disableRepeat();
+    async function deviceSetUp() {
+      // TODO: WIP, fix this issue
+      // await changeDevice(activeDevice);
+      disableRepeat(activeDevice);
+    }
+    activeDevice && console.log('Active device has changed');
+    activeDevice && deviceSetUp();
   }, [activeDevice]);
 
   const changeDeviceHandler = deviceId => {
-    dispatch(changeDeviceAction(deviceId, current));
+    dispatch(setCurrentDevice(deviceId));
     setForceClose(true);
   };
 

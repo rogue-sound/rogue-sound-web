@@ -30,6 +30,12 @@ export const retrieveSpotifyToken = () => {
   const _token = hash.access_token;
 
   window.location.hash = '';
+  // Clear the hash leftover
+  window.history.pushState(
+    '',
+    document.title,
+    window.location.pathname + window.location.search
+  );
 
   return _token;
 };

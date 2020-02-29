@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDevices, changeDevice } from '@services/spotify';
+import { getDevices } from '@services/spotify';
 import { noop } from '@utils';
 
 const initialState = {
@@ -40,15 +40,5 @@ export const fetchDevicesAction = () => async dispatch => {
     dispatch(setDevices(devices));
     const activeDevice = devices.find(device => device.is_active);
     activeDevice && dispatch(setCurrentDevice(activeDevice.id));
-  }
-};
-
-export const changeDeviceAction = (deviceId, currentSong) => async dispatch => {
-  try {
-    const playAfterChange = !!currentSong.publicId;
-    await changeDevice(deviceId, playAfterChange);
-    dispatch(setCurrentDevice(deviceId));
-  } catch (error) {
-    console.log(error);
   }
 };
