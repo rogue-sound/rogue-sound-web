@@ -3,7 +3,7 @@
   "app.layout.Header.DevicesLabel": "Dispositivos",
   "app.layout.Header.LanguageEnglishLabel": "Inglés",
   "app.layout.Header.LanguageSpanishLabel": "Español",
-  "app.layout.Header.LanguagesLabel": "Idiomas",
+  "app.layout.Header.LanguagesLabel": "Idioma",
   "app.layout.Header.LoginButton": "Iniciar sesión en Spotify",
   "app.layout.Header.LogoutButton": "Cerrar sesión",
   "app.layout.Sidebar.Queue.QueueText": "Cola",
