@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv');
 
 const env = dotenv.config().parsed;
@@ -109,6 +110,7 @@ const config = {
       title: 'Rogue Sound',
     }),
     new webpack.DefinePlugin(envKeys),
+    new CopyPlugin([{ from: 'src/404.html' }]),
   ],
   optimization: {
     runtimeChunk: 'single',

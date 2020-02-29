@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 /** Styled components */
 import { ProgressBarContainer, ProgressBarPlaying } from './ProgressBar.styled';
 
-const ProgressBar = ({ duration, currentTime }) => {
-  const currentPercentage = (currentTime / duration) * 100;
-
-  return (
-    <ProgressBarContainer>
-      <ProgressBarPlaying percentage={currentPercentage} />
-    </ProgressBarContainer>
-  );
-};
+const ProgressBar = ({ publicId, duration = 0, currentTime = 0 }) => (
+  <ProgressBarContainer>
+    {!!duration && !!currentTime && (
+      <ProgressBarPlaying
+        key={publicId}
+        duration={duration}
+        currentTime={currentTime}
+      />
+    )}
+  </ProgressBarContainer>
+);
 
 ProgressBar.propTypes = {
+  publicId: PropTypes.string,
   duration: PropTypes.number,
   currentTime: PropTypes.number,
 };
