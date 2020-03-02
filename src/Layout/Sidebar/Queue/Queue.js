@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useIntl } from 'react-intl';
 import QueueItem from './QueueItem';
-/** Styled components */
+/** Styles */
 import './Queue.scss';
 
 const Queue = () => {

@@ -17,6 +17,7 @@ const Tabs = ({ children }) => {
   const onClickTabItem = tab => {
     setActiveTab(tab);
   };
+
   return (
     <TabsWrapper>
       <TabList>
@@ -34,7 +35,10 @@ const Tabs = ({ children }) => {
         })}
       </TabList>
       <TabContent>
-        {children.map(child => child.props.label === activeTab && child)}
+        {children.map(
+          child =>
+            getNestedObject(child, ['props', 'label']) === activeTab && child
+        )}
       </TabContent>
     </TabsWrapper>
   );
