@@ -30,11 +30,13 @@ export const playSong = (song, deviceId) =>
 export const getTrack = id =>
   http.get(`${endpointUrlGetTrack}/${id}`).then(res => res.data);
 
-export const disableRepeat = deviceId =>
-  http
-    .put(`${endpointUrlRepeat}?state=off&device_id=${deviceId}`)
+export const disableRepeat = deviceId => {
+  const query = `?state=off${deviceId && `&device_id=${deviceId}`}`;
+  return http
+    .put(endpointUrlRepeat + query)
     .then(console.log('Disabled auto repeat for the user'))
     .catch(noop);
+};
 
 export const search = (query, offset) => {
   const params = {
