@@ -6,13 +6,18 @@ import Tab from './Tab';
 import { TabsWrapper, TabList, TabContent } from './tabs.styled';
 
 const Tabs = ({ children }) => {
+  const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState('');
 
   useEffect(() => {
     if (Array.isArray(children) && children.length) {
       setActiveTab(getNestedObject(children[0], ['props', 'label']));
+      setTabs(children);
+    } else if (typeof children === 'object') {
+      setActiveTab(getNestedObject(children, ['props', 'label']));
+      setTabs([children]);
     }
-  }, [children]);
+  }, [children, setTabs, setActiveTab, getNestedObject]);
 
   const onClickTabItem = tab => {
     setActiveTab(tab);
@@ -21,7 +26,7 @@ const Tabs = ({ children }) => {
   return (
     <TabsWrapper>
       <TabList>
-        {children.map(child => {
+        {tabs.map(child => {
           const { label, icon } = child.props;
           return (
             <Tab
@@ -35,7 +40,7 @@ const Tabs = ({ children }) => {
         })}
       </TabList>
       <TabContent>
-        {children.map(
+        {tabs.map(
           child =>
             getNestedObject(child, ['props', 'label']) === activeTab && child
         )}
@@ -45,7 +50,10 @@ const Tabs = ({ children }) => {
 };
 
 Tabs.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Tabs;
