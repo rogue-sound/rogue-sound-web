@@ -13,4 +13,8 @@ export default defineMessages({
     id: 'app.pages.Home.SearchSongs.SearchForSongsNoResultsText',
     defaultMessage: 'No results found',
   },
+  FavouriteSongsTooltip: {
+    id: 'app.pages.Home.SearchSongs.FavouriteSongsTooltip',
+    defaultMessage: 'Search my favourite songs',
+  },
 });

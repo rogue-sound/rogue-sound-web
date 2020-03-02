@@ -1,10 +1,14 @@
 import { noop } from '@utils/utils';
-import { SongSearchConstants } from '@utils/constants';
+import {
+  SongSearchConstants,
+  TopTracksTimeRangeConstants,
+} from '@utils/constants';
 import http from './http';
 import { spotify } from '@config';
 
 const endpointUrlMe = `${spotify.apiUrl}/me`;
 const endpointUrlPlayer = `${endpointUrlMe}/player`;
+const endpointUrlTopTracks = `${endpointUrlMe}/top/tracks`;
 const endpointUrlDevices = `${endpointUrlPlayer}/devices`;
 const endpointUrlPlay = `${endpointUrlPlayer}/play`;
 const endpointUrlRepeat = `${endpointUrlPlayer}/repeat`;
@@ -50,4 +54,16 @@ export const search = (query, offset) => {
   return http
     .get(endpointUrlSearch, { params })
     .then(res => res.data.tracks.items);
+};
+
+export const getTopTracks = (
+  offset,
+  time_range = TopTracksTimeRangeConstants.MEDIUM_TERM
+) => {
+  const params = {
+    offset,
+    limit: SongSearchConstants.SEARCH_LIMIT,
+    time_range,
+  };
+  return http.get(endpointUrlTopTracks, { params }).then(res => res.data.items);
 };
