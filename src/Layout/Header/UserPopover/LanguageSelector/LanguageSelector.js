@@ -4,28 +4,35 @@ import { toggleLanguage } from '@context/languageSettings';
 import './LanguageSelector.scss';
 import ESFlag from '@assets/img/es.png';
 import ENFlag from '@assets/img/en.png';
-import { useIntl } from 'react-intl';
 
 const LanguageSelector = () => {
-  const { language } = useSelector(state => state.languageSettings);
-  const intl = useIntl();
+  const { language: current } = useSelector(state => state.languageSettings);
   const dispatch = useDispatch();
 
-  const toggleLanguageFn = () => {
-    language === 'en'
-      ? dispatch(toggleLanguage('es'))
-      : dispatch(toggleLanguage('en'));
+  const dispatchLanguage = language => {
+    if (current !== language) dispatch(toggleLanguage(language));
+  };
+
+  const flagOpacity = language => {
+    if (current !== language) return { style: { opacity: 0.33 } };
+    return null;
   };
 
   return (
     <div className="language-flag">
-      {intl.formatMessage({ id: 'app.layout.Header.LanguagesLabel' })}
       <button
         type="button"
-        onClick={toggleLanguageFn}
-        onKeyDown={toggleLanguageFn}
+        onClick={() => dispatchLanguage('es')}
+        onKeyDown={() => dispatchLanguage('es')}
       >
-        <img src={language === 'en' ? ENFlag : ESFlag} alt={language} />
+        <img src={ESFlag} alt="es" {...flagOpacity('es')} />
+      </button>
+      <button
+        type="button"
+        onClick={() => dispatchLanguage('en')}
+        onKeyDown={() => dispatchLanguage('en')}
+      >
+        <img src={ENFlag} alt="en" {...flagOpacity('en')} />
       </button>
     </div>
   );
