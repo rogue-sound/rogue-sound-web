@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
-import { search, topTracks } from '@services/spotify';
+import { search, getTopTracks } from '@services/spotify';
 import { SongSearchConstants } from '@utils/constants';
 
 import SongResult from './SongResult';
@@ -30,8 +30,8 @@ const SearchSongs = () => {
     setSearchTimeout(null);
   };
 
-  const favouriteSongs = async (newOffset = offset) => {
-    const result = await topTracks(newOffset);
+  const getFavouriteSongs = async (newOffset = offset) => {
+    const result = await getTopTracks(newOffset);
     setExpanded(true);
     setSearchResults(result);
     setSearchTimeout(null);
@@ -68,7 +68,7 @@ const SearchSongs = () => {
 
   const handleOffset = newOffset => {
     setOffset(newOffset);
-    song ? searchSongs(song, newOffset) : favouriteSongs(newOffset);
+    song ? searchSongs(song, newOffset) : getFavouriteSongs(newOffset);
   };
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const SearchSongs = () => {
           id: 'app.pages.Home.SearchSongs.FavouriteSongsTooltip',
         })}
         className="get-favourite-songs"
-        onClick={() => favouriteSongs()}
+        onClick={() => getFavouriteSongs()}
       />
     );
 

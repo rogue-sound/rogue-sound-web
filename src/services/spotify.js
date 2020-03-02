@@ -1,5 +1,8 @@
 import { noop } from '@utils/utils';
-import { SongSearchConstants } from '@utils/constants';
+import {
+  SongSearchConstants,
+  TopTracksTimeRangeConstants,
+} from '@utils/constants';
 import http from './http';
 import { spotify } from '@config';
 
@@ -50,7 +53,10 @@ export const search = (query, offset) => {
     .then(res => res.data.tracks.items);
 };
 
-export const topTracks = (offset, time_range = 'medium_term') => {
+export const getTopTracks = (
+  offset,
+  time_range = TopTracksTimeRangeConstants.MEDIUM_TERM
+) => {
   const params = {
     offset,
     limit: SongSearchConstants.SEARCH_LIMIT,
