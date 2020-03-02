@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { clearMe } from '@context/me';
 import { resetDevices } from '@context/spotify';
+import http from '@services/http';
 
 const initialState = {
   token: localStorage.getItem('token') || '',
@@ -12,13 +13,15 @@ const authSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       localStorage.setItem('token', action.payload);
-      return { token: action.payload };
+      state.token = action.payload;
     },
-    clearToken: () => {
+    clearToken: state => {
       localStorage.removeItem('token');
-      return { token: '' };
+      state.token = '';
     },
-    logout: () => ({ token: '' }),
+    logout: state => {
+      state.token = '';
+    },
   },
 });
 
@@ -27,6 +30,7 @@ export const { setToken, clearToken, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 export const setTokenAction = token => async dispatch => {
+  http.setToken(token);
   dispatch(setToken(token));
 };
 

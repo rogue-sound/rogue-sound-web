@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 /** Actions */
-import { fetchDevicesAction, changeDeviceAction } from '@context/spotify';
+import { fetchDevicesAction, setCurrentDevice } from '@context/spotify';
 /** Components */
 import { Popover, PopoverTrigger } from '@common/Popover';
 import { ReactComponent as DevicesIcon } from '@assets/svg/devices.svg';
+import { changeDevice } from '@services/spotify';
 import DeviceSelectorItem from './DeviceSelectorItem';
 /** Styled components */
 import {
@@ -22,14 +23,14 @@ const DeviceSelector = () => {
   const { devices, activeDevice } = useSelector(state => state.spotify);
   const current = useSelector(state => state.playing.current);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    activeDevice && dispatch(fetchDevicesAction());
+    if (activeDevice && !current.songId) changeDevice(activeDevice, false);
   }, [activeDevice]);
 
+  const dispatch = useDispatch();
+
   const changeDeviceHandler = deviceId => {
-    dispatch(changeDeviceAction(deviceId, current));
+    dispatch(setCurrentDevice(deviceId));
     setForceClose(true);
   };
 

@@ -14,4 +14,8 @@ export default defineMessages({
     defaultMessage:
       'There are no available spotify devices connected to this account',
   },
+  NoActiveDeviceText: {
+    id: 'app.pages.Home.Play.NoActiveDeviceText',
+    defaultMessage: 'There is no active device selected, please choose one',
+  },
 });

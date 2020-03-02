@@ -2,15 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { clearToken } from '@context/auth';
 import { setCurrent, setQueue, stop } from '@context/playing';
-import { playSong } from '@services/spotify';
+import { playSong, disableRepeat } from '@services/spotify';
 import { getCurrent } from '@services/api';
-// setQueue, clearQueue, disableRepeat
 import CurrentSong from './CurrentSong';
-
-import { translate } from '@utils';
 
 import './Play.scss';
 
@@ -21,6 +16,7 @@ const Play = () => {
   remainingRef.current = remaining;
   const [joinTimeout, setJoinTimeout] = useState(null);
   const [pollingState, setPollingState] = useState(false);
+  const [disabledRepeat, setDisabledRepeat] = useState(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
   const { devices, activeDevice } = useSelector(state => state.spotify);
@@ -35,19 +31,15 @@ const Play = () => {
           uris: [current.songId],
           position_ms: current.position,
         };
-        // TODO: Add queue handling
-        try {
-          await playSong(song);
+        if (activeDevice) {
+          await playSong(song, activeDevice);
+          if (!disabledRepeat) {
+            disableRepeat(activeDevice);
+            setDisabledRepeat(true);
+          }
           dispatch(setCurrent(current));
           const remainingTime = current.duration - current.position;
           setRemaining(remainingTime);
-        } catch (err) {
-          const {
-            response: { status },
-          } = err;
-          // Token expired
-          status === 401 && dispatch(clearToken());
-          dispatch(stop());
         }
       }
       songs && dispatch(setQueue(songs));
@@ -59,12 +51,10 @@ const Play = () => {
   };
 
   useEffect(() => {
-    handleJoin();
-  }, []);
-
-  useEffect(() => {
     if (activeDevice) {
       handleJoin(true);
+    } else {
+      handleJoin();
     }
   }, [activeDevice]);
 
@@ -87,21 +77,35 @@ const Play = () => {
   }, [remaining]);
 
   const renderPlay = () => {
-    if (devices.length) {
-      if (remaining) {
-        return <CurrentSong {...reduxCurrent} />;
-      }
+    if (!devices.length)
+      return (
+        <p className="no-available-devices">
+          {intl.formatMessage({
+            id: 'app.pages.Home.Play.NoAvailableDevicesText',
+          })}
+        </p>
+      );
+
+    if (!activeDevice)
+      return (
+        <p className="no-available-devices">
+          {intl.formatMessage({
+            id: 'app.pages.Home.Play.NoActiveDeviceText',
+          })}
+        </p>
+      );
+
+    if (!remaining) {
       return (
         <p className="no-current-song">
-          {translate(intl, 'app.pages.Home.Play.SessionNotStartedText')}
+          {intl.formatMessage({
+            id: 'app.pages.Home.Play.SessionNotStartedText',
+          })}
         </p>
       );
     }
-    return (
-      <p className="no-available-devices">
-        {translate(intl, 'app.pages.Home.Play.NoAvailableDevicesText')}
-      </p>
-    );
+
+    return <CurrentSong {...reduxCurrent} />;
   };
 
   // TODO: Add admin buttons?
@@ -110,10 +114,9 @@ const Play = () => {
       {!!remaining && (
         <div className="current-song-submitter">
           <FontAwesomeIcon icon="headphones" />
-          {`${reduxCurrent.user} ${translate(
-            intl,
-            'app.pages.Home.Play.NowPlayingSubmitterText'
-          )}...`}
+          {`${reduxCurrent.user} ${intl.formatMessage({
+            id: 'app.pages.Home.Play.NowPlayingSubmitterText',
+          })}...`}
         </div>
       )}
       <div className="play-module">{renderPlay()}</div>
