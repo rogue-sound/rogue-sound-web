@@ -20,27 +20,30 @@ export const getMe = () => http.get(endpointUrlMe).then(res => res.data);
 export const getDevices = () =>
   http.get(endpointUrlDevices).then(res => res.data.devices);
 
-export const changeDevice = (deviceId, playAfterChange = true) => {
+export const changeDevice = (deviceId, play) => {
   const payload = {
     device_ids: [deviceId],
-    play: playAfterChange,
+    play,
   };
   return http.put(endpointUrlPlayer, payload);
 };
 
-export const playSong = song => http.put(endpointUrlPlay, song);
-// .then(res => console.log(res));
+export const playSong = (song, deviceId) => {
+  const query = deviceId ? `?device_id=${deviceId}` : '';
+  return http.put(endpointUrlPlay + query, song);
+};
 
 export const getTrack = id =>
   http.get(`${endpointUrlGetTrack}/${id}`).then(res => res.data);
 
-export const disableRepeat = () =>
-  http
-    .put(`${endpointUrlRepeat}?state=off`)
+export const disableRepeat = deviceId => {
+  const query = `?state=off${deviceId && `&device_id=${deviceId}`}`;
+  return http
+    .put(endpointUrlRepeat + query)
     .then(console.log('Disabled auto repeat for the user'))
     .catch(noop);
+};
 
-// TODO: Might be improved for more filters
 export const search = (query, offset) => {
   const params = {
     q: query,

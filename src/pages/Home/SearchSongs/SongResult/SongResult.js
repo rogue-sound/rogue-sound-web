@@ -16,7 +16,8 @@ const SongResult = ({ song, onClickCallback }) => {
   } = song;
 
   const artistsMap = artists.map(artist => artist.name).join(', ');
-  const albumImg = images[1].url;
+  const albumImg =
+    images && images[1] ? images[1].url : images[0] && images[0].url;
 
   return (
     <div

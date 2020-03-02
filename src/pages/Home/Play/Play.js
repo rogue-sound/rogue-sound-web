@@ -2,12 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { clearToken } from '@context/auth';
 import { setCurrent, setQueue, stop } from '@context/playing';
-import { playSong } from '@services/spotify';
+import { playSong, disableRepeat } from '@services/spotify';
 import { getCurrent } from '@services/api';
-// setQueue, clearQueue, disableRepeat
 import CurrentSong from './CurrentSong';
 
 import './Play.scss';
@@ -19,6 +16,7 @@ const Play = () => {
   remainingRef.current = remaining;
   const [joinTimeout, setJoinTimeout] = useState(null);
   const [pollingState, setPollingState] = useState(false);
+  const [disabledRepeat, setDisabledRepeat] = useState(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
   const { devices, activeDevice } = useSelector(state => state.spotify);
@@ -33,19 +31,15 @@ const Play = () => {
           uris: [current.songId],
           position_ms: current.position,
         };
-        // TODO: Add queue handling
-        try {
-          await playSong(song);
+        if (activeDevice) {
+          await playSong(song, activeDevice);
+          if (!disabledRepeat) {
+            disableRepeat(activeDevice);
+            setDisabledRepeat(true);
+          }
           dispatch(setCurrent(current));
           const remainingTime = current.duration - current.position;
           setRemaining(remainingTime);
-        } catch (err) {
-          const {
-            response: { status },
-          } = err;
-          // Token expired
-          status === 401 && dispatch(clearToken());
-          dispatch(stop());
         }
       }
       songs && dispatch(setQueue(songs));
@@ -57,12 +51,10 @@ const Play = () => {
   };
 
   useEffect(() => {
-    handleJoin();
-  }, []);
-
-  useEffect(() => {
     if (activeDevice) {
       handleJoin(true);
+    } else {
+      handleJoin();
     }
   }, [activeDevice]);
 
