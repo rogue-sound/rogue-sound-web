@@ -24,8 +24,10 @@ export const changeDevice = (deviceId, play) => {
   return http.put(endpointUrlPlayer, payload);
 };
 
-export const playSong = (song, deviceId) =>
-  http.put(`${endpointUrlPlay}?device_id=${deviceId}`, song);
+export const playSong = (song, deviceId) => {
+  const query = deviceId ? `?device_id=${deviceId}` : '';
+  return http.put(endpointUrlPlay + query, song);
+};
 
 export const getTrack = id =>
   http.get(`${endpointUrlGetTrack}/${id}`).then(res => res.data);
