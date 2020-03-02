@@ -8,33 +8,26 @@ import { login } from '@services/auth';
 import { setTokenAction, logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
-import { toggleLanguage } from '@context/languageSettings';
 /** Components */
-import Button from '@common/Button/Button';
+import Button from '@common/Button';
 import Select from '@common/Select';
 import { Popover, PopoverTrigger } from '@common/Popover';
 import UserAvatar from '@layout/Header/UserAvatar';
-import { retrieveSpotifyToken } from '@utils';
 import DeviceSelector from './DeviceSelector';
+import UserPopover from './UserPopover';
+/** Utils */
+import { retrieveSpotifyToken } from '@utils';
 /** Styled components */
 import {
   HeaderWrapper,
   HeaderLogo,
   HeaderActionsWrapper,
-  HeaderLanguage,
 } from './header.styled';
 
 const Header = () => {
   const intl = useIntl();
-  const me = useSelector(state => state.me);
   const { token } = useSelector(state => state.auth);
-  const { language } = useSelector(state => state.languageSettings);
-
   const dispatch = useDispatch();
-
-  const changeLanguage = ({ currentTarget: { value } }) => {
-    dispatch(toggleLanguage(value));
-  };
 
   const loginHandler = () => {
     login();
@@ -64,29 +57,6 @@ const Header = () => {
       <HeaderLogo>Rogue Sound</HeaderLogo>
       <HeaderActionsWrapper>
         {token && <DeviceSelector intl={intl} />}
-        <HeaderLanguage>
-          <Select
-            value={language}
-            label={intl.formatMessage({
-              id: 'app.layout.Header.LanguagesLabel',
-            })}
-            options={[
-              {
-                id: 'en',
-                name: intl.formatMessage({
-                  id: 'app.layout.Header.LanguageEnglishLabel',
-                }),
-              },
-              {
-                id: 'es',
-                name: intl.formatMessage({
-                  id: 'app.layout.Header.LanguageSpanishLabel',
-                }),
-              },
-            ]}
-            onChange={changeLanguage}
-          />
-        </HeaderLanguage>
         {!token && (
           <Button type="login" onClick={loginHandler}>
             {intl.formatMessage({
@@ -94,20 +64,7 @@ const Header = () => {
             })}
           </Button>
         )}
-        {token && me && (
-          <Popover place="bottom">
-            <PopoverTrigger>
-              <div>
-                <UserAvatar {...me} />
-              </div>
-            </PopoverTrigger>
-            <Button type="logout" onClick={logoutHandler}>
-              {intl.formatMessage({
-                id: 'app.layout.Header.LogoutButton',
-              })}
-            </Button>
-          </Popover>
-        )}
+        {token && <UserPopover logoutHandler={logoutHandler} />}
       </HeaderActionsWrapper>
     </HeaderWrapper>
   );
