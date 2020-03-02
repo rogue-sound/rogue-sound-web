@@ -12,7 +12,7 @@ const TabList = styled.div`
   justify-content: space-between;
 `;
 
-const TabItem = styled.div`
+const TabItemNormal = styled.div`
   display: flex;
   align-items: center;
   list-style: none;
@@ -21,7 +21,7 @@ const TabItem = styled.div`
   background-color: #e6eedd;
 `;
 
-const TabItemActive = styled(TabItem)`
+const TabItemActive = styled(TabItemNormal)`
   background-color: white;
   border: solid #e6eedd;
   border-width: 1px 1px 0 1px;
@@ -39,4 +39,11 @@ const TabLabel = styled.span`
   margin-left: 10px;
 `;
 
-export { TabList, TabItem, TabItemActive, TabContent, TabsWrapper, TabLabel };
+export {
+  TabList,
+  TabItemNormal,
+  TabItemActive,
+  TabContent,
+  TabsWrapper,
+  TabLabel,
+};

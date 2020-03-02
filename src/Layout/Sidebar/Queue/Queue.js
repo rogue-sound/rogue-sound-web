@@ -11,6 +11,7 @@ const Queue = () => {
   const { queue, current } = useSelector(state => state.playing);
   return (
     <div className="queue-container">
+      {/* delete this when using the tabs */}
       <div className="queue-top">
         <FontAwesomeIcon icon="align-justify" />
         <span>
@@ -19,6 +20,7 @@ const Queue = () => {
           })}
         </span>
       </div>
+      {/* until here */}
       <div className="queue-list">
         {queue.map(item => (
           <QueueItem key={item.publicId} {...item} current={current.songId} />
