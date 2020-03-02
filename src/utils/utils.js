@@ -10,11 +10,6 @@ export const textDuration = duration => {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-export const translate = (intl, id) =>
-  intl.formatMessage({
-    id,
-  });
-
 export const githubSPA = () => {
   const l = window.location;
   if (l.search) {
