@@ -1,18 +1,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import PropTypes from 'prop-types';
-/** Styled components */
-import { FooterWrapper } from './Footer.styled';
+/** Utils */
+/** Components */
+import ProgressBar from './ProgressBar';
 import NowPlaying from './NowPlaying';
+/** Styled components */
+import { FooterContainer, FooterWrapper } from './footer.styled';
 
 const Footer = () => {
-  const { current } = useSelector(state => state.playing);
+  const current = useSelector(state => state.playing.current);
 
   return (
-    <FooterWrapper className="footer">
-      {/* <img src={placeholderLogo} alt="Rogue sound logo" /> */}
-      {current.title && <NowPlaying {...current} />}
-    </FooterWrapper>
+    <FooterContainer>
+      <ProgressBar
+        publicId={current.publicId}
+        duration={current.duration}
+        currentTime={current.position}
+      />
+      <FooterWrapper className="footer">
+        {current.title && <NowPlaying {...current} />}
+      </FooterWrapper>
+    </FooterContainer>
   );
 };
 

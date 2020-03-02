@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const FooterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const FooterWrapper = styled.div`
   color: white;
   background-color: pink;
@@ -11,4 +16,4 @@ const FooterWrapper = styled.div`
   height: 64px;
 `;
 
-export { FooterWrapper };
+export { FooterContainer, FooterWrapper };

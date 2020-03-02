@@ -5,3 +5,7 @@ export const PopoverConstants = {
 export const SongSearchConstants = {
   SEARCH_LIMIT: 5,
 };
+
+export const ProgressBarConstants = {
+  INTERVAL_DURATION: 100,
+};

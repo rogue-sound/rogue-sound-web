@@ -7,10 +7,13 @@ const Component = styled.div`
   color: blue;
 `;
 
+/**
+ * 138px = 64px Header + 10px ProgressBar + 64px Footer
+ */
 const ContainerWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  min-height: calc(100vh - 128px);
+  min-height: calc(100vh - 138px);
   height: 100%;
 `;
 

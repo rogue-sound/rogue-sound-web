@@ -1,5 +1,7 @@
 # Rogue Sound
 
+![Node.js CI](https://github.com/rogue-sound/rogue-sound-web/workflows/Node.js%20CI/badge.svg)
+
 The best social DJ site where users can share music by tuning in to user-generated playlists created by music lovers from all over the world. Made with Spotify API.
 
 ## Building and running on localhost
