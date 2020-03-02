@@ -4,15 +4,19 @@ import { useIntl } from 'react-intl';
 /** Services */
 import http from '@services/http';
 import { login } from '@services/auth';
-import { disableRepeat } from '@services/spotify';
 /** Actions */
 import { setTokenAction, logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
 /** Components */
 import Button from '@common/Button';
+import Select from '@common/Select';
+import { Popover, PopoverTrigger } from '@common/Popover';
+import UserAvatar from '@layout/Header/UserAvatar';
 import DeviceSelector from './DeviceSelector';
 import UserPopover from './UserPopover';
+/** Utils */
+import { retrieveSpotifyToken } from '@utils';
 /** Styled components */
 import {
   HeaderWrapper,
@@ -34,36 +38,16 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      http.setToken(token);
-    } else {
-      const hash = window.location.hash
-        .substring(1)
-        .split('&')
-        .reduce((initial, item) => {
-          if (item) {
-            const parts = item.split('=');
-            initial[parts[0]] = decodeURIComponent(parts[1]);
-          }
-          return initial;
-        }, {});
-
-      const _token = hash.access_token;
-
-      window.location.hash = '';
-
+    if (window.location.hash) {
+      const _token = retrieveSpotifyToken();
       _token && dispatch(setTokenAction(_token));
     }
   }, []);
 
   useEffect(() => {
-    async function disableRepeatFn() {
-      await disableRepeat();
-    }
     if (token) {
       http.setToken(token);
       dispatch(fetchDevicesAction());
-      disableRepeatFn();
       dispatch(fetchMeAction());
     }
   }, [token]);
