@@ -17,7 +17,7 @@ const Tabs = ({ children }) => {
       setActiveTab(getNestedObject(children, ['props', 'label']));
       setTabs([children]);
     }
-  }, [children, setTabs, setActiveTab, getNestedObject]);
+  }, [children]);
 
   const onClickTabItem = tab => {
     setActiveTab(tab);
