@@ -26,6 +26,4 @@ const HeaderActionsWrapper = styled.div`
   }
 `;
 
-const HeaderLanguage = styled.div``;
-
-export { HeaderWrapper, HeaderLogo, HeaderLanguage, HeaderActionsWrapper };
+export { HeaderWrapper, HeaderLogo, HeaderActionsWrapper };

@@ -37,8 +37,9 @@ const LoginButton = styled(PrimaryButton)`
 const LogoutButton = styled(LoginButton)`
   background-color: #eeeeee;
   color: #333333;
+  font-size: 10px;
   border: 2px solid #999999;
-  padding: 8px 16px;
+  padding: 6px 14px;
   letter-spacing: 1.2px;
 `;
 
