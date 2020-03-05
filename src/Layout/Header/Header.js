@@ -10,9 +10,6 @@ import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
 /** Components */
 import Button from '@common/Button';
-import Select from '@common/Select';
-import { Popover, PopoverTrigger } from '@common/Popover';
-import UserAvatar from '@layout/Header/UserAvatar';
 import DeviceSelector from './DeviceSelector';
 import UserPopover from './UserPopover';
 /** Utils */

@@ -26,7 +26,7 @@
     // TODO: Revisar
     // 180px = 64px Header + 42px Queue Header + 10px ProgressBar + 64px Footer
     max-height: calc(100vh - 180px);
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .queue-item {
       display: flex;

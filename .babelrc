@@ -10,13 +10,6 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
-    [
-      "babel-plugin-styled-components"
-      // {
-      //   "ssr": false,
-      //   "displayName": false,
-      //   "fileName": false
-      // }
-    ]
+    "babel-plugin-styled-components"
   ]
 }
