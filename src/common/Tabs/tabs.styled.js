@@ -5,11 +5,20 @@ const TabsWrapper = styled.div`
 `;
 
 const TabList = styled.div`
-  border-bottom: 1px solid #e6eedd;
+  border: 1px solid #e6eedd;
   height: 43px;
-  padding-left: 0;
   display: flex;
   justify-content: space-between;
+  display: flex;
+  align-items: center;
+
+  svg {
+    font-size: 22px;
+    margin-right: 10px;
+  }
+  span {
+    font-weight: 600;
+  }
 `;
 
 const TabItemNormal = styled.div`
@@ -19,11 +28,11 @@ const TabItemNormal = styled.div`
   padding: 0.5rem 0.75rem;
   cursor: pointer;
   background-color: #e6eedd;
+  height: 100%;
 `;
 
 const TabItemActive = styled(TabItemNormal)`
   background-color: white;
-  border: solid #e6eedd;
   border-width: 1px 1px 0 1px;
   width: 100%;
 `;
@@ -31,8 +40,6 @@ const TabItemActive = styled(TabItemNormal)`
 const TabContent = styled.div`
   border-left: solid 1px #e6eedd;
   height: 100%;
-  /* max-height: calc(100vh - 172px);
-  overflow-y: scroll; */
 `;
 
 const TabLabel = styled.span`
