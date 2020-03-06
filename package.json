@@ -1,6 +1,6 @@
 {
   "name": "rogue-sound-web",
-  "version": "0.3",
+  "version": "0.0.3",
   "description": "Rogue Sound is a social music sharing website where you can play music with friends and listen to it in real time thanks to the Spotify API.",
   "main": "index.js",
   "repository": {
