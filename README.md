@@ -2,35 +2,25 @@
 
 ![Node.js CI](https://github.com/rogue-sound/rogue-sound-web/workflows/Node.js%20CI/badge.svg)
 
-The best social DJ site where users can share music by tuning in to user-generated playlists created by music lovers from all over the world. Made with Spotify API.
+Rogue Sound is a social music sharing website where you can play music with friends and listen to it in real time thanks to the Spotify API.
 
-## Building and running on localhost
+_image_
 
-First install dependencies:
+## Features
 
-```sh
-npm install
-```
+## Core Team
 
-To run in hot module reloading mode:
+## Contributing
 
-```sh
-npm start
-```
+## Local development
 
-To create a production build:
+### Requirements
 
-```sh
-npm run build-prod
-```
+### Installation
 
-To create a development build:
+### Running the app on localhost
 
-```sh
-npm run build-dev
-```
+### About i18n
 
-## Running
-
-Open the file `dist/index.html` in your browser
+## Building the app
 
