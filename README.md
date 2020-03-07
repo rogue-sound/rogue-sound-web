@@ -4,7 +4,7 @@
 
 Rogue Sound is a social music sharing website where you can play music with friends and listen to it in real time thanks to the Spotify API.
 
-_image_
+![Screenshot](screenshot.png)
 
 ## Features
 
@@ -15,13 +15,13 @@ _image_
 
 ## Core Team
  
-<table border="0">
+<table>
   <tr>
-    <td align="center"><a href="https://github.com/jmolla31"><img style="border-radius:50%;border:1px solid #9cb0a4;background-size:cover;overflow:hidden;" src="https://avatars3.githubusercontent.com/u/33100083?s=460&v=4" width="60px;" alt="jmolla31"/><br /><sub><b>jmolla31</b></sub></a></td>
-    <td align="center"><a href="https://github.com/pabravil"><img style="border-radius:50%;border:1px solid #9cb0a4;background-size:cover;overflow:hidden;" src="https://avatars2.githubusercontent.com/u/9166688?s=460&v=4" width="60px;" alt="pabravil"/><br /><sub><b>pabravil</b></sub></a></td>
-    <td align="center"><a href="https://github.com/bonavida"><img style="border-radius:50%;border:1px solid #9cb0a4;background-size:cover;overflow:hidden;" src="https://avatars2.githubusercontent.com/u/8061481?s=460&v=4" width="60px;" alt="bonavida"/><br /><sub><b>bonavida</b></sub></a></td>
-    <td align="center"><a href="https://github.com/cesarandex"><img style="border-radius:50%;border:1px solid #9cb0a4;background-size:cover;overflow:hidden;" src="https://avatars2.githubusercontent.com/u/1353358?s=460&v=4" width="60px;" alt="cesarandex"/><br /><sub><b>cesarandex</b></sub></a></td>
-    <td align="center"><a href="https://github.com/MateoBeMo"><img style="border-radius:50%;border:1px solid #9cb0a4;background-size:cover;overflow:hidden;" src="https://avatars1.githubusercontent.com/u/15815193?s=460&v=4" width="60px;" alt="MateoBeMo"/><br /><sub><b>MateoBeMo</b></sub></a></td>
+    <td align="center"><a href="https://github.com/jmolla31"><img src="https://avatars3.githubusercontent.com/u/33100083?s=460&v=4" width="60" alt="jmolla31"/><br /><sub><b>jmolla31</b></sub></a></td>
+    <td align="center"><a href="https://github.com/pabravil"><img src="https://avatars2.githubusercontent.com/u/9166688?s=460&v=4" width="60" alt="pabravil"/><br /><sub><b>pabravil</b></sub></a></td>
+    <td align="center"><a href="https://github.com/bonavida"><img src="https://avatars2.githubusercontent.com/u/8061481?s=460&v=4" width="60" alt="bonavida"/><br /><sub><b>bonavida</b></sub></a></td>
+    <td align="center"><a href="https://github.com/cesarandex"><img src="https://avatars2.githubusercontent.com/u/1353358?s=460&v=4" width="60" alt="cesarandex"/><br /><sub><b>cesarandex</b></sub></a></td>
+    <td align="center"><a href="https://github.com/MateoBeMo"><img src="https://avatars1.githubusercontent.com/u/15815193?s=460&v=4" width="60" alt="MateoBeMo"/><br /><sub><b>MateoBeMo</b></sub></a></td>
   </tr>
 </table>
 
@@ -40,7 +40,7 @@ If you want to contribute to this project, please follow the [frontend developme
 
 ### Installation
 
-Clone the repository locally:
+First of all, clone the repository:
 
 ```bash
 git clone https://github.com/rogue-sound/rogue-sound-web.git
@@ -74,5 +74,84 @@ and now you only need to visit http://localhost:8080 in your browser of choice.
 
 ### About i18n
 
+We are using [react-intl](https://github.com/formatjs/react-intl) for internationalization. Follow the next steps to include translations in the application.
+
+1. Create a `messages.js` file inside the same folder where the React component is.
+2. Import defineMessages from `react-intl` and define the translations only in the default language. For example:
+    ```js
+    import { defineMessages } from 'react-intl';
+
+    export default defineMessages({
+      LoginButton: {
+        id: 'app.Layout.Header.LoginButton',
+        defaultMessage: 'Login to Spotify',
+      },
+      LogoutButton: {
+        id: 'app.Layout.Header.LogoutButton',
+        defaultMessage: 'Logout',
+      }
+    });
+    ```
+3. Run the following command in the console:
+    ```bash
+    npm run build:i18n
+    ```
+4. This will generate (or update) two files inside `src/i18n`: `en.json` and `es.json`. If you look into the default language json file (`en.json`), you will see something like this:
+    ```json
+    {
+      "app.Layout.Header.LoginButton": "Login to Spotify",
+      "app.Layout.Header.LogoutButton": "Logout"
+    }
+    ```
+5. If you look at the other language json file (`es.json`), you will see something like this:
+    ```json
+    {
+      "app.Layout.Header.LoginButton": "",
+      "app.Layout.Header.LogoutButton": ""
+    }
+    ```
+    You only need to fill the translations.
+
+6. And finally, in order to use these translations inside a React component, you need to use the `useIntl` hook. For example:
+    ```jsx
+    import { useIntl } from 'react-intl';
+
+    const LoginButton = () => {
+      const intl = useIntl();
+
+      return (
+        <button>
+          {intl.formatMessage({
+            id: 'app.Layout.Header.LoginButton',
+          })}
+        </button>
+      );
+    };
+
+    export default LoginButton;
+    ```
+
 ## Building the app
 
+You can create a development build:
+
+```
+npm run build:dev
+```
+
+and a production build:
+
+```
+npm run build:prod
+```
+
+The built files are placed in a `/dist` folder at the root directory.
+
+If you want to serve these static files in local, one quick option could be to use [serve](https://github.com/zeit/serve).
+
+```bash
+npm install -g serve
+serve ./dist
+```
+
+and then go to http://localhost:5000.
