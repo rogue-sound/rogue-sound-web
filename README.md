@@ -8,10 +8,10 @@ Rogue Sound is a social music sharing website where you can play music with frie
 
 ## Features
 
-- Connect with your Spotify account, no login / registration needed (Spotify Premium required).
+- Connect with your Spotify account. No login or registration needed (Spotify Premium required).
 - Listen to music synchronized together with everyone else in the room.
 - Search songs directly in the Spotify library to be added to the room queue.
-- Choose the playback device directly from the browser, all Spotify available devices supported.
+- Choose the playback device directly from the browser. All Spotify available devices supported.
 
 ## Core Team
  
@@ -22,12 +22,17 @@ Rogue Sound is a social music sharing website where you can play music with frie
     <td align="center"><a href="https://github.com/bonavida"><img src="https://avatars2.githubusercontent.com/u/8061481?s=460&v=4" width="60" alt="bonavida"/><br /><sub><b>bonavida</b></sub></a></td>
     <td align="center"><a href="https://github.com/cesarandex"><img src="https://avatars2.githubusercontent.com/u/1353358?s=460&v=4" width="60" alt="cesarandex"/><br /><sub><b>cesarandex</b></sub></a></td>
     <td align="center"><a href="https://github.com/MateoBeMo"><img src="https://avatars1.githubusercontent.com/u/15815193?s=460&v=4" width="60" alt="MateoBeMo"/><br /><sub><b>MateoBeMo</b></sub></a></td>
+    <td align="center"><a href="https://github.com/joanstellar"><img src="https://avatars1.githubusercontent.com/u/33447647?s=400&v=4" width="60" alt="joanstellar"/><br /><sub><b>joanstellar</b></sub></a></td>
   </tr>
 </table>
 
 ## Contributing
 
-If you want to contribute to this project, please follow the [frontend development guidelines](https://github.com/rogue-sound/development-guidelines/blob/master/FRONTEND_DEVELOPMENT_GUIDELINES.md).
+We're so glad you're thinking about contributing to Rogue Sound! If you're unsure about anything, just ask —or submit the issue or pull request anyway—. We love all friendly contributions.
+
+If you want to contribute to this project, we encourage you to read the [frontend development guidelines](https://github.com/rogue-sound/development-guidelines/blob/master/FRONTEND_DEVELOPMENT_GUIDELINES.md).
+
+If you have any questions, just [shoot us an email](mailto:rogue.sound.team@gmail.com) :email:.
 
 ---
 
