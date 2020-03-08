@@ -1,7 +1,7 @@
 {
-  "name": "poc-rogue-sound-web",
-  "version": "0.0.1",
-  "description": "The best social DJ site where users can share music by tuning in to user-generated playlists created by music lovers from all over the world. Made with Spotify API.",
+  "name": "rogue-sound-web",
+  "version": "0.0.3",
+  "description": "Rogue Sound is a social music sharing website where you can play music with friends and listen to it in real time thanks to the Spotify API.",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -9,7 +9,12 @@
   },
   "keywords": [
     "spotify",
-    "dj"
+    "music",
+    "share",
+    "playlist",
+    "social",
+    "react",
+    "webpack"
   ],
   "author": "Everfriends",
   "license": "ISC",
