@@ -9,10 +9,10 @@ const QueueItem = ({
   title,
   artist,
   user,
-  songId,
+  publicId,
   current,
 }) => {
-  const divClass = songId === current ? 'queue-item active' : 'queue-item';
+  const divClass = publicId === current ? 'queue-item active' : 'queue-item';
   return (
     <div className={divClass}>
       <img src={albumImg} alt={albumName} />
@@ -35,7 +35,7 @@ QueueItem.propTypes = {
   title: PropTypes.string,
   artist: PropTypes.string,
   user: PropTypes.string,
-  songId: PropTypes.string,
+  publicId: PropTypes.string,
   current: PropTypes.string,
 };
 

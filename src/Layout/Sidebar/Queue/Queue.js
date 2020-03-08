@@ -10,7 +10,7 @@ const Queue = () => {
     <div className="queue-container">
       <div className="queue-list">
         {queue.map(item => (
-          <QueueItem key={item.publicId} {...item} current={current.songId} />
+          <QueueItem key={item.publicId} {...item} current={current.publicId} />
         ))}
       </div>
     </div>
