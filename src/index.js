@@ -5,6 +5,8 @@ import store from '@store';
 import { githubSPA } from '@utils';
 /** Components */
 import App from './app';
+/** Utils */
+import { githubSPA } from '@utils';
 /** Styles */
 import '@styles/styles.scss';
 
