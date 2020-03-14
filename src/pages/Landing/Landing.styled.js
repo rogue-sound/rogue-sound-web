@@ -62,12 +62,13 @@ const LandingHeaderMenuItem = styled.div`
   cursor: pointer;
   font-size: 16px;
   transition: all 0.3s linear 0s;
+  will-change: transform;
   &:not(:first-child) {
     margin-left: 50px;
   }
   &:hover {
     box-shadow: 0px 1px 35px 0px rgba(1, 171, 110, 0.7);
-    transform: scale3d(1.006, 1.006, 1);
+    transform: scale3d(1.006, 1.006, 1) perspective(1px) translateZ(0);
   }
 `;
 
