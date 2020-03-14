@@ -9,24 +9,33 @@ const LandingContainer = styled.div`
 
 const LandingPartialContainer = styled.div`
   width: 100%;
-  height: 50%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 75px;
+  padding: 40px;
 `;
 
 const LandingHeader = styled(LandingPartialContainer)`
+  height: 60%;
   background-color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 const LandingFooter = styled(LandingPartialContainer)`
+  height: 40%;
+  flex-direction: row;
+  align-items: center;
   background-color: #1d1d35;
   font-size: 16px;
   color: #e6eedd;
 `;
 
-const LandingTitleWrapper = styled.div``;
+const LandingTitleWrapper = styled.div`
+  padding: 35px;
+`;
 
 const LandingTitle = styled.h1`
   font-size: 48px;
@@ -40,38 +49,6 @@ const LandingDescription = styled.span`
   color: #333;
 `;
 
-const LandingHeaderMenu = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 0 40px;
-`;
-
-const LandingHeaderMenuItem = styled.div`
-  height: 250px;
-  width: 180px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: #01ab6d;
-  color: #fff;
-  border-radius: 4px;
-  box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s linear 0s;
-  will-change: transform;
-  &:not(:first-child) {
-    margin-left: 50px;
-  }
-  &:hover {
-    box-shadow: 0px 1px 35px 0px rgba(1, 171, 110, 0.7);
-    transform: scale3d(1.006, 1.006, 1) perspective(1px) translateZ(0);
-  }
-`;
-
 export {
   LandingContainer,
   LandingPartialContainer,
@@ -80,6 +57,4 @@ export {
   LandingTitleWrapper,
   LandingTitle,
   LandingDescription,
-  LandingHeaderMenu,
-  LandingHeaderMenuItem,
 };

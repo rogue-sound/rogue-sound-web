@@ -1,4 +1,6 @@
 import React from 'react';
+/** Components */
+import LandingMenu from './LandingMenu';
 /** Styled components */
 import {
   LandingContainer,
@@ -7,8 +9,6 @@ import {
   LandingTitleWrapper,
   LandingTitle,
   LandingDescription,
-  LandingHeaderMenu,
-  LandingHeaderMenuItem,
 } from './Landing.styled';
 
 const Landing = () => (
@@ -21,11 +21,7 @@ const Landing = () => (
           with friends and listen to it in real time thanks to the Spotify API.
         </LandingDescription>
       </LandingTitleWrapper>
-      <LandingHeaderMenu>
-        <LandingHeaderMenuItem>Explore rooms</LandingHeaderMenuItem>
-        <LandingHeaderMenuItem>About us</LandingHeaderMenuItem>
-        <LandingHeaderMenuItem>FAQ</LandingHeaderMenuItem>
-      </LandingHeaderMenu>
+      <LandingMenu />
     </LandingHeader>
     <LandingFooter>Landing part 2</LandingFooter>
   </LandingContainer>
