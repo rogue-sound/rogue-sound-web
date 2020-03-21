@@ -7,11 +7,11 @@ const FooterContainer = styled.div`
 
 const FooterWrapper = styled.div`
   color: white;
-  background-color: pink;
+  background-color: #1d1d35;
   z-index: 2;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 64px;
 `;
