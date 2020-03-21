@@ -3,8 +3,8 @@ import {
   SongSearchConstants,
   TopTracksTimeRangeConstants,
 } from '@utils/constants';
-import http from './http';
 import { spotify } from '@config';
+import http from './http';
 
 const endpointUrlMe = `${spotify.apiUrl}/me`;
 const endpointUrlPlayer = `${endpointUrlMe}/player`;

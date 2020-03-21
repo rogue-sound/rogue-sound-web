@@ -8,12 +8,13 @@ import { login } from '@services/auth';
 import { setTokenAction, logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
-/** Components */
+/** Common components */
 import Button from '@common/Button';
-import DeviceSelector from './DeviceSelector';
-import UserPopover from './UserPopover';
 /** Utils */
 import { retrieveSpotifyToken } from '@utils';
+/** Components */
+import DeviceSelector from './DeviceSelector';
+import UserPopover from './UserPopover';
 /** Styled components */
 import {
   HeaderWrapper,

@@ -1,5 +1,5 @@
-import http from './http';
 import { azure } from '@config';
+import http from './http';
 
 export const getCurrent = () =>
   http.get(`${azure.apiUrl}/getCurrent`).then(res => res.data);
