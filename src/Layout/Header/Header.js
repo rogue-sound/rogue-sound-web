@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 /** Services */
 import http from '@services/http';
 import { login } from '@services/auth';
+import { getCurrent, skipCurrentSong } from '@services/api';
 /** Actions */
 import { setTokenAction, logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
@@ -35,6 +36,15 @@ const Header = () => {
     dispatch(logoutAction());
   };
 
+  const skipHandler = async () => {
+    const { current } = await getCurrent();
+    console.log(current);
+    if (current) {
+      const roomSessionModel = { roomSessionId: current.publicId };
+      skipCurrentSong(roomSessionModel);
+    }
+  }
+
   useEffect(() => {
     if (window.location.hash) {
       const _token = retrieveSpotifyToken();
@@ -52,7 +62,7 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <HeaderLogo>Rogue Sound</HeaderLogo>
+      <HeaderLogo onClick={skipHandler}>Rogue Sound</HeaderLogo>
       <HeaderActionsWrapper>
         {token && <DeviceSelector intl={intl} />}
         {!token && (

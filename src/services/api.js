@@ -8,3 +8,5 @@ export const addSong = songRequestModel =>
   http.post(`${azure.apiUrl}/addSong`, songRequestModel).then(res => res.data);
 
 export const clearQueue = () => http.get(`${azure.apiUrl}/clearQueue`);
+
+export const skipCurrentSong = RoomSessionModel => http.post(`${azure.apiUrl}/SkipCurrentSong`, RoomSessionModel);
