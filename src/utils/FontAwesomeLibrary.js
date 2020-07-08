@@ -15,6 +15,7 @@ import {
   faCommentDots,
   faHeart,
   faTimes,
+  faForward,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -32,5 +33,6 @@ library.add(
   faMobileAlt,
   faCommentDots,
   faHeart,
-  faTimes
+  faTimes,
+  faForward
 );
