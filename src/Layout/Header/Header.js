@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import http from '@services/http';
 import { login } from '@services/auth';
 /** Actions */
-import { setTokenAction, logoutAction } from '@context/auth';
+import { logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
 /** Common components */
@@ -34,13 +34,6 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logoutAction());
   };
-
-  useEffect(() => {
-    if (window.location.hash) {
-      const _token = retrieveSpotifyToken();
-      _token && dispatch(setTokenAction(_token));
-    }
-  }, []);
 
   useEffect(() => {
     if (token) {

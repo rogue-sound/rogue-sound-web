@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 /** Config */
 import { routes } from './config';
@@ -18,6 +18,7 @@ export const Routes = () => (
           component={route.component}
         />
       ))}
+    <Route component={() => <Redirect to="/" />} />
     {/* {
           <PrivateRoute
         // route={route}

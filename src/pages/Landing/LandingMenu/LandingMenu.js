@@ -8,15 +8,15 @@ import LandingMenuItem from './LandingMenuItem';
 
 const LandingMenu = () => (
   <Menu>
-    <LandingMenuItem link="/room">
+    <LandingMenuItem link="/rooms">
       <FontAwesomeIcon icon={['far', 'list-alt']} />
       <MenuItemText>Explore rooms</MenuItemText>
     </LandingMenuItem>
-    <LandingMenuItem link="/">
+    <LandingMenuItem link="/about">
       <FontAwesomeIcon icon="portrait" />
       <MenuItemText>About us</MenuItemText>
     </LandingMenuItem>
-    <LandingMenuItem link="/">
+    <LandingMenuItem link="/faq">
       <FontAwesomeIcon icon={['far', 'question-circle']} />
       <MenuItemText>FAQ</MenuItemText>
     </LandingMenuItem>

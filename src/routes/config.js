@@ -1,6 +1,7 @@
 import Landing from '@pages/Landing';
 import Home from '@pages/Home';
 
+// TODO: The routes need to be changed in the future
 export const routes = [
   {
     id: 1,
@@ -10,7 +11,25 @@ export const routes = [
   },
   {
     id: 2,
-    path: '/room',
+    path: '/rooms/:id',
+    exact: false,
+    component: Home,
+  },
+  {
+    id: 3,
+    path: '/rooms',
+    exact: true,
+    component: Home,
+  },
+  {
+    id: 4,
+    path: '/about',
+    exact: false,
+    component: Home,
+  },
+  {
+    id: 5,
+    path: '/faq',
     exact: false,
     component: Home,
   },
