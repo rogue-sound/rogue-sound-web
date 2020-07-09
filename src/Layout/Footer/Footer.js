@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Services */
-import { getCurrent, skipCurrentSong } from '@services/api';
+import { skipCurrentSong } from '@services/api';
 /** Utils */
 /** Components */
 import ProgressBar from './ProgressBar';
@@ -12,17 +12,15 @@ import { FooterContainer, FooterWrapper } from './footer.styled';
 
 import './SkipButton.scss';
 
-const skipHandler = async () => {
-  const { current } = await getCurrent();
-  console.log(current);
-  if (current) {
-    const roomSessionModel = { roomSessionId: current.publicId };
-    skipCurrentSong(roomSessionModel);
-  }
-};
-
 const Footer = () => {
   const current = useSelector(state => state.playing.current);
+
+  const skipHandler = async () => {
+    if (current && current.publicId) {
+      const roomSessionModel = { roomSessionId: current.publicId };
+      skipCurrentSong(roomSessionModel);
+    }
+  };
 
   return (
     <FooterContainer>
