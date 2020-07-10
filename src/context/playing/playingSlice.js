@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  active: false,
+  paused: false,
   current: {},
   queue: [],
 };
@@ -22,9 +22,14 @@ const playingSlice = createSlice({
       ...state,
       current: initialState.current,
     }),
+    togglePause: state => ({
+      ...state,
+      current: initialState.current,
+      paused: !state.paused,
+    }),
   },
 });
 
-export const { setCurrent, setQueue, stop } = playingSlice.actions;
+export const { setCurrent, setQueue, stop, togglePause } = playingSlice.actions;
 
 export default playingSlice.reducer;

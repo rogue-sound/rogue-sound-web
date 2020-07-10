@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
+import { noop } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setCurrent, setQueue, stop } from '@context/playing';
 import { playSong, disableRepeat } from '@services/spotify';
@@ -8,6 +9,8 @@ import { getCurrent } from '@services/api';
 import CurrentSong from './CurrentSong';
 
 import './Play.scss';
+import { pausePlayer } from '../../../services/spotify';
+import { togglePause } from '../../../context/playing/playingSlice';
 
 const Play = () => {
   const intl = useIntl();
@@ -19,6 +22,7 @@ const Play = () => {
   const [disabledRepeat, setDisabledRepeat] = useState(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
+  const paused = useSelector(state => state.playing.paused);
   const { devices, activeDevice } = useSelector(state => state.spotify);
 
   const dispatch = useDispatch();
@@ -50,13 +54,26 @@ const Play = () => {
     }
   };
 
-  useEffect(() => {
-    if (activeDevice) {
-      handleJoin(true);
-    } else {
-      handleJoin();
+  const pause = async () => {
+    try {
+      await pausePlayer();
+      dispatch(stop());
+      setRemaining(null);
+      setJoinTimeout(null);
+    } catch (e) {
+      noop();
     }
-  }, [activeDevice]);
+  };
+
+  useEffect(() => {
+    if (!paused) {
+      if (activeDevice) {
+        handleJoin(true);
+      } else {
+        handleJoin();
+      }
+    } else pause();
+  }, [activeDevice, paused]);
 
   // Dumb polling
   useEffect(() => {
@@ -64,8 +81,9 @@ const Play = () => {
       handleJoin();
       setPollingState(!pollingState);
     }, 4000);
+    paused && clearTimeout(timeout);
     return () => clearTimeout(timeout);
-  }, [pollingState]);
+  }, [pollingState, paused]);
 
   // Smart polling
   useEffect(() => {
@@ -73,8 +91,9 @@ const Play = () => {
       joinTimeout && clearTimeout(joinTimeout);
       setJoinTimeout(setTimeout(() => handleJoin(true), remaining));
     }
+    paused && clearTimeout(joinTimeout);
     return () => clearTimeout(joinTimeout);
-  }, [remaining]);
+  }, [remaining, paused]);
 
   const renderPlay = () => {
     if (!devices.length)
@@ -111,6 +130,10 @@ const Play = () => {
   // TODO: Add admin buttons?
   return (
     <>
+      {/* TODO: Reallocate this button and decide a UX, probably move to the footer */}
+      <button type="button" onClick={() => dispatch(togglePause())}>
+        Toggle pause
+      </button>
       {!!remaining && (
         <div className="current-song-submitter">
           <FontAwesomeIcon icon="headphones" />

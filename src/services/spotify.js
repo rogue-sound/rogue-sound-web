@@ -33,6 +33,10 @@ export const playSong = (song, deviceId) => {
   return http.put(endpointUrlPlay + query, song);
 };
 
+export const pausePlayer = () => {
+  return http.put(`${endpointUrlPlayer}/pause`);
+};
+
 export const getTrack = id =>
   http.get(`${endpointUrlGetTrack}/${id}`).then(res => res.data);
 
