@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Services */
@@ -15,12 +15,12 @@ import './SkipButton.scss';
 const Footer = () => {
   const current = useSelector(state => state.playing.current);
 
-  const skipHandler = async () => {
+  const skipHandler = useCallback(async () => {
     if (current && current.publicId) {
       const roomSessionModel = { roomSessionId: current.publicId };
       skipCurrentSong(roomSessionModel);
     }
-  };
+  }, [current]);
 
   return (
     <FooterContainer>
