@@ -16,10 +16,7 @@ const Footer = () => {
   const current = useSelector(state => state.playing.current);
 
   const skipHandler = useCallback(async () => {
-    if (current && current.publicId) {
-      const roomSessionModel = { roomSessionId: current.publicId };
-      skipCurrentSong(roomSessionModel);
-    }
+    skipCurrentSong();
   }, [current]);
 
   return (
