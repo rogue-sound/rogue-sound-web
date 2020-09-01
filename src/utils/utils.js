@@ -1,3 +1,5 @@
+import history from './history';
+
 export const noop = () => {};
 
 export const getSpotifyId = song => {
@@ -69,4 +71,16 @@ export const githubSPA = () => {
       );
     }
   }
+};
+
+export const saveRedirectPath = () => {
+  sessionStorage.setItem('redirect_url', window.location.pathname);
+};
+
+export const redirectFromSessionStorage = () => {
+  const pathname = sessionStorage.getItem('redirect_url') || '/';
+
+  history.replace({
+    pathname,
+  });
 };

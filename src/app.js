@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 /** Context */
 import { setTokenAction } from '@context/auth';
+/** Utils */
+import history from '@utils/history';
+import { retrieveSpotifyToken, redirectFromSessionStorage } from '@utils';
+import '@utils/FontAwesomeLibrary';
 /** Components */
 import { Routes } from './routes/routes';
 /** Themes */
@@ -14,9 +18,6 @@ import lightTheme from './themes/light-theme';
 /** Translations data */
 import esTranslations from './i18n/es.json';
 import enTranslations from './i18n/en.json';
-/** Utils */
-import { retrieveSpotifyToken } from '@utils';
-import './utils/FontAwesomeLibrary';
 
 const themes = {
   dark: darkTheme,
@@ -38,13 +39,16 @@ const App = () => {
   useEffect(() => {
     if (window.location.hash) {
       const _token = retrieveSpotifyToken();
-      _token && dispatch(setTokenAction(_token));
+      if (_token) {
+        redirectFromSessionStorage();
+        dispatch(setTokenAction(_token));
+      }
     }
   }, []);
 
   return (
     <ThemeProvider theme={themes[theme]}>
-      <BrowserRouter basename="/">
+      <Router history={history} basename="/">
         <IntlProvider
           key={language}
           locale={language}
@@ -52,7 +56,7 @@ const App = () => {
         >
           {routes}
         </IntlProvider>
-      </BrowserRouter>
+      </Router>
     </ThemeProvider>
   );
 };

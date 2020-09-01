@@ -15,6 +15,8 @@ import { retrieveSpotifyToken } from '@utils';
 /** Components */
 import DeviceSelector from './DeviceSelector';
 import UserPopover from './UserPopover';
+/** Utils */
+import { saveRedirectPath } from '@utils';
 /** Styled components */
 import {
   HeaderWrapper,
@@ -28,6 +30,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const loginHandler = () => {
+    saveRedirectPath();
     login();
   };
 
