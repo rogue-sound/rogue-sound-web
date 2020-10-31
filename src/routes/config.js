@@ -1,5 +1,6 @@
 import Landing from '@pages/Landing';
 import Home from '@pages/Home';
+import Rooms from '@pages/Rooms';
 
 // TODO: The routes need to be changed in the future
 export const routes = [
@@ -19,7 +20,7 @@ export const routes = [
     id: 3,
     path: '/rooms',
     exact: true,
-    component: Home,
+    component: Rooms,
   },
   {
     id: 4,

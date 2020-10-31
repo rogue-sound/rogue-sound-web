@@ -37,7 +37,8 @@
     }
   }
 
-  &__searching, &__no-results {
+  &__searching,
+  &__no-results {
     color: #1d1d35;
     display: flex;
     align-items: center;
@@ -70,7 +71,7 @@
     // min-width: 0;
     // background-clip: border-box;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 1px solid #d5decb;
     border-radius: 0.25rem;
     width: 18%;
     max-width: 214px;
@@ -81,7 +82,6 @@
 
     &:hover {
       max-height: 200px;
-      box-shadow: 0 0 5px 0.2rem rgba(0, 0, 0, .25);
 
       img {
         max-height: 140px;
@@ -91,7 +91,7 @@
         top: 125px;
       }
     }
-  
+
     img {
       width: 100%;
       max-height: 95px;
@@ -102,23 +102,27 @@
       transition: all 0.25s ease-out;
     }
 
-    h4, h5, &__album, &__duration {
+    h4,
+    h5,
+    &__album,
+    &__duration {
       // font-family: 'Raleway', sans-serif;
-      font-family: "Rubik";
+      font-family: 'Rubik';
     }
-  
-    h4, h5 {
+
+    h4,
+    h5 {
       padding-top: 4px;
       margin: 0px;
       text-overflow: ellipsis;
       overflow: hidden;
     }
-  
+
     h4 {
       padding-left: 7px;
       font-size: 12px;
     }
-  
+
     h5 {
       margin-top: 2px;
       padding-left: 8px;
@@ -126,7 +130,7 @@
       text-transform: uppercase;
       font-size: 8px;
     }
-  
+
     &__duration {
       position: absolute;
       top: 78px;
@@ -136,7 +140,7 @@
       text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
       transition: all 0.25s ease-out;
     }
-  
+
     &__description {
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
@@ -144,7 +148,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       width: 100%;
-      color: #1D1D35;
+      color: #1d1d35;
       // padding-bottom: 20px;
       // position: relative;
     }

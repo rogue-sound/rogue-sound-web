@@ -2,11 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from '@store';
+/** Utils */
 import { githubSPA } from '@utils';
 /** Components */
 import App from './app';
-/** Utils */
-import { githubSPA } from '@utils';
 /** Styles */
 import '@styles/styles.scss';
 

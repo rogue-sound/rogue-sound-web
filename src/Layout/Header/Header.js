@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 /** Services */
@@ -8,15 +9,13 @@ import { login } from '@services/auth';
 import { logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
+/** Utils */
+import { saveRedirectPath } from '@utils';
 /** Common components */
 import Button from '@common/Button';
-/** Utils */
-import { retrieveSpotifyToken } from '@utils';
 /** Components */
 import DeviceSelector from './DeviceSelector';
 import UserPopover from './UserPopover';
-/** Utils */
-import { saveRedirectPath } from '@utils';
 /** Styled components */
 import {
   HeaderWrapper,
@@ -48,7 +47,9 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <HeaderLogo>Rogue Sound</HeaderLogo>
+      <Link to="/">
+        <HeaderLogo>Rogue Sound</HeaderLogo>
+      </Link>
       <HeaderActionsWrapper>
         {token && <DeviceSelector intl={intl} />}
         {!token && (

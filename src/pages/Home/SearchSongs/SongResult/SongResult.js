@@ -66,8 +66,11 @@ SongResult.propTypes = {
     duration_ms: PropTypes.number,
     name: PropTypes.string,
     uri: PropTypes.string,
-    artists: PropTypes.array,
-    album: PropTypes.object,
+    artists: PropTypes.arrayOf(PropTypes.object),
+    album: PropTypes.shape({
+      name: PropTypes.string,
+      images: PropTypes.arrayOf(PropTypes.string),
+    }),
   }).isRequired,
 };
 

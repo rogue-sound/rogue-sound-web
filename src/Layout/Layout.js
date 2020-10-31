@@ -2,20 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 /** Components */
 import Header from './Header';
-import Sidebar from './Sidebar';
-import Footer from './Footer';
 /** Styled components */
-import { Component, ContainerWrapper } from './layout.styled';
+import { LayoutContainer, LayoutContent } from './layout.styled';
 
 const Layout = ({ children }) => (
-  <Component>
+  <LayoutContainer>
     <Header />
-    <ContainerWrapper>
-      {children}
-      <Sidebar />
-    </ContainerWrapper>
-    <Footer />
-  </Component>
+    <LayoutContent>{children}</LayoutContent>
+  </LayoutContainer>
 );
 
 Layout.propTypes = {

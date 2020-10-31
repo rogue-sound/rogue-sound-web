@@ -1,5 +1,5 @@
-import http from './http';
 import { azure } from '@config';
+import http from './http';
 
 export const getCurrent = roomId =>
   http.get(`${azure.lobbyUrl}/${roomId}/getCurrent`).then(res => res.data);
