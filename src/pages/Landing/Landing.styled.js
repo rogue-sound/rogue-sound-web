@@ -35,6 +35,8 @@ const LandingFooter = styled(LandingPartialContainer)`
 
 const LandingTitleWrapper = styled.div`
   padding: 35px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const LandingTitle = styled.h1`
@@ -45,8 +47,13 @@ const LandingTitle = styled.h1`
 `;
 
 const LandingDescription = styled.span`
-  font-size: 20px;
+  font-size: 18px;
   color: #333;
+  margin-top: 5px;
+`;
+
+const LandingLoginButton = styled.div`
+  margin-top: 10px;
 `;
 
 export {
@@ -57,4 +64,5 @@ export {
   LandingTitleWrapper,
   LandingTitle,
   LandingDescription,
+  LandingLoginButton,
 };

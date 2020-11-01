@@ -78,7 +78,12 @@ export const saveRedirectPath = () => {
 };
 
 export const redirectFromSessionStorage = () => {
-  const pathname = sessionStorage.getItem('redirect_url') || '/';
+  const redirectUrl = sessionStorage.getItem('redirect_url');
+  const pathname = redirectUrl
+    ? redirectUrl === '/'
+      ? '/rooms'
+      : redirectUrl
+    : '/';
 
   history.replace({
     pathname,

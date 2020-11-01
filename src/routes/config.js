@@ -1,5 +1,5 @@
 import Landing from '@pages/Landing';
-import Home from '@pages/Home';
+import Room from '@pages/Room';
 import Rooms from '@pages/Rooms';
 
 // TODO: The routes need to be changed in the future
@@ -14,7 +14,7 @@ export const routes = [
     id: 2,
     path: '/rooms/:id',
     exact: false,
-    component: Home,
+    component: Room,
   },
   {
     id: 3,
@@ -26,12 +26,12 @@ export const routes = [
     id: 4,
     path: '/about',
     exact: false,
-    component: Home,
+    component: Room,
   },
   {
     id: 5,
     path: '/faq',
     exact: false,
-    component: Home,
+    component: Room,
   },
 ];

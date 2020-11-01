@@ -4,16 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 /** Services */
 import http from '@services/http';
-import { login } from '@services/auth';
 /** Actions */
 import { logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
-/** Utils */
-import { saveRedirectPath } from '@utils';
-/** Common components */
-import Button from '@common/Button';
 /** Components */
+import LoginButton from '@components/LoginButton';
 import DeviceSelector from './DeviceSelector';
 import UserPopover from './UserPopover';
 /** Styled components */
@@ -27,11 +23,6 @@ const Header = () => {
   const intl = useIntl();
   const { token } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-
-  const loginHandler = () => {
-    saveRedirectPath();
-    login();
-  };
 
   const logoutHandler = () => {
     dispatch(logoutAction());
@@ -52,13 +43,7 @@ const Header = () => {
       </Link>
       <HeaderActionsWrapper>
         {token && <DeviceSelector intl={intl} />}
-        {!token && (
-          <Button type="login" onClick={loginHandler}>
-            {intl.formatMessage({
-              id: 'app.layout.Header.LoginButton',
-            })}
-          </Button>
-        )}
+        {!token && <LoginButton />}
         {token && <UserPopover logoutHandler={logoutHandler} />}
       </HeaderActionsWrapper>
     </HeaderWrapper>

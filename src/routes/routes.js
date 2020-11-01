@@ -1,10 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 /** Config */
 import { routes } from './config';
-/** Components */
-// import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 
 export const Routes = () => (
   <Switch>
@@ -19,15 +16,6 @@ export const Routes = () => (
         />
       ))}
     <Route component={() => <Redirect to="/" />} />
-    {/* {
-          <PrivateRoute
-        // route={route}
-        key={index}
-        path={route.path}
-        exact={route.exact}
-        Page={route.component}
-      />;
-      } */}
   </Switch>
 );
 

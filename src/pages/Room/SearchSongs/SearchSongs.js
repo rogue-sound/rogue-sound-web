@@ -88,7 +88,7 @@ const SearchSongs = () => {
       return (
         <p className="song-search__searching">
           {intl.formatMessage({
-            id: 'app.pages.Home.SearchSongs.Searching',
+            id: 'app.pages.Room.SearchSongs.Searching',
           })}
         </p>
       );
@@ -97,7 +97,7 @@ const SearchSongs = () => {
       return (
         <p className="song-search__no-results">
           {intl.formatMessage({
-            id: 'app.pages.Home.SearchSongs.SearchForSongsNoResultsText',
+            id: 'app.pages.Room.SearchSongs.SearchForSongsNoResultsText',
           })}
         </p>
       );
@@ -121,7 +121,7 @@ const SearchSongs = () => {
       <FontAwesomeIcon
         icon="heart"
         title={intl.formatMessage({
-          id: 'app.pages.Home.SearchSongs.FavouriteSongsTooltip',
+          id: 'app.pages.Room.SearchSongs.FavouriteSongsTooltip',
         })}
         className="get-favourite-songs"
         onClick={() => getFavouriteSongs()}
@@ -158,7 +158,7 @@ const SearchSongs = () => {
           value={song}
           // name="song-search"
           placeholder={intl.formatMessage({
-            id: 'app.pages.Home.SearchSongs.SearchForSongs',
+            id: 'app.pages.Room.SearchSongs.SearchForSongs',
           })}
           onChange={handleChangeSong}
           padding="0.375rem 0"

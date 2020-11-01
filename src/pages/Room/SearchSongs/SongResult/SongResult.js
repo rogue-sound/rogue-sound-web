@@ -69,7 +69,12 @@ SongResult.propTypes = {
     artists: PropTypes.arrayOf(PropTypes.object),
     album: PropTypes.shape({
       name: PropTypes.string,
-      images: PropTypes.arrayOf(PropTypes.string),
+      images: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({ url: PropTypes.string }),
+        ])
+      ),
     }),
   }).isRequired,
 };

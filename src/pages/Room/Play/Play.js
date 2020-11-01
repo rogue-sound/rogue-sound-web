@@ -81,7 +81,7 @@ const Play = () => {
       return (
         <p className="no-available-devices">
           {intl.formatMessage({
-            id: 'app.pages.Home.Play.NoAvailableDevicesText',
+            id: 'app.pages.Room.Play.NoAvailableDevicesText',
           })}
         </p>
       );
@@ -90,7 +90,7 @@ const Play = () => {
       return (
         <p className="no-available-devices">
           {intl.formatMessage({
-            id: 'app.pages.Home.Play.NoActiveDeviceText',
+            id: 'app.pages.Room.Play.NoActiveDeviceText',
           })}
         </p>
       );
@@ -99,7 +99,7 @@ const Play = () => {
       return (
         <p className="no-current-song">
           {intl.formatMessage({
-            id: 'app.pages.Home.Play.SessionNotStartedText',
+            id: 'app.pages.Room.Play.SessionNotStartedText',
           })}
         </p>
       );
@@ -115,7 +115,7 @@ const Play = () => {
         <div className="current-song-submitter">
           <FontAwesomeIcon icon="headphones" />
           {`${reduxCurrent.user} ${intl.formatMessage({
-            id: 'app.pages.Home.Play.NowPlayingSubmitterText',
+            id: 'app.pages.Room.Play.NowPlayingSubmitterText',
           })}...`}
         </div>
       )}
