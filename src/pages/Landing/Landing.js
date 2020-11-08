@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 /** Components */
 import LoginButton from '@components/LoginButton';
 import LandingMenu from './LandingMenu';
@@ -15,6 +16,7 @@ import {
 } from './Landing.styled';
 
 const Landing = () => {
+  const intl = useIntl();
   const { token } = useSelector(state => state.auth);
 
   return (
@@ -23,9 +25,9 @@ const Landing = () => {
         <LandingTitleWrapper>
           <LandingTitle>Rogue Sound</LandingTitle>
           <LandingDescription>
-            Rogue Sound is a social music sharing website where you can play
-            music with friends and listen to it in real time thanks to the
-            Spotify API.
+            {intl.formatMessage({
+              id: 'app.pages.Landing.Description',
+            })}
           </LandingDescription>
           <LandingLoginButton>{!token && <LoginButton />}</LandingLoginButton>
         </LandingTitleWrapper>

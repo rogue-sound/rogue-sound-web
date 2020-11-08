@@ -15,5 +15,6 @@
   "app.pages.Room.SearchSongs.FavouriteSongsTooltip": "Search my favourite songs",
   "app.pages.Room.SearchSongs.SearchForSongs": "Search for songs",
   "app.pages.Room.SearchSongs.SearchForSongsNoResultsText": "No results found",
-  "app.pages.Room.SearchSongs.Searching": "Searching..."
+  "app.pages.Room.SearchSongs.Searching": "Searching...",
+  "app.pages.Landing.Description": "Rogue Sound is a social music sharing website where you can play music with friends and listen to it in real time thanks to the Spotify API."
 }

@@ -16,7 +16,6 @@ const azure = {
   // apiUrl: 'https://rogue-sound-poc-functions.azurewebsites.net/api',
   // apiUrl: 'https://rogue-sound-func.azurewebsites.net/api',
   apiUrl: 'https://roguesound.azurewebsites.net/api',
-  lobbyUrl: 'https://roguesound.azurewebsites.net/api',
 };
 
 export { spotify, azure };
