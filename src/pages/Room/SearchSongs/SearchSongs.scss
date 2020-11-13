@@ -49,15 +49,15 @@
 .song-search-results {
   width: 100%;
   height: 215px;
-  background-color: #e6eedd;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 235px));
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
   justify-content: center;
+  background-color: #e6eedd;
   transition: all 0.5s ease-out;
-  overflow: hidden;
   position: relative;
-  padding: 0px 20px;
+  padding: 0px 30px;
 
   &.hidden {
     visibility: none;
@@ -65,18 +65,12 @@
   }
 
   .song-result-item {
+    width: 100%;
     position: relative;
-    // display: flex;
-    // flex-direction: column;
-    // min-width: 0;
-    // background-clip: border-box;
     background-color: #fff;
     border: 1px solid #d5decb;
     border-radius: 0.25rem;
-    width: 18%;
-    max-width: 214px;
     max-height: 155px;
-    margin: 0px 15px 15px 15px;
     cursor: pointer;
     transition: all 0.25s ease-out;
 
