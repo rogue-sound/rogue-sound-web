@@ -18,11 +18,14 @@ const roomsSlice = createSlice({
       ...state,
       loading: true,
     }),
-    getRoomsSuccess: (state, { payload }) => ({
+    getRoomsSuccess: ({ skip, take, rooms, ...state }, { payload }) => ({
       ...state,
-      rooms: payload,
+      rooms: [...rooms, ...payload],
       loading: false,
       error: false,
+      skip: skip + take,
+      take,
+      hasMore: payload.length >= take,
     }),
     getRoomsError: state => ({
       ...state,
@@ -40,11 +43,20 @@ export const {
 
 export default roomsSlice.reducer;
 
-export const fetchRooms = () => async dispatch => {
+export const fetchRooms = (
+  style = '',
+  skip = 0,
+  take = 10
+) => async dispatch => {
   dispatch(getRoomsPending());
 
+  if (skip === 200) {
+    dispatch(getRoomsSuccess([]));
+    return;
+  }
+
   try {
-    const rooms = await getRooms();
+    const rooms = await getRooms(style, skip, take);
     dispatch(getRoomsSuccess(rooms));
   } catch (error) {
     dispatch(getRoomsError());

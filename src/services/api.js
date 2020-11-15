@@ -16,28 +16,69 @@ export const getRooms = (style = '', skip = 0, take = 10) => {
     take,
   };
   // return http.get(`${azure.apiUrl}/rooms${partialUrl}`, { params }).then(res => res.data);
+  // TODO: Remove fake id
+  const d = Date.now();
   return Promise.resolve([
-    { id: 1, name: 'Chill the fuck up', creator: 'bonavida', style: 'chill' },
-    { id: 2, name: 'Rogue Friday', creator: 'jmolla31', style: 'random' },
     {
-      id: 3,
+      id: `${d}_1`,
+      name: 'Chill the fuck up',
+      creator: 'bonavida',
+      style: 'chill',
+    },
+    {
+      id: `${d}_2`,
+      name: 'Rogue Friday',
+      creator: 'jmolla31',
+      style: 'random',
+    },
+    {
+      id: `${d}_3`,
       name: 'a e s t h e t i c',
       creator: 'joanguillen',
       style: 'party',
     },
     {
-      id: 4,
+      id: `${d}_4`,
       name: 'Yo solo quiero un jueves tranquilo',
       creator: 'MateoBeMo',
       style: 'chill',
     },
     {
-      id: 5,
+      id: `${d}_5`,
       name: 'Això ho pague jo (la llum)',
       creator: 'proteiN_as',
       style: 'random',
     },
-    { id: 6, name: 'Monos everywhere', creator: 'ApoloeXp', style: 'chill' },
+    {
+      id: `${d}_6`,
+      name: 'Monos everywhere',
+      creator: 'ApoloeXp',
+      style: 'chill',
+    },
+    {
+      id: `${d}_7`,
+      name: 'Random room #1',
+      creator: 'bonavida',
+      style: 'chill',
+    },
+    {
+      id: `${d}_8`,
+      name: 'Random room #2',
+      creator: 'jmolla31',
+      style: 'chill',
+    },
+    {
+      id: `${d}_9`,
+      name: 'Random room #3',
+      creator: 'joanguillen',
+      style: 'chill',
+    },
+    {
+      id: `${d}_10`,
+      name: 'Random room #4',
+      creator: 'MateoBemo',
+      style: 'chill',
+    },
   ]);
 };
 
