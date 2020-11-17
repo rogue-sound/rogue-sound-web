@@ -50,14 +50,17 @@ export const fetchRooms = (
 ) => async dispatch => {
   dispatch(getRoomsPending());
 
-  if (skip === 200) {
+  if (skip === 100) {
     dispatch(getRoomsSuccess([]));
     return;
   }
 
   try {
     const rooms = await getRooms(style, skip, take);
-    dispatch(getRoomsSuccess(rooms));
+    // TODO: Remove setTimeout
+    setTimeout(() => {
+      dispatch(getRoomsSuccess(rooms));
+    }, 1000);
   } catch (error) {
     dispatch(getRoomsError());
   }
