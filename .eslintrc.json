@@ -1,22 +1,40 @@
 {
   "rules": {
     "import/prefer-default-export": "off",
-    "react/require-default-props": [0],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/require-default-props": [
+      0
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "react/jsx-one-expression-per-line": "off",
     "import/no-unresolved": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/jsx-curly-newline": "off", 
+    "react/jsx-curly-newline": "off",
     "no-console": "off",
     "linebreak-style": 0,
     "prettier/prettier": "error",
-    "max-len": ["error", { "code": 150 }],
+    "max-len": [
+      "error",
+      {
+        "code": 150
+      }
+    ],
     "global-require": 0,
     "no-useless-escape": 0,
     "no-unused-expressions": "off",
     "no-underscore-dangle": 0,
     "no-param-reassign": 0,
-    "no-nested-ternary": 0
+    "no-nested-ternary": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   },
   "parser": "babel-eslint",
   "env": {
@@ -39,5 +57,8 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "plugins": ["react", "prettier"]
+  "plugins": [
+    "react",
+    "prettier"
+  ]
 }
