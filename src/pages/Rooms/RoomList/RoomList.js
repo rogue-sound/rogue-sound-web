@@ -44,7 +44,7 @@ const RoomList = (style = '') => {
       observer.current = new IntersectionObserver(observerHandler, {
         root: null,
         rootMargin: '0px',
-        threshold: 1.0,
+        threshold: 0.8,
       });
 
       // Observe the last item
@@ -72,9 +72,8 @@ const RoomList = (style = '') => {
       {loading &&
         Array(3)
           .fill(null)
-          .map((_, index) => (
-            <RoomListItemSkeleton key={`room_skeleton_${index}`} />
-          ))}
+          .map((_, index) => index)
+          .map(key => <RoomListItemSkeleton key={`room_skeleton_${key}`} />)}
       {error && <p>Cannot display rooms.</p>}
     </div>
   );
