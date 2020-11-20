@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 /** Components */
 import Layout from '@layout';
+import RoomsFilter from './RoomsFilter';
 import RoomList from './RoomList';
 import CreateRoom from './CreateRoom';
 /** Styles */
 import './Rooms.scss';
 
-const Rooms = () => {
-  const [style, setStyle] = useState('');
-
-  return (
-    <Layout>
-      <div className="rooms__container">
-        <RoomList style={style} />
-        <CreateRoom />
+const Rooms = () => (
+  <Layout>
+    <div className="rooms__container">
+      <div className="rooms__wrapper">
+        <RoomsFilter />
+        <RoomList />
       </div>
-    </Layout>
-  );
-};
+      <CreateRoom />
+    </div>
+  </Layout>
+);
 
 Rooms.propTypes = {};
 

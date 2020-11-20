@@ -8,6 +8,10 @@ const initialState = {
   skip: 0,
   take: 10,
   hasMore: true,
+  filters: {
+    query: '',
+    style: '',
+  },
 };
 
 const roomsSlice = createSlice({
@@ -32,7 +36,26 @@ const roomsSlice = createSlice({
       loading: false,
       error: true,
     }),
-    clearRooms: () => initialState,
+    clearRooms: state => ({
+      ...initialState,
+      filters: {
+        ...state.filters,
+      },
+    }),
+    setQueryFilter: (state, { payload }) => ({
+      ...state,
+      filters: {
+        ...state.filters,
+        query: payload,
+      },
+    }),
+    setStyleFilter: (state, { payload }) => ({
+      ...state,
+      filters: {
+        ...state.filters,
+        style: payload,
+      },
+    }),
   },
 });
 
@@ -41,12 +64,14 @@ export const {
   getRoomsSuccess,
   getRoomsError,
   clearRooms,
+  setQueryFilter,
+  setStyleFilter,
 } = roomsSlice.actions;
 
 export default roomsSlice.reducer;
 
 export const fetchRooms = (
-  style = '',
+  filters = {},
   skip = 0,
   take = 10
 ) => async dispatch => {
@@ -58,7 +83,7 @@ export const fetchRooms = (
   }
 
   try {
-    const rooms = await getRooms(style, skip, take);
+    const rooms = await getRooms(filters, skip, take);
     // TODO: Remove setTimeout
     setTimeout(() => {
       dispatch(getRoomsSuccess(rooms));

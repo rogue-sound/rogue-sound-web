@@ -9,9 +9,10 @@ export const addSong = songRequestModel =>
 
 export const clearQueue = () => http.get(`${azure.apiUrl}/clearQueue`);
 
-export const getRooms = (style = '', skip = 0, take = 10) => {
+export const getRooms = ({ query, style } = {}, skip = 0, take = 10) => {
   const partialUrl = style ? `/${style}` : style;
   const params = {
+    ...(query && { query }),
     skip,
     take,
   };

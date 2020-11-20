@@ -7,8 +7,11 @@ const InputContainer = styled.div`
 `;
 
 const InputElement = styled.input`
+  font-family: 'Raleway', sans-serif;
   width: 100%;
   padding: ${props => (props.padding ? props.padding : '0.375rem 0.75rem')};
+  font-size: 14px;
+  font-weight: 500;
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;

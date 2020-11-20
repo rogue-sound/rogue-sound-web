@@ -9,16 +9,22 @@ import RoomListItemSkeleton from './RoomListItemSkeleton';
 /** Styles */
 import './RoomList.scss';
 
-const RoomList = (style = '') => {
-  const { rooms, loading, error, skip, take, hasMore } = useSelector(
-    state => state.rooms
-  );
+const RoomList = () => {
+  const {
+    rooms,
+    loading,
+    error,
+    skip,
+    take,
+    hasMore,
+    filters: { query, style },
+  } = useSelector(state => state.rooms);
   const observer = useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(fetchRooms(style, skip, take));
+    dispatch(fetchRooms({ query, style }, skip, take));
   }, [dispatch]);
 
   const goToRoom = id => {
@@ -28,10 +34,10 @@ const RoomList = (style = '') => {
   const observerHandler = useCallback(
     entries => {
       if (entries[0].isIntersecting && hasMore) {
-        dispatch(fetchRooms(style, skip, take));
+        dispatch(fetchRooms({ query, style }, skip, take));
       }
     },
-    [hasMore, style, skip, take]
+    [hasMore, query, style, skip, take]
   );
 
   const lastRoomRef = useCallback(
