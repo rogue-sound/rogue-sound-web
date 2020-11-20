@@ -16,7 +16,7 @@ const LoginButton = () => {
   };
 
   return (
-    <Button type="login" onClick={loginHandler}>
+    <Button theme="login" onClick={loginHandler}>
       {intl.formatMessage({
         id: 'app.layout.Header.LoginButton',
       })}

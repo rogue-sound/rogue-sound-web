@@ -3,8 +3,7 @@ import styled from 'styled-components';
 const InputContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
 `;
 
 const InputElement = styled.input`
@@ -25,7 +24,12 @@ const InputElement = styled.input`
 `;
 
 const InputLabel = styled.label`
-  margin-right: 8px;
+  margin-bottom: 7px;
 `;
 
-export { InputContainer, InputElement, InputLabel };
+const InputErrorMessage = styled.span`
+  color: red;
+  margin-top: 7px;
+`;
+
+export { InputContainer, InputElement, InputLabel, InputErrorMessage };

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getRooms } from '@services/api';
+import { getRooms, createRoom as createRoomAPI } from '@services/api';
 
 const initialState = {
   rooms: [],
@@ -32,6 +32,7 @@ const roomsSlice = createSlice({
       loading: false,
       error: true,
     }),
+    clearRooms: () => initialState,
   },
 });
 
@@ -39,6 +40,7 @@ export const {
   getRoomsPending,
   getRoomsSuccess,
   getRoomsError,
+  clearRooms,
 } = roomsSlice.actions;
 
 export default roomsSlice.reducer;
@@ -63,5 +65,15 @@ export const fetchRooms = (
     }, 1000);
   } catch (error) {
     dispatch(getRoomsError());
+  }
+};
+
+export const createRoom = room => async dispatch => {
+  try {
+    await createRoomAPI(room);
+    dispatch(clearRooms());
+    dispatch(fetchRooms()); // TODO: Pass "style" param to fetchRooms whenever we add the filters to fetch rooms
+  } catch (error) {
+    console.error(error);
   }
 };

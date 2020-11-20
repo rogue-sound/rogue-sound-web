@@ -38,7 +38,7 @@ export const getRooms = (style = '', skip = 0, take = 10) => {
       name: 'a e s t h e t i c',
       creator: 'joanguillen',
       style: 'party',
-      image: 'https://roguesounddata.blob.core.windows.net/rooms/room3.jpg',
+      image: 'https://roguesounddata.blob.core.windows.net/styles/style2.jpg',
     },
     {
       id: `${d}_4`,
@@ -63,33 +63,39 @@ export const getRooms = (style = '', skip = 0, take = 10) => {
     },
     {
       id: `${d}_7`,
-      name: 'Random room #1',
-      creator: 'bonavida',
-      style: 'chill',
+      name: 'Muchachada Nui',
+      creator: 'gaussnit',
+      style: 'random',
       image: 'https://roguesounddata.blob.core.windows.net/rooms/room7.jpg',
     },
     {
       id: `${d}_8`,
-      name: 'Random room #2',
-      creator: 'jmolla31',
+      name: 'Random room #1',
+      creator: 'bonavida',
       style: 'chill',
       image: 'https://roguesounddata.blob.core.windows.net/rooms/room8.jpg',
     },
     {
       id: `${d}_9`,
-      name: 'Random room #3',
-      creator: 'joanguillen',
+      name: 'Random room #2',
+      creator: 'jmolla31',
       style: 'chill',
       image: 'https://roguesounddata.blob.core.windows.net/rooms/room9.jpg',
     },
     {
       id: `${d}_10`,
-      name: 'Random room #4',
-      creator: 'MateoBeMo',
+      name: 'Random room #3',
+      creator: 'joanguillen',
       style: 'random',
-      image: 'https://roguesounddata.blob.core.windows.net/rooms/room5.jpg',
+      image: 'https://roguesounddata.blob.core.windows.net/styles/style1.jpg',
     },
   ]);
 };
 
 export const getRoomStyles = () => http.get(`${azure.apiUrl}/rooms/styles`);
+
+// export const createRoom = room =>
+//   http.post(`${azure.apiUrl}/createRoom`, room).then(res => res.data);
+
+// TODO: Uncomment above code and delete promise
+export const createRoom = room => Promise.resolve(room);

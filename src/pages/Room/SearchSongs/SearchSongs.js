@@ -156,7 +156,7 @@ const SearchSongs = () => {
         <FontAwesomeIcon icon="search" />
         <Input
           value={song}
-          // name="song-search"
+          name="song_search_input"
           placeholder={intl.formatMessage({
             id: 'app.pages.Room.SearchSongs.SearchForSongs',
           })}
