@@ -95,8 +95,14 @@ export const getRooms = ({ query, style } = {}, skip = 0, take = 10) => {
 
 export const getRoomStyles = () => http.get(`${azure.apiUrl}/rooms/styles`);
 
-// export const createRoom = room =>
-//   http.post(`${azure.apiUrl}/createRoom`, room).then(res => res.data);
+// export const createRoom = (room, { username, displayName }) => {
+//   const payload = {
+//     room,
+//     username,
+//     displayName,
+//   };
+//   return http.post(`${azure.apiUrl}/createRoom`, payload).then(res => res.data);
+// }
 
 // TODO: Uncomment above code and delete promise
 export const createRoom = room => Promise.resolve(room);

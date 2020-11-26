@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 /** Actions */
 import { createRoom } from '@context/rooms';
 /** Common components */
@@ -17,6 +17,7 @@ const styles = [
 ];
 
 const CreateRoom = () => {
+  const { username, displayName } = useSelector(state => state.me);
   const dispatch = useDispatch();
   const { register, handleSubmit, watch, setValue, reset, errors } = useForm();
   const style = watch('style'); // Necessary to reset style custom form field
@@ -30,7 +31,7 @@ const CreateRoom = () => {
 
     if (errors && Object.keys(errors).length) return;
 
-    dispatch(createRoom(data));
+    dispatch(createRoom(data, { username, displayName }));
 
     reset();
   };

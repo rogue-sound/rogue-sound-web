@@ -93,9 +93,9 @@ export const fetchRooms = (
   }
 };
 
-export const createRoom = room => async dispatch => {
+export const createRoom = (room, partialUserData) => async dispatch => {
   try {
-    await createRoomAPI(room);
+    await createRoomAPI(room, partialUserData);
     dispatch(clearRooms());
     dispatch(fetchRooms()); // TODO: Pass "style" param to fetchRooms whenever we add the filters to fetch rooms
   } catch (error) {

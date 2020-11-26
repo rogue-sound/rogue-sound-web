@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 /** Components */
 import Layout from '@layout';
 import RoomsFilter from './RoomsFilter';
@@ -7,17 +8,21 @@ import CreateRoom from './CreateRoom';
 /** Styles */
 import './Rooms.scss';
 
-const Rooms = () => (
-  <Layout>
-    <div className="rooms__container">
-      <div className="rooms__wrapper">
-        <RoomsFilter />
-        <RoomList />
+const Rooms = () => {
+  const { token } = useSelector(state => state.auth);
+
+  return (
+    <Layout>
+      <div className="rooms__container">
+        <div className="rooms__wrapper">
+          <RoomsFilter />
+          <RoomList />
+        </div>
+        {token && <CreateRoom />}
       </div>
-      <CreateRoom />
-    </div>
-  </Layout>
-);
+    </Layout>
+  );
+};
 
 Rooms.propTypes = {};
 
