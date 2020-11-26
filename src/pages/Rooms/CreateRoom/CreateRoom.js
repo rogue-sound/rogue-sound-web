@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
@@ -11,14 +12,8 @@ import Input from '@common/Input';
 /** Styles */
 import './CreateRoom.scss';
 
-const styles = [
-  { id: 'chill', name: 'Chill' },
-  { id: 'random', name: 'Random' },
-  { id: 'party', name: 'Party' },
-];
-
-const CreateRoom = () => {
-  const { username, displayName } = useSelector(state => state.me);
+const CreateRoom = ({ styles }) => {
+  const { username, displayName, avatarUrl } = useSelector(state => state.me);
   const { register, handleSubmit, watch, setValue, reset, errors } = useForm();
   const style = watch('style'); // Necessary to reset style custom form field
   const dispatch = useDispatch();
@@ -34,7 +29,9 @@ const CreateRoom = () => {
     if (errors && Object.keys(errors).length) return;
 
     console.log('[onSubmit]');
-    dispatch(createRoom(data, { username, displayName }));
+    dispatch(
+      createRoom(data, { id: username, displayName, avatar: avatarUrl })
+    );
 
     reset();
   };
@@ -95,6 +92,8 @@ const CreateRoom = () => {
   );
 };
 
-CreateRoom.propTypes = {};
+CreateRoom.propTypes = {
+  styles: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default CreateRoom;

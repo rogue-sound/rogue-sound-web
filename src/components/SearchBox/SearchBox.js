@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Hooks */
@@ -17,9 +17,19 @@ const SearchBox = ({
 }) => {
   const [query, setQuery] = useState(defaultValue);
   const debouncedQuery = useDebounce(query, debounce);
+  const mountedRef = useRef(false);
 
   useEffect(() => {
-    onChange && onChange(debouncedQuery);
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    mountedRef.current && onChange && onChange(debouncedQuery);
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+    }
   }, [debouncedQuery]);
 
   const handleChangeQuery = ({ target: { value } }) => {
