@@ -9,6 +9,8 @@ import {
   LandingContainer,
   LandingHeader,
   LandingFooter,
+  LandingFooterLine,
+  LandingFooterHighLight,
   LandingTitleWrapper,
   LandingTitle,
   LandingDescription,
@@ -33,7 +35,20 @@ const Landing = () => {
         </LandingTitleWrapper>
         <LandingMenu />
       </LandingHeader>
-      <LandingFooter>Landing part 2</LandingFooter>
+      <LandingFooter>
+        <LandingFooterLine>
+          Over <LandingFooterHighLight>666,666</LandingFooterHighLight> songs
+          played
+        </LandingFooterLine>
+        <LandingFooterLine>
+          More than <LandingFooterHighLight>7</LandingFooterHighLight> users
+          registered
+        </LandingFooterLine>
+        <LandingFooterLine>
+          <LandingFooterHighLight>1,999,998</LandingFooterHighLight> minutes of
+          music listened
+        </LandingFooterLine>
+      </LandingFooter>
     </LandingContainer>
   );
 };

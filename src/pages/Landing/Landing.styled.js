@@ -26,11 +26,23 @@ const LandingHeader = styled(LandingPartialContainer)`
 
 const LandingFooter = styled(LandingPartialContainer)`
   height: 40%;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   background-color: #1d1d35;
+`;
+
+const LandingFooterLine = styled.div`
   font-size: 16px;
   color: #e6eedd;
+
+  &:not(:last-of-type) {
+    margin-bottom: 5px;
+  }
+`;
+
+const LandingFooterHighLight = styled.span`
+  color: #01ab6d;
+  font-weight: 600;
 `;
 
 const LandingTitleWrapper = styled.div`
@@ -61,6 +73,8 @@ export {
   LandingPartialContainer,
   LandingHeader,
   LandingFooter,
+  LandingFooterLine,
+  LandingFooterHighLight,
   LandingTitleWrapper,
   LandingTitle,
   LandingDescription,

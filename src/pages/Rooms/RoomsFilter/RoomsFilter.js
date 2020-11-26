@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 /** Actions */
 import {
   setQueryFilter,
@@ -16,6 +17,7 @@ const RoomsFilter = () => {
   const [style, setStyle] = useState('');
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
+  const intl = useIntl();
 
   const handleChangeQuery = newQuery => {
     setQuery(newQuery);
@@ -35,7 +37,9 @@ const RoomsFilter = () => {
     <div className="rooms__filters">
       <SearchBox
         name="room_query"
-        placeholder="Search room"
+        placeholder={intl.formatMessage({
+          id: 'app.pages.Rooms.RoomsFilter.RoomsFilterSearchBoxPlaceholder',
+        })}
         debounce={1000}
         onChange={handleChangeQuery}
       />

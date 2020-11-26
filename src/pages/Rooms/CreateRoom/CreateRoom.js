@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 /** Actions */
 import { createRoom } from '@context/rooms';
 /** Common components */
@@ -18,9 +19,10 @@ const styles = [
 
 const CreateRoom = () => {
   const { username, displayName } = useSelector(state => state.me);
-  const dispatch = useDispatch();
   const { register, handleSubmit, watch, setValue, reset, errors } = useForm();
   const style = watch('style'); // Necessary to reset style custom form field
+  const dispatch = useDispatch();
+  const intl = useIntl();
 
   const handleStyleChange = selectedStyle => {
     setValue('style', selectedStyle, { shouldValidate: true });
@@ -37,19 +39,36 @@ const CreateRoom = () => {
   };
 
   useEffect(() => {
-    register({ name: 'style' }, { required: 'Style is required.' });
+    register(
+      { name: 'style' },
+      {
+        required: intl.formatMessage({
+          id: 'app.pages.Rooms.CreateRoom.CreateRoomFormStyleRequiredText',
+        }),
+      }
+    );
   }, [register]);
 
   return (
     <div className="create-room__container">
-      <h1 className="create-room__title">Create a room</h1>
+      <h1 className="create-room__title">
+        {intl.formatMessage({
+          id: 'app.pages.Rooms.CreateRoom.CreateRoomFormTitle',
+        })}
+      </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="create-room__form">
         <div className="create-room__name">
           <Input
-            ref={register({ required: 'A name is required.' })}
+            ref={register({
+              required: intl.formatMessage({
+                id: 'app.pages.Rooms.CreateRoom.CreateRoomFormNameRequiredText',
+              }),
+            })}
             name="name"
             className="create-room__input"
-            placeholder="Room name"
+            placeholder={intl.formatMessage({
+              id: 'app.pages.Rooms.CreateRoom.CreateRoomNamePlaceholder',
+            })}
             autoComplete="off"
             error={errors.name}
           />
@@ -58,13 +77,17 @@ const CreateRoom = () => {
           <Dropdown
             options={styles}
             value={style}
-            placeholder="Select a style"
+            placeholder={intl.formatMessage({
+              id: 'app.pages.Rooms.CreateRoom.CreateRoomStylePlaceholder',
+            })}
             error={errors.style}
             onChange={handleStyleChange}
           />
         </div>
         <Button theme="create" type="submit">
-          Create
+          {intl.formatMessage({
+            id: 'app.pages.Rooms.CreateRoom.CreateRoomButtonText',
+          })}
         </Button>
       </form>
     </div>

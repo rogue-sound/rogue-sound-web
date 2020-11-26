@@ -16,5 +16,15 @@
   "app.pages.Room.SearchSongs.SearchForSongs": "Search for songs",
   "app.pages.Room.SearchSongs.SearchForSongsNoResultsText": "No results found",
   "app.pages.Room.SearchSongs.Searching": "Searching...",
-  "app.pages.Landing.Description": "Rogue Sound is a social music sharing website where you can play music with friends and listen to it in real time thanks to the Spotify API."
+  "app.pages.Landing.Description": "Rogue Sound is a social music sharing website where you can play music with friends and listen to it in real time thanks to the Spotify API.",
+  "app.pages.Rooms.CreateRoom.CreateRoomFormTitle": "Create a room",
+  "app.pages.Rooms.CreateRoom.CreateRoomFormNameRequiredText": "A name is required.",
+  "app.pages.Rooms.CreateRoom.CreateRoomFormStyleRequiredText": "Style is required.",
+  "app.pages.Rooms.CreateRoom.CreateRoomNamePlaceholder": "Room name",
+  "app.pages.Rooms.CreateRoom.CreateRoomStylePlaceholder": "Select a style",
+  "app.pages.Rooms.CreateRoom.CreateRoomButtonText": "Create",
+  "app.pages.Rooms.RoomsFilter.RoomsFilterSearchBoxPlaceholder": "Search room",
+  "app.pages.Landing.LandingMenu.ExploreRoomsMenuItemLabel": "Explore rooms",
+  "app.pages.Landing.LandingMenu.AboutUsMenuItemLabel": "About us",
+  "app.pages.Landing.LandingMenu.FAQMenuItemLabel": "FAQ"
 }
