@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +10,7 @@ import CurrentSong from './CurrentSong';
 
 import './Play.scss';
 
-const Play = () => {
+const Play = ({ room: { id: roomId } }) => {
   const intl = useIntl();
   const [remaining, setRemaining] = useState(null);
   const remainingRef = useRef(remaining);
@@ -25,7 +26,7 @@ const Play = () => {
 
   const handleJoin = async (smart = false) => {
     try {
-      const { current, songs } = await getCurrent();
+      const { current, songs } = await getCurrent(roomId);
       if (smart || (!remainingRef.current && current)) {
         const song = {
           uris: [current.songId],
@@ -124,6 +125,12 @@ const Play = () => {
   );
 };
 
-Play.propTypes = {};
+Play.propTypes = {
+  room: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    creator: PropTypes.string,
+  }),
+};
 
 export default Play;

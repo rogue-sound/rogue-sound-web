@@ -1,13 +1,13 @@
 import { azure } from '@config';
 import http from './http';
 
-export const getCurrent = () =>
-  http.get(`${azure.apiUrl}/getCurrent`).then(res => res.data);
+export const getCurrent = roomId =>
+  http
+    .get(`${azure.apiUrl}/getCurrent`, { params: { roomId } })
+    .then(res => res.data);
 
 export const addSong = songRequestModel =>
   http.post(`${azure.apiUrl}/addSong`, songRequestModel).then(res => res.data);
-
-export const clearQueue = () => http.get(`${azure.apiUrl}/clearQueue`);
 
 export const getRooms = ({ query, style } = {}, skip = 0, take = 10) => {
   const partialUrl = style ? `/${style}` : style;
@@ -106,3 +106,8 @@ export const getRoomStyles = () => http.get(`${azure.apiUrl}/rooms/styles`);
 
 // TODO: Uncomment above code and delete promise
 export const createRoom = room => Promise.resolve(room);
+
+export const getRoomDetails = id =>
+  Promise.resolve({ id, name: 'Room', creator: 'bonavida' });
+
+// export const getRoomDetails = id => http.get(`${azure.apiUrl}/room/${id}`);

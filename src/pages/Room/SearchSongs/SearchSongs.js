@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useIntl } from 'react-intl';
@@ -12,7 +13,7 @@ import SongResult from './SongResult';
 
 import './SearchSongs.scss';
 
-const SearchSongs = () => {
+const SearchSongs = ({ room: { id: roomId } }) => {
   const intl = useIntl();
   const [expanded, setExpanded] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -57,7 +58,7 @@ const SearchSongs = () => {
 
   const handleSongSelect = async selectedSong => {
     try {
-      const result = await addSong({ ...selectedSong, user });
+      const result = await addSong({ ...selectedSong, user, roomId });
       console.log('Song added to the list');
       dispatch(setQueue(result.songs));
     } catch {
@@ -174,6 +175,12 @@ const SearchSongs = () => {
   );
 };
 
-SearchSongs.propTypes = {};
+SearchSongs.propTypes = {
+  room: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    creator: PropTypes.string,
+  }),
+};
 
 export default SearchSongs;
