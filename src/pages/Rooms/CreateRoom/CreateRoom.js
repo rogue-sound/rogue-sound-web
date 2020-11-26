@@ -33,6 +33,7 @@ const CreateRoom = () => {
 
     if (errors && Object.keys(errors).length) return;
 
+    console.log('[onSubmit]');
     dispatch(createRoom(data, { username, displayName }));
 
     reset();

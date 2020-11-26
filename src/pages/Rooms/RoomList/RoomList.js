@@ -24,6 +24,7 @@ const RoomList = () => {
   const history = useHistory();
 
   useEffect(() => {
+    console.log('[useEffect]');
     dispatch(fetchRooms({ query, style }, skip, take));
   }, [dispatch]);
 
@@ -34,6 +35,8 @@ const RoomList = () => {
   const observerHandler = useCallback(
     entries => {
       if (entries[0].isIntersecting && hasMore) {
+        console.log('[observerHandler]');
+
         dispatch(fetchRooms({ query, style }, skip, take));
       }
     },
