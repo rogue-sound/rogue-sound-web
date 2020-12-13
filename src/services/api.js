@@ -40,4 +40,5 @@ export const createRoom = ({ name, style }, { id, displayName, avatar }) => {
 // export const getRoomDetails = id =>
 //   Promise.resolve({ id, name: 'Room', creator: 'bonavida' });
 
-export const getRoomDetails = id => http.get(`${azure.lobbyUrl}/rooms/${id}`).then(res => res.data);
+export const getRoomDetails = id =>
+  http.get(`${azure.lobbyUrl}/rooms/${id}`).then(res => res.data);
