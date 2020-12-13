@@ -28,8 +28,8 @@ const RoomList = () => {
     dispatch(fetchRooms({ query, style }, skip, take));
   }, [dispatch]);
 
-  const goToRoom = id => {
-    history.push(`/rooms/${id}`);
+  const goToRoom = (roomId, styleId) => {
+    history.push(`/rooms/${roomId}.${styleId}`);
   };
 
   const observerHandler = useCallback(

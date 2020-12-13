@@ -26,5 +26,6 @@
   "app.pages.Rooms.RoomsFilter.RoomsFilterSearchBoxPlaceholder": "Buscar sala",
   "app.pages.Landing.LandingMenu.ExploreRoomsMenuItemLabel": "Explorar salas",
   "app.pages.Landing.LandingMenu.AboutUsMenuItemLabel": "Sobre Rogue Sound",
-  "app.pages.Landing.LandingMenu.FAQMenuItemLabel": "Preguntas frecuentes"
+  "app.pages.Landing.LandingMenu.FAQMenuItemLabel": "Preguntas frecuentes",
+  "app.common.Dropdown.DropdownEmptyDataText": "No hay datos que mostrar"
 }

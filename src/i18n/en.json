@@ -26,5 +26,6 @@
   "app.pages.Rooms.RoomsFilter.RoomsFilterSearchBoxPlaceholder": "Search room",
   "app.pages.Landing.LandingMenu.ExploreRoomsMenuItemLabel": "Explore rooms",
   "app.pages.Landing.LandingMenu.AboutUsMenuItemLabel": "About us",
-  "app.pages.Landing.LandingMenu.FAQMenuItemLabel": "FAQ"
+  "app.pages.Landing.LandingMenu.FAQMenuItemLabel": "FAQ",
+  "app.common.Dropdown.DropdownEmptyDataText": "No data to display"
 }
