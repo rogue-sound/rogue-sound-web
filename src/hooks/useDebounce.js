@@ -5,6 +5,8 @@ const useDebounce = (value = '', delay = 0) => {
   const timeoutRef = useRef(null);
 
   useEffect(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
     // Set debouncedValue to value passed in after the specified delay
     timeoutRef.current = setTimeout(() => {
       setDebouncedValue(value);
