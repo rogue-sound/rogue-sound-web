@@ -5,6 +5,7 @@ import auth from '@context/auth';
 import playing from '@context/playing';
 import spotify from '@context/spotify';
 import languageSettings from '@context/languageSettings';
+import rooms from '@context/rooms';
 
 const rootReducer = combineReducers({
   me,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   playing,
   spotify,
   languageSettings,
+  rooms,
 });
 
 const store = configureStore({

@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
-const Component = styled.div`
-  display: flex;
-  flex-direction: column;
+const LayoutContainer = styled.div`
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   height: 100%;
-  color: blue;
 `;
 
 /**
  * 138px = 64px Header + 10px ProgressBar + 64px Footer
  */
-const ContainerWrapper = styled.div`
+const LayoutContent = styled.div`
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  min-height: calc(100vh - 138px);
+  flex-direction: column;
   height: 100%;
+  overflow: hidden;
 `;
 
-export { Component, ContainerWrapper };
+export { LayoutContainer, LayoutContent };

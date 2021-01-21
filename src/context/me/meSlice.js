@@ -3,6 +3,7 @@ import { getMe } from '@services/spotify';
 import { clearTokenAction } from '@context/auth';
 
 const initialState = {
+  username: '',
   displayName: '',
   avatarUrl: '',
   country: '',
@@ -27,12 +28,15 @@ export default meSlice.reducer;
 export const fetchMeAction = () => async dispatch => {
   try {
     const me = await getMe();
+    const { id, display_name: displayName, images, country } = me || {};
+
     const meState = {
-      displayName: (me && me.display_name) || '',
-      avatarUrl:
-        (me && me.images && me.images.length > 0 && me.images[0].url) || '',
-      country: (me && me.country) || '',
+      username: id || '',
+      displayName: displayName || '',
+      avatarUrl: (images && images.length && images[0].url) || '',
+      country: country || '',
     };
+
     dispatch(getMeSuccess(meState));
   } catch (err) {
     const {

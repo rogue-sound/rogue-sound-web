@@ -1,4 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faAlignJustify,
   faCompactDisc,
@@ -10,12 +11,19 @@ import {
   faSearch,
   faAngleRight,
   faAngleLeft,
+  faAngleDown,
   faSignOutAlt,
   faMobileAlt,
   faCommentDots,
   faHeart,
   faTimes,
+  faPortrait,
 } from '@fortawesome/free-solid-svg-icons';
+
+import {
+  faListAlt,
+  faQuestionCircle,
+} from '@fortawesome/free-regular-svg-icons';
 
 library.add(
   faAlignJustify,
@@ -28,9 +36,14 @@ library.add(
   faSearch,
   faAngleRight,
   faAngleLeft,
+  faAngleDown,
   faSignOutAlt,
   faMobileAlt,
   faCommentDots,
   faHeart,
-  faTimes
+  faTimes,
+  faListAlt,
+  faPortrait,
+  faQuestionCircle,
+  fab
 );
