@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 /** Services */
 import http from '@services/http';
-import { login } from '@services/auth';
 /** Actions */
-import { setTokenAction, logoutAction } from '@context/auth';
+import { logoutAction } from '@context/auth';
 import { fetchMeAction } from '@context/me';
 import { fetchDevicesAction } from '@context/spotify';
-/** Common components */
-import Button from '@common/Button';
-/** Utils */
-import { retrieveSpotifyToken } from '@utils';
 /** Components */
+import LoginButton from '@components/LoginButton';
 import DeviceSelector from './DeviceSelector';
 import UserPopover from './UserPopover';
 /** Styled components */
@@ -27,20 +24,9 @@ const Header = () => {
   const { token } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  const loginHandler = () => {
-    login();
-  };
-
   const logoutHandler = () => {
     dispatch(logoutAction());
   };
-
-  useEffect(() => {
-    if (window.location.hash) {
-      const _token = retrieveSpotifyToken();
-      _token && dispatch(setTokenAction(_token));
-    }
-  }, []);
 
   useEffect(() => {
     if (token) {
@@ -52,16 +38,12 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <HeaderLogo>Rogue Sound</HeaderLogo>
+      <Link to="/">
+        <HeaderLogo>Rogue Sound</HeaderLogo>
+      </Link>
       <HeaderActionsWrapper>
         {token && <DeviceSelector intl={intl} />}
-        {!token && (
-          <Button type="login" onClick={loginHandler}>
-            {intl.formatMessage({
-              id: 'app.layout.Header.LoginButton',
-            })}
-          </Button>
-        )}
+        {!token && <LoginButton />}
         {token && <UserPopover logoutHandler={logoutHandler} />}
       </HeaderActionsWrapper>
     </HeaderWrapper>

@@ -20,7 +20,7 @@ const UserPopover = ({ logoutHandler }) => {
       </PopoverTrigger>
       <div>
         <LanguageSelector />
-        <Button type="logout" onClick={logoutHandler}>
+        <Button theme="logout" onClick={logoutHandler}>
           {intl.formatMessage({
             id: 'app.layout.Header.LogoutButton',
           })}
