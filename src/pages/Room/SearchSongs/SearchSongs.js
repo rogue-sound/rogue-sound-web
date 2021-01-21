@@ -59,7 +59,6 @@ const SearchSongs = ({ room: { id: roomId } }) => {
   const handleSongSelect = async selectedSong => {
     try {
       const result = await addSong({ ...selectedSong, user, roomId });
-      console.log('Song added to the list');
       dispatch(setQueue(result.songs));
     } catch {
       console.log('There was a problem adding the song to the list');

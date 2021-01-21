@@ -28,7 +28,6 @@ const CreateRoom = ({ styles }) => {
 
     if (errors && Object.keys(errors).length) return;
 
-    console.log('[onSubmit]');
     dispatch(
       createRoom(data, { id: username, displayName, avatar: avatarUrl })
     );
