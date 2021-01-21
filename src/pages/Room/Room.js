@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 /** Services */
 import { getRoomDetails } from '@services/api';
+import { pause } from '@services/spotify';
 /** Components */
 import Layout from '@layout';
 import Sidebar from '@layout/Sidebar';
@@ -11,6 +12,8 @@ import Footer from '@layout/Footer';
 import SearchSongs from './SearchSongs';
 import Play from './Play';
 import RoomHead from './RoomHead';
+/** Context */
+import { reset } from '../../context/playing';
 /** Styled Component */
 import { RoomContainer, RoomContent, RoomNotLoggedIn } from './room.styled';
 
@@ -20,6 +23,7 @@ const Room = () => {
   const { id } = useParams();
   const { token } = useSelector(state => state.auth);
   const { current } = useSelector(state => state.playing);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchRoomDetails = async () => {
@@ -33,6 +37,13 @@ const Room = () => {
 
     fetchRoomDetails();
   }, [id]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+      pause();
+    };
+  }, []);
 
   return (
     <Layout>
