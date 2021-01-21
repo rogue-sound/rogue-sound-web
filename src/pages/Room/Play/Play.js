@@ -10,7 +10,7 @@ import CurrentSong from './CurrentSong';
 
 import './Play.scss';
 
-const Play = ({ room: { id: roomId } }) => {
+const Play = ({ room: { id: roomId, style: roomStyle } }) => {
   const intl = useIntl();
   const [remaining, setRemaining] = useState(null);
   const remainingRef = useRef(remaining);
@@ -26,7 +26,7 @@ const Play = ({ room: { id: roomId } }) => {
 
   const handleJoin = async (smart = false) => {
     try {
-      const { current, songs } = await getCurrent(roomId);
+      const { current, songs } = await getCurrent(`${roomId}${roomStyle}`);
       if (smart || (!remainingRef.current && current)) {
         const song = {
           uris: [current.songId],
@@ -130,6 +130,7 @@ Play.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     creator: PropTypes.string,
+    style: PropTypes.number,
   }),
 };
 
