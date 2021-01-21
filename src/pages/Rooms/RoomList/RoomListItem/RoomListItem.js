@@ -18,7 +18,7 @@ const RoomListItem = forwardRef(
     <div
       ref={ref}
       className="room__item"
-      onClick={() => onClick(id)}
+      onClick={() => onClick(id, style.id)}
       style={{ backgroundImage: img ? `url(${img})` : `url(${randomImg()})` }}
     >
       <div className="room__details">

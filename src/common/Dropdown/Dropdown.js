@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Hooks */
 import useClickOutside from '@hooks/useClickOutside';
 /** Styles */
 import './Dropdown.scss';
 
-const DropdownEmpty = () => <span>There is no option to display</span>;
+const DropdownEmpty = ({ text }) => (
+  <li className="dropdown__option">{text}</li>
+);
 
 const Dropdown = ({
   options,
@@ -23,6 +26,7 @@ const Dropdown = ({
   const [isActive, setIsActive] = useClickOutside(dropdownRef, false);
   const [selectedValue, setSelectedValue] = useState(value);
   const [dropdownWidth, setDropdownWidth] = useState(0);
+  const intl = useIntl();
 
   useEffect(() => {
     if (triggerRef.current) {
@@ -88,9 +92,9 @@ const Dropdown = ({
             className="dropdown__options-wrapper"
             style={dropdownWidth ? { width: `${dropdownWidth}px` } : undefined}
           >
-            {options.length ? (
-              <ul className="dropdown__options">
-                {options.map(option => (
+            <ul className="dropdown__options">
+              {options.length ? (
+                options.map(option => (
                   <li
                     key={option[valueProperty]}
                     className={`dropdown__option ${
@@ -102,11 +106,15 @@ const Dropdown = ({
                   >
                     {option[textProperty]}
                   </li>
-                ))}
-              </ul>
-            ) : (
-              <DropdownEmpty />
-            )}
+                ))
+              ) : (
+                <DropdownEmpty
+                  text={intl.formatMessage({
+                    id: 'app.common.Dropdown.DropdownEmptyDataText',
+                  })}
+                />
+              )}
+            </ul>
           </div>
         )}
       </div>
@@ -128,6 +136,10 @@ Dropdown.propTypes = {
   error: PropTypes.shape({
     message: PropTypes.string,
   }),
+};
+
+DropdownEmpty.propTypes = {
+  text: PropTypes.string,
 };
 
 export default Dropdown;

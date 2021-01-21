@@ -9,7 +9,8 @@ import {
   LandingContainer,
   LandingHeader,
   LandingFooter,
-  LandingFooterLine,
+  LandingFooterStats,
+  LandingFooterStat,
   LandingFooterHighLight,
   LandingTitleWrapper,
   LandingTitle,
@@ -36,18 +37,20 @@ const Landing = () => {
         <LandingMenu />
       </LandingHeader>
       <LandingFooter>
-        <LandingFooterLine>
-          Over <LandingFooterHighLight>666,666</LandingFooterHighLight> songs
-          played
-        </LandingFooterLine>
-        <LandingFooterLine>
-          More than <LandingFooterHighLight>7</LandingFooterHighLight> users
-          registered
-        </LandingFooterLine>
-        <LandingFooterLine>
-          <LandingFooterHighLight>1,999,998</LandingFooterHighLight> minutes of
-          music listened
-        </LandingFooterLine>
+        <LandingFooterStats>
+          <LandingFooterStat>
+            Over <LandingFooterHighLight>666,666</LandingFooterHighLight> songs
+            played
+          </LandingFooterStat>
+          <LandingFooterStat>
+            More than <LandingFooterHighLight>7</LandingFooterHighLight> users
+            registered
+          </LandingFooterStat>
+          <LandingFooterStat>
+            <LandingFooterHighLight>1,999,998</LandingFooterHighLight> minutes
+            of music listened
+          </LandingFooterStat>
+        </LandingFooterStats>
       </LandingFooter>
     </LandingContainer>
   );
