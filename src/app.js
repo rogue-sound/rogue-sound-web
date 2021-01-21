@@ -12,6 +12,7 @@ import { retrieveSpotifyToken, redirectFromSessionStorage } from '@utils';
 import '@utils/FontAwesomeLibrary';
 /** Components */
 import { Routes } from './routes/routes';
+import MainHead from './components/MainHead';
 /** Themes */
 import darkTheme from './themes/dark-theme';
 import lightTheme from './themes/light-theme';
@@ -48,6 +49,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={themes[theme]}>
+      <MainHead />
       <Router history={history} basename="/">
         <IntlProvider
           key={language}

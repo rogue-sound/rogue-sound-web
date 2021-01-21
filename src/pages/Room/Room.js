@@ -10,6 +10,7 @@ import Sidebar from '@layout/Sidebar';
 import Footer from '@layout/Footer';
 import SearchSongs from './SearchSongs';
 import Play from './Play';
+import RoomHead from './RoomHead';
 /** Styled Component */
 import { RoomContainer, RoomContent, RoomNotLoggedIn } from './room.styled';
 
@@ -18,6 +19,7 @@ const Room = () => {
   const intl = useIntl();
   const { id } = useParams();
   const { token } = useSelector(state => state.auth);
+  const { current } = useSelector(state => state.playing);
 
   useEffect(() => {
     const fetchRoomDetails = async () => {
@@ -34,6 +36,9 @@ const Room = () => {
 
   return (
     <Layout>
+      {!!room && (
+        <RoomHead room={room} playing={!!(current && current.songId)} />
+      )}
       <RoomContainer>
         <RoomContent>
           {token ? (

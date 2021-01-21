@@ -26,12 +26,14 @@ export const routes = [
     id: 4,
     path: '/about',
     exact: false,
-    component: Room,
+    // Add about page
+    component: () => null,
   },
   {
     id: 5,
     path: '/faq',
     exact: false,
-    component: Room,
+    // Add FAQ page
+    component: () => null,
   },
 ];
