@@ -58,7 +58,7 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
     } else {
       handleJoin();
     }
-  }, [activeDevice]);
+  }, [activeDevice, roomId]);
 
   // Dumb polling
   useEffect(() => {
