@@ -26,6 +26,7 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
 
   const handleJoin = async (smart = false) => {
     try {
+      if (!roomId || !roomStyle) return;
       const { current, songs } = await getCurrent(`${roomId}${roomStyle}`);
       if (smart || (!remainingRef.current && current)) {
         const song = {

@@ -2,9 +2,7 @@ import { azure } from '@config';
 import http from './http';
 
 export const getCurrent = roomId =>
-  http
-    .get(`${azure.apiUrl}/getCurrent`, { params: { roomId } })
-    .then(res => res.data);
+  http.get(`${azure.apiUrl}/getCurrent/${roomId}`).then(res => res.data);
 
 export const addSong = songRequestModel =>
   http.post(`${azure.apiUrl}/addSong`, songRequestModel).then(res => res.data);
