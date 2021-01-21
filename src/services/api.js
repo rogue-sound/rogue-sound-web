@@ -22,7 +22,7 @@ export const getRooms = ({ query, style = '' } = {}, skip = 0, take = 10) => {
 };
 
 export const getRoomStyles = () =>
-  http.get(`${azure.lobbyUrl}/rooms/styles`).then(res => res.data);
+  http.get(`${azure.lobbyUrl}/styles`).then(res => res.data);
 
 export const createRoom = ({ name, style }, { id, displayName, avatar }) => {
   const payload = {
@@ -36,9 +36,6 @@ export const createRoom = ({ name, style }, { id, displayName, avatar }) => {
   };
   return http.post(`${azure.lobbyUrl}/rooms`, payload).then(res => res.data);
 };
-
-// export const getRoomDetails = id =>
-//   Promise.resolve({ id, name: 'Room', creator: 'bonavida' });
 
 export const getRoomDetails = id =>
   http.get(`${azure.lobbyUrl}/rooms/${id}`).then(res => res.data);
