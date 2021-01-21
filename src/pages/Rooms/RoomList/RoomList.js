@@ -24,19 +24,16 @@ const RoomList = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log('[useEffect]');
     dispatch(fetchRooms({ query, style }, skip, take));
   }, [dispatch]);
 
   const goToRoom = (roomId, styleId) => {
-    history.push(`/rooms/${roomId}.${styleId}`);
+    history.push(`/rooms/${roomId}${styleId}`);
   };
 
   const observerHandler = useCallback(
     entries => {
       if (entries[0].isIntersecting && hasMore) {
-        console.log('[observerHandler]');
-
         dispatch(fetchRooms({ query, style }, skip, take));
       }
     },

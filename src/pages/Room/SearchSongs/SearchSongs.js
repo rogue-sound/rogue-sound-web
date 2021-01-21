@@ -13,7 +13,7 @@ import SongResult from './SongResult';
 
 import './SearchSongs.scss';
 
-const SearchSongs = ({ room: { id: roomId } }) => {
+const SearchSongs = ({ room: { id: roomId, style: roomStyle } }) => {
   const intl = useIntl();
   const [expanded, setExpanded] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -58,8 +58,12 @@ const SearchSongs = ({ room: { id: roomId } }) => {
 
   const handleSongSelect = async selectedSong => {
     try {
-      const result = await addSong({ ...selectedSong, user, roomId });
-      console.log('Song added to the list');
+      const result = await addSong({
+        ...selectedSong,
+        user,
+        roomId,
+        roomStyle,
+      });
       dispatch(setQueue(result.songs));
     } catch {
       console.log('There was a problem adding the song to the list');
@@ -180,6 +184,7 @@ SearchSongs.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     creator: PropTypes.string,
+    style: PropTypes.number,
   }),
 };
 
