@@ -1,0 +1,29 @@
+.room__list {
+  width: 100%;
+  height: 100%;
+  padding: 30px 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 300px;
+  align-items: flex-start;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  overflow: auto;
+
+  & > *:last-child {
+    margin-bottom: 30px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #01ab6d;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #cedac1;
+  }
+}

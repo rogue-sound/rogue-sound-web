@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv');
@@ -16,6 +15,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -94,6 +94,7 @@ const config = {
       '@store': path.resolve(__dirname, 'src/store/'),
       '@config': path.resolve(__dirname, 'src/config/'),
       '@styles': path.resolve(__dirname, 'src/styles/'),
+      '@hooks': path.resolve(__dirname, 'src/hooks/'),
     },
   },
   devServer: {
@@ -102,7 +103,6 @@ const config = {
   },
   plugins: [
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-    new LodashModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: require('html-webpack-template'),
       inject: false,
@@ -127,7 +127,7 @@ const config = {
   },
 };
 
-module.exports = (env, argv) => {
+module.exports = (_, argv) => {
   if (argv.hot) {
     // Cannot use 'contenthash' when hot reloading is enabled.
     config.output.filename = '[name].[hash].js';

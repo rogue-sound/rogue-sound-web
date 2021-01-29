@@ -1,0 +1,68 @@
+.room-skeleton {
+  &__item {
+    height: 300px;
+    max-height: 300px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #ddd;
+    animation-name: pulseAnimation;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform: translateZ(0);
+  }
+
+  &__details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px 15px;
+  }
+
+  &__name {
+    height: 16px;
+    width: 50%;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin-bottom: 3px;
+  }
+
+  &__creator {
+    margin-bottom: 3px;
+  }
+
+  &__creator,
+  &__style {
+    height: 12px;
+    width: 60%;
+    background-color: #ddd;
+    border-radius: 4px;
+  }
+
+  &__style {
+    width: 15%;
+  }
+}
+
+@keyframes pulseAnimation {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
