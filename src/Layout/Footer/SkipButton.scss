@@ -1,0 +1,10 @@
+.skip-button {
+    cursor: pointer;
+    color: #e6eedd;
+    transition: all 0.1s ease-out;
+    margin-left: 17px;
+    font-size: 23px;
+    &:hover {
+      font-size: 29px;
+    }
+  }

@@ -7,6 +7,11 @@ export const getCurrent = roomId =>
 export const addSong = songRequestModel =>
   http.post(`${azure.apiUrl}/addSong`, songRequestModel).then(res => res.data);
 
+export const clearQueue = () => http.get(`${azure.apiUrl}/clearQueue`);
+
+export const skipCurrentSong = () =>
+  http.post(`${azure.apiUrl}/SkipCurrentSong`);
+
 export const getRooms = ({ query, style = '' } = {}, skip = 0, take = 10) => {
   const partialUrl = style ? `/${style}` : style;
   const params = {

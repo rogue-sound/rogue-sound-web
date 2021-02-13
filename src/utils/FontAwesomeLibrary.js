@@ -17,6 +17,7 @@ import {
   faCommentDots,
   faHeart,
   faTimes,
+  faForward,
   faPortrait,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -42,8 +43,7 @@ library.add(
   faCommentDots,
   faHeart,
   faTimes,
-  faListAlt,
+  faForward,
   faPortrait,
-  faQuestionCircle,
   fab
 );

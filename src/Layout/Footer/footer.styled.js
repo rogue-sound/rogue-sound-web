@@ -11,7 +11,7 @@ const FooterWrapper = styled.div`
   z-index: 2;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 64px;
 `;
