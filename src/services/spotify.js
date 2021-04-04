@@ -14,6 +14,8 @@ const endpointUrlPlay = `${endpointUrlPlayer}/play`;
 const endpointUrlRepeat = `${endpointUrlPlayer}/repeat`;
 const endpointUrlGetTrack = `${spotify.apiUrl}/tracks`;
 const endpointUrlSearch = `${spotify.apiUrl}/search`;
+const endpointUrlTracks = `${spotify.apiUrl}/me/tracks`;
+const endpointUrlPlaylist = `${spotify.apiUrl}/me/playlists`;
 
 export const getMe = () => http.get(endpointUrlMe).then(res => res.data);
 
@@ -70,4 +72,24 @@ export const getTopTracks = (
 
 export const pause = () => {
   return http.put(`${endpointUrlPlayer}/pause`);
+};
+
+export const getUserPlaylists = () => {
+  return http.get(endpointUrlPlaylist).then(res => res.data.items);
+};
+
+export const checkIfUserLikedSongsContainsSong = songId => {
+  return http
+    .get(`${endpointUrlTracks}/contains?ids=${songId}`)
+    .then(res => res.data);
+};
+
+export const addOrRemoveLikedSong = (songId, songAlreadyExists) => {
+  return !songAlreadyExists
+    ? http
+        .put(`${endpointUrlTracks}`, { ids: [songId] })
+        .then(() => console.log('song added'))
+    : http
+        .delete(`${endpointUrlTracks}?ids=${songId}`)
+        .then(() => console.log('song deleted'));
 };

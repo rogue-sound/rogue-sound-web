@@ -9,6 +9,8 @@ const spotify = {
       'user-read-playback-state',
       'user-modify-playback-state',
       'user-top-read',
+      'user-library-read',
+      'user-library-modify',
     ],
   },
 };

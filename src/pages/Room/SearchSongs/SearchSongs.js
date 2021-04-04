@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useIntl } from 'react-intl';
+import { TooltipGate } from 'react-a-gate';
 import { setQueue } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
@@ -123,14 +124,20 @@ const SearchSongs = ({ room: { id: roomId, style: roomStyle } }) => {
         onClick={() => clearSearch()}
       />
     ) : (
-      <FontAwesomeIcon
-        icon="heart"
-        title={intl.formatMessage({
+      <TooltipGate
+        content={intl.formatMessage({
           id: 'app.pages.Room.SearchSongs.FavouriteSongsTooltip',
         })}
-        className="get-favourite-songs"
-        onClick={() => getFavouriteSongs()}
-      />
+        place="bottom"
+      >
+        <span>
+          <FontAwesomeIcon
+            icon="star"
+            className="get-favourite-songs"
+            onClick={() => getFavouriteSongs()}
+          />
+        </span>
+      </TooltipGate>
     );
 
   const renderPagination = direction =>
