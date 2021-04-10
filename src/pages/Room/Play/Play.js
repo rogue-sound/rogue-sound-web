@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { setCurrent, setQueue, stop } from '@context/playing';
-import { playSong, disableRepeat } from '@services/spotify';
+import { setCurrent, setQueue, stop, togglePause } from '@context/playing';
+import { playSong, disableRepeat, pausePlayer } from '@services/spotify';
 import { getCurrent } from '@services/api';
 import CurrentSong from './CurrentSong';
 
 import './Play.scss';
-import { pausePlayer } from '../../../services/spotify';
-import { togglePause } from '../../../context/playing/playingSlice';
 
 const Play = ({ room: { id: roomId, style: roomStyle } }) => {
   const intl = useIntl();
@@ -96,34 +94,17 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
     return () => clearTimeout(joinTimeout);
   }, [remaining, paused]);
 
+  const notificationMessage = id => (
+    <p className="notification-message">
+      {intl.formatMessage({ id: `app.pages.Room.Play.${id}` })}
+    </p>
+  );
+
   const renderPlay = () => {
-    if (!devices.length)
-      return (
-        <p className="no-available-devices">
-          {intl.formatMessage({
-            id: 'app.pages.Room.Play.NoAvailableDevicesText',
-          })}
-        </p>
-      );
-
-    if (!activeDevice)
-      return (
-        <p className="no-available-devices">
-          {intl.formatMessage({
-            id: 'app.pages.Room.Play.NoActiveDeviceText',
-          })}
-        </p>
-      );
-
-    if (!remaining) {
-      return (
-        <p className="no-current-song">
-          {intl.formatMessage({
-            id: 'app.pages.Room.Play.SessionNotStartedText',
-          })}
-        </p>
-      );
-    }
+    if (!devices.length) return notificationMessage('NoAvailableDevicesText');
+    if (!activeDevice) return notificationMessage('NoActiveDeviceText');
+    if (paused) return notificationMessage('LocallyPaused');
+    if (!remaining) return notificationMessage('SessionNotStartedText');
 
     return <CurrentSong {...reduxCurrent} />;
   };

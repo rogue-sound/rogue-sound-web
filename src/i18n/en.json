@@ -11,6 +11,7 @@
   "app.pages.Room.Play.NoActiveDeviceText": "There is no active device selected, please choose one",
   "app.pages.Room.Play.NoAvailableDevicesText": "There are no available spotify devices connected to this account",
   "app.pages.Room.Play.NowPlayingSubmitterText": "is now playing",
+  "app.pages.Room.Play.LocallyPaused": "Your session is paused, use the resume button to join again",
   "app.pages.Room.Play.SessionNotStartedText": "Session not started, please queue a song",
   "app.pages.Room.SearchSongs.FavouriteSongsTooltip": "Search my favourite songs",
   "app.pages.Room.SearchSongs.SearchForSongs": "Search for songs",
