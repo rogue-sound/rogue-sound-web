@@ -12,7 +12,7 @@ const PrimaryButton = styled.button`
   }
 `;
 
-const LoginButton = styled(PrimaryButton)`
+const GreenButton = styled(PrimaryButton)`
   background-color: #01ab6d;
   color: #ffffff;
   font-size: 12px;
@@ -34,7 +34,7 @@ const LoginButton = styled(PrimaryButton)`
   }
 `;
 
-const LogoutButton = styled(LoginButton)`
+const GreyButton = styled(GreenButton)`
   background-color: #eeeeee;
   color: #333333;
   font-size: 10px;
@@ -43,4 +43,4 @@ const LogoutButton = styled(LoginButton)`
   letter-spacing: 1.2px;
 `;
 
-export { PrimaryButton, LoginButton, LogoutButton };
+export { PrimaryButton, GreenButton, GreyButton };

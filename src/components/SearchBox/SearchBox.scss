@@ -1,0 +1,26 @@
+.searchbox {
+  &__container {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    background-color: #e6eedd;
+    padding: 15px;
+  }
+
+  &__icon {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #1d1d35;
+  }
+
+  &__input input {
+    color: #1d1d35;
+    background-color: #e6eedd;
+    border: 0;
+
+    &:focus {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}

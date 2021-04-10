@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@layout/*": [
+        "Layout/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@common/*": [
+        "common/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@context/*": [
+        "context/*"
+      ],
+      "@store/*": [
+        "store/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+    },
+    "module": "commonjs"
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

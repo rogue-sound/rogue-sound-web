@@ -1,0 +1,61 @@
+.create-room {
+  &__container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1d1d35;
+    border-top: 1px solid #4a4a63;
+    padding: 70px 30px 30px;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > * {
+      margin: 15px 0;
+    }
+  }
+
+  &__input input {
+    min-width: 120px;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1d1d35;
+    padding: 10px 15px;
+
+    &.input__error {
+      outline: 0;
+      border-color: transparent;
+      box-shadow: 0 0 0 3px red !important;
+    }
+
+    &::placeholder {
+      color: #888;
+    }
+
+    &:focus {
+      outline: 0;
+      border-color: transparent;
+      box-shadow: 0 0 0 3px #61617b;
+    }
+  }
+
+  &__style,
+  &__name {
+    width: 250px;
+  }
+}

@@ -71,3 +71,7 @@ export const getTopTracks = (
   };
   return http.get(endpointUrlTopTracks, { params }).then(res => res.data.items);
 };
+
+export const pause = () => {
+  return http.put(`${endpointUrlPlayer}/pause`);
+};

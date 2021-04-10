@@ -27,9 +27,16 @@ const playingSlice = createSlice({
       current: initialState.current,
       paused: !state.paused,
     }),
+    reset: () => initialState,
   },
 });
 
-export const { setCurrent, setQueue, stop, togglePause } = playingSlice.actions;
+export const {
+  setCurrent,
+  setQueue,
+  stop,
+  togglePause,
+  reset,
+} = playingSlice.actions;
 
 export default playingSlice.reducer;

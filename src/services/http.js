@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { login } from '@services/auth';
+import { saveRedirectPath } from '@utils';
 
 axios.interceptors.response.use(null, error => {
   const expectedError =
@@ -12,6 +13,7 @@ axios.interceptors.response.use(null, error => {
   }
 
   if (expectedError && error.response.status === 401) {
+    saveRedirectPath();
     login();
   }
 
