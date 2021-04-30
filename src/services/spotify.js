@@ -74,10 +74,6 @@ export const pause = () => {
   return http.put(`${endpointUrlPlayer}/pause`);
 };
 
-export const getUserPlaylists = () => {
-  return http.get(endpointUrlPlaylist).then(res => res.data.items);
-};
-
 export const checkIfUserLikedSongsContainsSong = songId => {
   return http
     .get(`${endpointUrlTracks}/contains?ids=${songId}`)

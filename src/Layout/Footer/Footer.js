@@ -17,7 +17,7 @@ import {
 import {
   checkIfUserLikedSongsContainsSong,
   addOrRemoveLikedSong,
-} from '../../services/spotify';
+} from '@services/spotify';
 
 const Footer = () => {
   const intl = useIntl();
@@ -58,7 +58,6 @@ const Footer = () => {
                   ? 'app.Layout.Footer.UnlikedSongsTooltip'
                   : 'app.Layout.Footer.LikedSongsTooltip',
               })}
-              place="top"
             >
               <AddToLikedSongs
                 isALikedSong={isALikedSong}

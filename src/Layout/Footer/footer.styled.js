@@ -31,7 +31,7 @@ const AddToLikedSongs = styled.div`
     }
   }
   &:hover {
-    font-size: 22px;
+    transform: scale(1.1);
   }
 `;
 
