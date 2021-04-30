@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setCurrent, setQueue, stop } from '@context/playing';
 import { playSong, disableRepeat } from '@services/spotify';
 import { getCurrent } from '@services/api';
+import { DUMB_POLLING_RATE } from '@utils/constants';
 import CurrentSong from './CurrentSong';
 
 import './Play.scss';
@@ -13,22 +14,23 @@ import './Play.scss';
 const Play = ({ room: { id: roomId, style: roomStyle } }) => {
   const intl = useIntl();
   const [remaining, setRemaining] = useState(null);
-  const [playTimeout, setPlayTimeout] = useState(null);
   const [pollingState, setPollingState] = useState(false);
+  const smartPolling = useRef(null);
   const dumbPolling = useRef(null);
   const disabledRepeat = useRef(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
-  const { devices, activeDevice } = useSelector(state => state.spotify);
+  const devices = useSelector(state => state.spotify.devices);
+  const activeDevice = useSelector(state => state.spotify.activeDevice);
 
   const dispatch = useDispatch();
 
   /* Play song */
   const _playSong = useCallback(
-    async (song, device) => {
-      // Review this condition to setCurrent on end
-      if (!device || song.songId === reduxCurrent.songId) return;
+    async (song, device, forcePlay) => {
       try {
+        if (song === null) throw new Error('Queue has ended');
+        if (!forcePlay && song.songId === reduxCurrent?.songId) return;
         const _song = {
           uris: [song.songId],
           position_ms: song.position,
@@ -49,66 +51,60 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
 
   /* Get room information (current song and queue) */
   const getRoomInformation = useCallback(
-    async (updateCurrent = true, updateQueue = true) => {
+    async (forcePlay = false) => {
       if (!roomId || !roomStyle) return [];
       const { current, songs } = await getCurrent(`${roomId}${roomStyle}`);
-      if (updateQueue && songs) dispatch(setQueue(songs));
-      if (updateCurrent && activeDevice) {
-        _playSong(current, activeDevice);
-      }
+      if (songs) dispatch(setQueue(songs));
+      if (activeDevice) _playSong(current, activeDevice, forcePlay);
       return [current, songs];
     },
     [roomId, roomStyle, _playSong, dispatch, activeDevice]
   );
 
-  /* TODO: Fix rejoin when new device is selected */
-  // useEffect(() => {
-  //   console.log(`activeDevice`, activeDevice);
-  //   getRoomInformation();
-  // }, [activeDevice]);
-
-  /* TODO: Join session before first dumb polling exeuction */
+  /* Join the room as soon the room is loaded and reload on device change */
+  useEffect(() => {
+    if (activeDevice) {
+      getRoomInformation(true);
+    }
+  }, [roomId, roomStyle, activeDevice]);
 
   /* Set up smart polling */
   useEffect(() => {
     if (!reduxCurrent) setRemaining(null);
-    console.log('Setting up smart polling');
-    const { duration, position } = reduxCurrent;
-    const remainingTime = duration - position;
-    setRemaining(remainingTime);
+    if (reduxCurrent?.duration) {
+      const { duration, position } = reduxCurrent;
+      const remainingTime = duration - position;
+      setRemaining(remainingTime);
+    }
   }, [reduxCurrent]);
 
   /* Handle smart polling */
   useEffect(() => {
-    playTimeout && clearTimeout(playTimeout);
+    if (smartPolling.current) clearTimeout(smartPolling.current);
     if (remaining) {
-      setPlayTimeout(
-        setTimeout(() => {
-          getRoomInformation();
-        }, remaining)
-      );
+      smartPolling.current = setTimeout(() => {
+        getRoomInformation();
+      }, remaining);
     }
-
-    return () => {
-      console.log('[UNMOUNT] Clearing smart polling');
-      clearTimeout(playTimeout);
-    };
   }, [remaining, getRoomInformation]);
 
   /* Dumb polling */
   useEffect(() => {
-    const { current: currentPolling } = dumbPolling;
-    if (currentPolling) clearTimeout(currentPolling);
+    if (dumbPolling.current) clearTimeout(dumbPolling.current);
     dumbPolling.current = setTimeout(() => {
       getRoomInformation();
       setPollingState(prev => !prev);
-    }, 4000);
-
-    return () => {
-      console.log('[UNMOUNT] Clearing dumb polling');
-      clearTimeout(currentPolling);
-    };
+    }, DUMB_POLLING_RATE);
   }, [pollingState, getRoomInformation]);
+
+  /* Clean-up */
+  useEffect(() => {
+    return () => {
+      console.log('[UNMOUNT] Clearing pollings');
+      smartPolling.current && clearTimeout(smartPolling.current);
+      dumbPolling.current && clearTimeout(dumbPolling.current);
+    };
+  }, []);
 
   const notificationMessage = id => (
     <p className="notification-message">

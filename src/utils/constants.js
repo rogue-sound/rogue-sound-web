@@ -15,3 +15,5 @@ export const TopTracksTimeRangeConstants = {
   MEDIUM_TERM: 'medium_term',
   LONG_TERM: 'long_term',
 };
+
+export const DUMB_POLLING_RATE = 4000;
