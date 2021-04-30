@@ -6,17 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setCurrent, setQueue, stop } from '@context/playing';
 import { playSong, disableRepeat } from '@services/spotify';
 import { getCurrent } from '@services/api';
-import { DUMB_POLLING_RATE } from '@utils/constants';
 import CurrentSong from './CurrentSong';
+import useDumbPolling from './Hooks/useDumbPolling';
 
 import './Play.scss';
 
 const Play = ({ room: { id: roomId, style: roomStyle } }) => {
   const intl = useIntl();
   const [remaining, setRemaining] = useState(null);
-  const [pollingState, setPollingState] = useState(false);
   const smartPolling = useRef(null);
-  const dumbPolling = useRef(null);
   const disabledRepeat = useRef(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
@@ -42,8 +40,10 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
         }
         dispatch(setCurrent(song));
       } catch {
-        dispatch(stop());
-        setRemaining(null);
+        if (reduxCurrent?.songId) {
+          dispatch(stop());
+          setRemaining(null);
+        }
       }
     },
     [dispatch, reduxCurrent]
@@ -89,20 +89,13 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
   }, [remaining, getRoomInformation]);
 
   /* Dumb polling */
-  useEffect(() => {
-    if (dumbPolling.current) clearTimeout(dumbPolling.current);
-    dumbPolling.current = setTimeout(() => {
-      getRoomInformation();
-      setPollingState(prev => !prev);
-    }, DUMB_POLLING_RATE);
-  }, [pollingState, getRoomInformation]);
+  useDumbPolling(getRoomInformation);
 
   /* Clean-up */
   useEffect(() => {
     return () => {
       console.log('[UNMOUNT] Clearing pollings');
       smartPolling.current && clearTimeout(smartPolling.current);
-      dumbPolling.current && clearTimeout(dumbPolling.current);
     };
   }, []);
 
