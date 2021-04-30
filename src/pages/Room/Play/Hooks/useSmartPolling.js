@@ -23,8 +23,7 @@ export default () => {
 
   useEffect(() => {
     return () => {
-      console.log('[UNMOUNT] Clearing smart polling');
-      if (smartPolling.current) clearTimeout(smartPolling.current);
+      smartPolling.current && clearTimeout(smartPolling.current);
     };
   }, []);
 

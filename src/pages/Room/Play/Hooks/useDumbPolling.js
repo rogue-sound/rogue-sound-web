@@ -23,8 +23,7 @@ export default () => {
 
   useEffect(() => {
     return () => {
-      console.log('[UNMOUNT] Clearing dumb polling');
-      if (dumbPolling.current) clearTimeout(dumbPolling.current);
+      dumbPolling.current && clearTimeout(dumbPolling.current);
     };
   }, []);
 
