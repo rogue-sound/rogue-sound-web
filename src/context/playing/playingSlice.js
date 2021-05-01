@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { playSong /* , disableRepeat */ } from '@services/spotify';
 
 const initialState = {
   active: false,
@@ -36,3 +37,21 @@ export const {
 } = playingSlice.actions;
 
 export default playingSlice.reducer;
+
+export const playSongAction = (song, device, current) => async dispatch => {
+  try {
+    if (!song) throw new Error('Queue has ended');
+    const _song = {
+      uris: [song.songId],
+      position_ms: song.position || 1,
+    };
+    await playSong(_song, device);
+    dispatch(setPlayingDevice(device));
+    dispatch(setCurrent(song));
+  } catch (err) {
+    if (current?.songId) {
+      dispatch(stop());
+      setCurrent({});
+    }
+  }
+};
