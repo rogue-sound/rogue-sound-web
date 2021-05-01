@@ -55,7 +55,7 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
         }
       }
     },
-    [dispatch, reduxCurrent]
+    [dispatch, reduxCurrent, playingDevice]
   );
 
   /* Get room information (current song and queue) */
