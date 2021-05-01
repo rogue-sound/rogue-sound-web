@@ -7,14 +7,14 @@ import { DUMB_POLLING_RATE } from '@utils/constants';
  */
 
 export default () => {
-  const dumbPolling = useRef(null);
+  const timeout = useRef(null);
   const callback = useRef(null);
   const [pollingState, setPollingState] = useState(false);
 
   useEffect(() => {
     if (callback.current) {
-      if (dumbPolling.current) clearTimeout(dumbPolling.current);
-      dumbPolling.current = setTimeout(() => {
+      if (timeout.current) clearTimeout(timeout.current);
+      timeout.current = setTimeout(() => {
         callback.current();
         setPollingState(prev => !prev);
       }, DUMB_POLLING_RATE);
@@ -23,12 +23,13 @@ export default () => {
 
   useEffect(() => {
     return () => {
-      dumbPolling.current && clearTimeout(dumbPolling.current);
+      timeout.current && clearTimeout(timeout.current);
     };
   }, []);
 
   const setCallback = fn => {
     callback.current = fn;
+    setPollingState(prev => !prev);
   };
 
   return [setCallback];

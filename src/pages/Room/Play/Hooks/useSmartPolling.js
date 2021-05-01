@@ -6,15 +6,15 @@ import { useRef, useState, useEffect } from 'react';
  */
 
 export default () => {
-  const smartPolling = useRef(null);
+  const timeout = useRef(null);
   const callback = useRef(null);
   const [remaining, setRemaining] = useState(null);
 
   useEffect(() => {
-    if (callback) {
-      if (smartPolling.current) clearTimeout(smartPolling.current);
+    if (callback.current) {
+      if (timeout.current) clearTimeout(timeout.current);
       if (remaining) {
-        smartPolling.current = setTimeout(() => {
+        timeout.current = setTimeout(() => {
           callback.current();
         }, remaining);
       }
@@ -23,7 +23,7 @@ export default () => {
 
   useEffect(() => {
     return () => {
-      smartPolling.current && clearTimeout(smartPolling.current);
+      timeout.current && clearTimeout(timeout.current);
     };
   }, []);
 

@@ -70,7 +70,7 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
   /* Join the room as soon the it is loaded and reload on device change */
   useEffect(() => {
     if (activeDevice) {
-      getRoomInformation(true);
+      getRoomInformation();
     }
   }, [roomId, roomStyle, activeDevice]);
 
