@@ -27,7 +27,7 @@ const Play = ({ room: { id: roomId, style: roomStyle } }) => {
 
   const _playSong = useCallback(
     async (song, device) => {
-      if (song?.songId !== reduxCurrent?.songId || playingDevice !== device)
+      if (song?.endTime !== reduxCurrent?.endTime || playingDevice !== device)
         dispatch(playSongAction(song, device, reduxCurrent));
     },
     [dispatch, reduxCurrent, playingDevice]

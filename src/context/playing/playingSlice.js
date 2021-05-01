@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { playSong /* , disableRepeat */ } from '@services/spotify';
+import { playSong } from '@services/spotify';
 
 const initialState = {
   active: false,
@@ -28,13 +28,8 @@ const playingSlice = createSlice({
   },
 });
 
-export const {
-  setCurrent,
-  setQueue,
-  stop,
-  setPlayingDevice,
-  reset,
-} = playingSlice.actions;
+const { setCurrent, stop, setPlayingDevice } = playingSlice.actions;
+export const { setQueue, reset } = playingSlice.actions;
 
 export default playingSlice.reducer;
 
@@ -51,7 +46,6 @@ export const playSongAction = (song, device, current) => async dispatch => {
   } catch (err) {
     if (current?.songId) {
       dispatch(stop());
-      setCurrent({});
     }
   }
 };
