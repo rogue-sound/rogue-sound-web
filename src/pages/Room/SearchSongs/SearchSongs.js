@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useIntl } from 'react-intl';
-import { setQueue } from '@context/playing';
+import { setQueue, playSongAction } from '@context/playing';
 import Input from '@common/Input';
 import { addSong } from '@services/api';
 import { search, getTopTracks } from '@services/spotify';
@@ -22,6 +22,7 @@ const SearchSongs = ({ room: { id: roomId, style: roomStyle } }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   const user = useSelector(state => state.me.displayName);
+  const activeDevice = useSelector(state => state.spotify.activeDevice);
   const dispatch = useDispatch();
 
   const searchSongs = async (query, newOffset = offset) => {
@@ -65,6 +66,11 @@ const SearchSongs = ({ room: { id: roomId, style: roomStyle } }) => {
         roomStyle,
       });
       dispatch(setQueue(result.songs));
+      if (!result.current && activeDevice) {
+        dispatch(
+          playSongAction({ ...result.songs[0], position: 1 }, activeDevice)
+        );
+      }
     } catch {
       console.log('There was a problem adding the song to the list');
     }

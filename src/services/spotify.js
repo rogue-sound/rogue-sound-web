@@ -36,27 +36,23 @@ export const playSong = (song, deviceId) => {
 export const getTrack = id =>
   http.get(`${endpointUrlGetTrack}/${id}`).then(res => res.data);
 
-export const disableRepeat = deviceId => {
+export const disableRepeat = async deviceId => {
   const query = `?state=off${deviceId && `&device_id=${deviceId}`}`;
-  return http
-    .put(endpointUrlRepeat + query)
-    .then(console.log('Disabled auto repeat for the user'))
-    .catch(noop);
+  return http.put(endpointUrlRepeat + query).catch(noop);
 };
 
-export const search = (query, offset) => {
+export const search = async (query, offset) => {
   const params = {
     q: query,
     type: 'track',
     offset,
     limit: SongSearchConstants.SEARCH_LIMIT,
   };
-  return http
-    .get(endpointUrlSearch, { params })
-    .then(res => res.data.tracks.items);
+  const res = await http.get(endpointUrlSearch, { params });
+  return res.data.tracks.items;
 };
 
-export const getTopTracks = (
+export const getTopTracks = async (
   offset,
   time_range = TopTracksTimeRangeConstants.MEDIUM_TERM
 ) => {
@@ -65,7 +61,8 @@ export const getTopTracks = (
     limit: SongSearchConstants.SEARCH_LIMIT,
     time_range,
   };
-  return http.get(endpointUrlTopTracks, { params }).then(res => res.data.items);
+  const res = await http.get(endpointUrlTopTracks, { params });
+  return res.data.items;
 };
 
 export const pause = () => {

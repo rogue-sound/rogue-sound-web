@@ -1,116 +1,86 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { setCurrent, setQueue, stop } from '@context/playing';
-import { playSong, disableRepeat } from '@services/spotify';
+import { setQueue, playSongAction } from '@context/playing';
 import { getCurrent } from '@services/api';
+import { disableRepeat } from '@services/spotify';
 import CurrentSong from './CurrentSong';
+import useDumbPolling from './Hooks/useDumbPolling';
+import useSmartPolling from './Hooks/useSmartPolling';
 
 import './Play.scss';
 
 const Play = ({ room: { id: roomId, style: roomStyle } }) => {
   const intl = useIntl();
-  const [remaining, setRemaining] = useState(null);
-  const remainingRef = useRef(remaining);
-  remainingRef.current = remaining;
-  const [joinTimeout, setJoinTimeout] = useState(null);
-  const [pollingState, setPollingState] = useState(false);
-  const [disabledRepeat, setDisabledRepeat] = useState(false);
 
   const reduxCurrent = useSelector(state => state.playing.current);
-  const { devices, activeDevice } = useSelector(state => state.spotify);
-
+  const playingDevice = useSelector(state => state.playing.device);
+  const devices = useSelector(state => state.spotify.devices);
+  const activeDevice = useSelector(state => state.spotify.activeDevice);
   const dispatch = useDispatch();
 
-  const handleJoin = async (smart = false) => {
-    try {
-      if (!roomId || !roomStyle) return;
-      const { current, songs } = await getCurrent(`${roomId}${roomStyle}`);
-      if (smart || (!remainingRef.current && current)) {
-        const song = {
-          uris: [current.songId],
-          position_ms: current.position,
-        };
-        if (activeDevice) {
-          await playSong(song, activeDevice);
-          if (!disabledRepeat) {
-            disableRepeat(activeDevice);
-            setDisabledRepeat(true);
-          }
-          dispatch(setCurrent(current));
-          const remainingTime = current.duration - current.position;
-          setRemaining(remainingTime);
-        }
-      }
-      songs && dispatch(setQueue(songs));
-    } catch {
-      dispatch(stop());
-      setRemaining(null);
-      setJoinTimeout(null);
-    }
-  };
+  /* Polling */
+  const [setDumbPolling] = useDumbPolling();
+  const [remaining, setRemaining, setSmartPolling] = useSmartPolling();
 
-  useEffect(() => {
-    if (activeDevice) {
-      handleJoin(true);
-    } else {
-      handleJoin();
-    }
-  }, [activeDevice, roomId]);
+  const _playSong = useCallback(
+    async (song, device) => {
+      if (song?.endTime !== reduxCurrent?.endTime || playingDevice !== device)
+        dispatch(playSongAction(song, device, reduxCurrent));
+    },
+    [dispatch, reduxCurrent, playingDevice]
+  );
 
-  // Dumb polling
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      handleJoin();
-      setPollingState(!pollingState);
-    }, 4000);
-    return () => clearTimeout(timeout);
-  }, [pollingState]);
+  /* Get room information (current song and queue) */
+  const getRoomInformation = useCallback(async () => {
+    if (!roomId || !roomStyle) return;
+    const { current, songs } = await getCurrent(`${roomId}${roomStyle}`);
+    if (songs) dispatch(setQueue(songs));
+    if (activeDevice) _playSong(current, activeDevice);
+  }, [roomId, roomStyle, _playSong, dispatch, activeDevice]);
 
-  // Smart polling
+  /* Join the room as soon there is an available device and reload on change */
   useEffect(() => {
-    if (remaining) {
-      joinTimeout && clearTimeout(joinTimeout);
-      setJoinTimeout(setTimeout(() => handleJoin(true), remaining));
+    activeDevice && getRoomInformation();
+  }, [roomId, roomStyle, activeDevice]);
+
+  /* Disable repeat in the playing device */
+  useEffect(() => {
+    playingDevice && disableRepeat(playingDevice);
+  }, [playingDevice]);
+
+  /* Control smart polling */
+  useEffect(() => {
+    if (!reduxCurrent?.songId) setRemaining(null);
+    if (reduxCurrent?.duration) {
+      const { duration, position } = reduxCurrent;
+      const remainingTime = duration - position;
+      setRemaining(remainingTime);
     }
-    return () => clearTimeout(joinTimeout);
-  }, [remaining]);
+  }, [reduxCurrent]);
+
+  /* Set polling callbacks */
+  useEffect(() => {
+    setDumbPolling(getRoomInformation);
+    setSmartPolling(getRoomInformation);
+  }, [getRoomInformation]);
+
+  const notificationMessage = id => (
+    <p className="notification-message">
+      {intl.formatMessage({ id: `app.pages.Room.Play.${id}` })}
+    </p>
+  );
 
   const renderPlay = () => {
-    if (!devices.length)
-      return (
-        <p className="no-available-devices">
-          {intl.formatMessage({
-            id: 'app.pages.Room.Play.NoAvailableDevicesText',
-          })}
-        </p>
-      );
-
-    if (!activeDevice)
-      return (
-        <p className="no-available-devices">
-          {intl.formatMessage({
-            id: 'app.pages.Room.Play.NoActiveDeviceText',
-          })}
-        </p>
-      );
-
-    if (!remaining) {
-      return (
-        <p className="no-current-song">
-          {intl.formatMessage({
-            id: 'app.pages.Room.Play.SessionNotStartedText',
-          })}
-        </p>
-      );
-    }
+    if (!devices.length) return notificationMessage('NoAvailableDevicesText');
+    if (!activeDevice) return notificationMessage('NoActiveDeviceText');
+    if (!remaining) return notificationMessage('SessionNotStartedText');
 
     return <CurrentSong {...reduxCurrent} />;
   };
 
-  // TODO: Add admin buttons?
   return (
     <>
       {!!remaining && (
