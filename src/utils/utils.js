@@ -12,11 +12,6 @@ export const textDuration = duration => {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-export const translate = (intl, id) =>
-  intl.formatMessage({
-    id,
-  });
-
 export const getNestedObject = (nestedObj, pathArr) => {
   return pathArr.reduce(
     (obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined),

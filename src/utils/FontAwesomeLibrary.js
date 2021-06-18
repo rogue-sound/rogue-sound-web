@@ -18,6 +18,7 @@ import {
   faHeart,
   faTimes,
   faPortrait,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -45,5 +46,6 @@ library.add(
   faListAlt,
   faPortrait,
   faQuestionCircle,
-  fab
+  fab,
+  faStar
 );
